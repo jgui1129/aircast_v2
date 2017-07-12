@@ -1,0 +1,53 @@
+// Fonts
+$base-font: "Lato", sans-serif;
+$header-font: "Gotham", sans-serif;
+$line-font: "streamline-30px";
+
+
+//colors
+
+$light-green: #a7d69f;
+$bg-green: #fafbff;
+$base-color: #558ab7;
+$subheader-color: #a8bed0;
+$green: #42bb79;
+$orange: #e67e22;
+//mixins
+
+$break-monitor: 1200px;
+$break-laptop: 992px;
+$break-tablet: 768px;
+$break-mobile: 480px;
+$break-nano: 320px;
+
+@mixin breakpoint($width) {
+  @if $width == monitor {
+    @media (min-width: $break-monitor) { @content; }
+  }
+  @else if $width == laptop {
+    @media (min-width: $break-laptop) { @content; }
+  }
+  @else if $width == tablet {
+    @media (min-width: $break-tablet) { @content; }
+  }
+  @else if $width == mobile {
+    @media (min-width: $break-mobile) { @content; }
+  }
+  @else if $width == nano {
+    @media (min-width: $break-nano)  { @content; }
+  }
+}
+
+@mixin font-size($sizeValue: 1.6) {
+  font-size: ($sizeValue * 10) + px;
+  font-size: $sizeValue + rem;
+}
+
+@mixin multiLineEllipsis($lineHeight, $lineCount){
+    overflow: hidden;
+    position: relative;
+    line-height: $lineHeight;
+    max-height: $lineHeight * $lineCount;
+    text-align: justify;
+    padding-right: 15px;
+}

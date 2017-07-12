@@ -1,0 +1,51 @@
+.height-75 {
+  height: 75px;
+}
+.navbar {
+  font-family: $header-font;
+  position: fixed;
+  width: 100%;
+  border-radius: inherit;
+  height: 75px;
+  z-index: 16;
+  margin-bottom: 0px;
+  border-bottom: 2px solid #eee;
+  background: white;
+
+  ul {
+    margin: 1em 0 0 4em;
+    font-size: 13px;
+  }
+
+  .container-fluid {
+    padding-right: 3%;
+    padding-left: 3%;
+  }
+
+  .navbar-header {
+    margin-top: 8px;
+  }
+
+  img {
+    height: 30px;
+  }
+  a {
+    color: #d4dee4;
+  }
+  a:hover, a:focus {
+    background: none !important;
+  }
+
+  .active {
+    color: $green !important;
+  }
+
+  li {
+    letter-spacing: 1.5px;
+    cursor: pointer;
+  }
+
+  .navbar-toggle {
+    margin-top: 20px;
+  }
+}

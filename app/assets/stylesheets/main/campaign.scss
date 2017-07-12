@@ -1,0 +1,158 @@
+.create {
+  input[type="text"] {
+    border: none;
+    display: block;
+    border-bottom: 1px solid black;
+  }
+  input:focus {
+    outline: none;
+  }
+
+  label,h5 {
+    font-family: $header-font;
+    font-weight: 100;
+  }
+
+  select {
+    display: block;
+    margin-top: 15px;
+    height: 33px;
+  }
+
+  .row-space-top-5{
+    label {
+      width: 100%;
+    }
+  }
+
+  select, img, input[type="text"] {
+    width: 100%;
+  }
+
+  button {
+    padding: 10px 50px;
+  }
+}
+
+.dropzone {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+  background-color: #f4f2ef;
+  border: 1px dashed #b8b8b8;
+  text-align: center;
+  color: #656d78;
+  &.dragover {
+    border-color: blue;
+  }
+}
+
+.aircast-button {
+  background: $green;
+  color: white;
+}
+
+.aircast-button:hover, .aircast-button:focus {
+  background: lighten($green, 3%);
+  color: white;
+  outline: none;
+}
+
+.locations {
+  label {
+    border: 1px solid $base-color;
+    padding: 8px;
+    border-radius: 3px;
+    margin-right: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  input {
+    display: none;
+  }
+  .active{
+    background: $base-color;
+    color: white;
+  }
+  .shifts {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.number_type {
+  padding: 7px 3px 7px 5px;
+  border: none;
+  border-bottom: 1px solid;
+}
+
+.locations_head {
+  h3 {
+    font-size: 18px;
+    outline: 0px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 18px;
+    background: $green;
+    margin: 0;
+    padding-top: 18px;
+    color: white;
+  }
+}
+
+.go_loc {
+  margin-top: 12px;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+
+  .line-icon {
+    position: relative;
+    top: 15px;
+  }
+  h4 {
+    font-size: 13px;
+    margin: 10px 0 0 0;
+  }
+  p {
+    font-size: 11px;
+    margin-bottom: 7px;
+  }
+}
+
+.go_loc_form {
+  margin-left: 17px;
+  margin-right: 17px;
+}
+
+.outline-button {
+  border-radius: 3px;
+  background: white;
+  border: solid 1px;
+  font-size: 14px;
+  font-weight: 300;
+  padding: 6px 19px 6px 19px;
+}
+
+.left {
+  float: left;
+  margin-top: 2.4em;
+}
+
+.orange-btn {
+  border-color: $orange;
+  background: white;
+  color: $orange;
+}
+.orange-btn:hover {
+  background: $orange;
+  border-color: $orange;
+  color: white;
+}
+
+.calculator {
+  p {
+    font-weight: 300;
+  }
+  
+}

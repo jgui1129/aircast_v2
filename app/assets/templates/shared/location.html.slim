@@ -1,0 +1,22 @@
+.row
+  .col-sm-7.no-padding-right.locations_head
+    h3.center 
+      .line-icon.icon-book-6.center.add-margin-right
+      | {{clicked_location.name}}
+    .go_loc_form  
+      .go_loc ng-repeat="location in clicked_location.areas"
+        .row.no-margin
+          .col-sm-9.no-padding-right
+            h4 
+              | {{location.name}}
+            p 
+              | {{location.area}} | {{location.quantity}} TV Available
+          .col-sm-3.no-padding-right.center.row-space-top-2
+            switch.green ng-change="active()" id="enabled" name="enabled" ng-model="all_enabled_areas.selected[location.rpi_id]"
+      .left.row-space-top-5
+        button.outline-button.orange-btn ng-click="closeThisDialog('Some value')" Cancel
+      .align-right.row-space-top-5.row-space-5
+        button.btn.aircast-button ng-click="confirm(final_locations)" Confirm
+          
+  .col-sm-5.no-padding
+    .location_map ng-map="" center="[40.74, -74.18]" 

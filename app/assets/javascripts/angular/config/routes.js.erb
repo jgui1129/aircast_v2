@@ -1,0 +1,39 @@
+Aircast.config(["$stateProvider", "$httpProvider", "$urlRouterProvider", "$locationProvider", function($stateProvider, $httpProvider, $urlRouterProvider, $locationProvider) {
+  $stateProvider
+    .state('nav', {
+        abstract: true,
+        templateUrl: 'shared/nav.html',
+        controller: 'NavController'
+    })
+
+    .state('nav.home', {
+      url: '/',
+      views: {
+        'content@nav': {
+          templateUrl: 'main/home.html',
+          controller: 'HomeController'
+        }
+      }
+    })
+
+    .state('nav.campaigns', {
+      url: '/campaigns',
+      views: {
+        'content@nav': {
+          templateUrl: 'main/campaign.html',
+          controller: 'CampaignController'
+        }
+      }
+    })
+
+
+    $urlRouterProvider.otherwise('/');
+    $locationProvider.html5Mode({
+  enabled: true,
+  requireBase: false
+})
+
+}])
+.run(["$rootScope", "$state", function($rootScope, $state) {
+      $rootScope.$state = $state;
+}])
