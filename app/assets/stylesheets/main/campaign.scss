@@ -61,12 +61,14 @@
 
 .locations {
   label {
-    border: 1px solid $base-color;
-    padding: 8px;
+    border: 1px solid #558ab7;
+    padding: 9px 8px 6px 0px;
     border-radius: 3px;
     margin-right: 10px;
     cursor: pointer;
     margin-bottom: 10px;
+    min-width: 50px;
+    text-align: center;
   }
   input {
     display: none;
@@ -154,5 +156,5 @@
   p {
     font-weight: 300;
   }
-  
+
 }

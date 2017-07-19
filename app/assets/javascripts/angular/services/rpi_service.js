@@ -14,6 +14,7 @@ angular.module('Aircast.services')
     }
 
     this.fileUrl = function(data) {
+
         var d = $q.defer();
         $http({
           method: 'POST',
@@ -46,5 +47,46 @@ angular.module('Aircast.services')
 
     return d.promise;
   }
+
+    this.rpi_upload = function(data) {
+      var d = $q.defer();
+      $http({
+        method: 'POST',
+        url: 'http://54.254.248.115/CampaignPost',
+        data: data,
+      }).then(function(data){
+        d.resolve(data);
+      });
+
+      return d.promise;
+    }
+
+    this.getCampaigns = function(data) {
+      var d = $q.defer();
+      $http({
+        method: 'POST',
+        url: 'http://54.254.248.115/AircastStatus',
+        data: data,
+      }).then(function(data){
+        d.resolve(data);
+      });
+
+      return d.promise;
+    }
+
+    this.switchCampaign = function(data) {
+
+      var d = $q.defer();
+      $http({
+        method: 'POST',
+        url: 'http://54.254.248.115/AircastSwitch',
+        data: data,
+      }).then(function(data){
+        d.resolve(data);
+      });
+
+      return d.promise;
+
+    }
 
 }]);

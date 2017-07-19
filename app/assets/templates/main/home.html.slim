@@ -1,24 +1,22 @@
 .container-aircast
   .row.no-margin
     .col-sm-7.no-padding-right
-      h4.no-margin Recent Campaigns
+      h4.no-margin
+        | Recent Campaigns 
       .row-space-top-4
         .campaign ng-repeat="campaign in campaigns"
           .row.no-margin
             .col-sm-2.no-padding
-              img ng-src="{{campaign.image}}"
+              img ng-src="http://i.imgur.com/cqW4AOl.png"
             .col-sm-8.no-padding-right.row-space-top-2
               h4 
-                | {{campaign.header}}
+                | {{campaign.CampaignName}}
               .row 
-                .col-sm-4.no-padding-right
+                .col-sm-12.no-padding-right
                   p 
-                    | Added: {{campaign.added}}
-                .col-sm-8.no-padding-right
-                  p 
-                    | Areas: Ortigas, Quezon City, Makati
+                    | Starts: {{campaign.StartDate}} | Ends: {{campaign.EndDate}} | Live at {{campaign.all_enabled.length}}/{{campaign.total_tvs}}                    
             .col-sm-2.switch_campaign
-              switch.green id="enabled" name="enabled" ng-model="enabled"
+              switch.green ng-change="live()" id="enabled" name="enabled" ng-model="all_enabled_campaigns.selected[campaign.CampaignID]"
             
     .col-sm-5
       .stats ng-repeat="stat in stats"

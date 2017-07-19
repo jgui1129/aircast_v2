@@ -1,7 +1,7 @@
 angular.module('Aircast.controllers')
   .controller('CampaignController',
-  ['$scope', '$state','ngDialog', 'RpiService', 'Upload',
-    function($scope, $state, ngDialog, RpiService, Upload) {
+  ['$scope', '$state','ngDialog', 'RpiService', 'Upload', 'DemoService',
+    function($scope, $state, ngDialog, RpiService, Upload, DemoService) {
 
       $scope.form_part = 1
       var video_divisor = 15
@@ -10,6 +10,9 @@ angular.module('Aircast.controllers')
       //initialization
       $scope.campaign = {}
       $scope.campaign.price_per_spot = 25
+      $scope.campaign.weight = 1
+      $scope.campaign.aired_total = 1
+      $scope.campaign.duration = "NA"
       $scope.campaign.added_date_formatted = moment().format('l');
       $scope.all_locations = {
         selected:{}
@@ -18,21 +21,46 @@ angular.module('Aircast.controllers')
       $scope.selected_locations = []
 
       $scope.$watch('selected_locations', function () {
-        console.log($scope.selected_locations)
+
         x = 0
         _.each($scope.selected_locations, function(x) {
-          subtotal = x.total * $scope.campaign.sum_repeats * $scope.campaign.weight * $scope.campaign.price_per_spot
+          subtotal = x.total * $scope.campaign.aired_total * $scope.campaign.weight * $scope.campaign.price_per_spot
           x = x + subtotal
         })
-        $scope.campaign.total = x
+        $scope.campaign.locations = $scope.selected_locations
+        calculate_total()
+
+
       });
+
+      calculate_total = function() {
+        sum = 0
+        _.each($scope.campaign.locations, function(x){
+          sum = sum + x.total
+        })
+        $scope.campaign.total = sum*$scope.campaign.aired_total*$scope.campaign.price_per_spot*$scope.campaign.weight
+        $scope.campaign.total_spots = $scope.campaign.total/25
+      }
       $scope.all_shifts = {
         selected:{}
       };
+      $scope.all_shifts.selected = {
+        morning: "morning"
+      }
+
+
       $scope.all_days = {
         selected:{}
       };
       $scope.aired = {}
+
+      $scope.aired = {
+        Morning: 1
+      }
+      $scope.campaign.aired_content = [{
+        name: "Morning",
+        repeat: 1
+      }]
 
       $scope.datePicker = {}
       $scope.datePicker.date = {
@@ -42,80 +70,12 @@ angular.module('Aircast.controllers')
       $scope.all_days = {
         selected:{}
       };
-      $scope.days = [
-        {
-          id: "0",
-          "name": "Sun"
-        },{
-          id: "1",
-          "name": "Mon"
-        },{
-          id:"2",
-          "name": "Tue"
-        },{
-          id: "3",
-          "name": "Wed"
-        },{
-          id: "4",
-          "name": "Thu"
-        },{
-          id: "5",
-          "name": "Fri"
-        },{
-          id:"6",
-          "name": "Sat"
-        }
-      ]
-      $scope.shifts = [
-        {
-          "id": "morning",
-          "name": "Morning",
-          "time": "6:00 AM - 11:00 AM"
-        },
-        {
-          "id": "lunch",
-          "name": "Lunch",
-          "time": "11:00 AM - 1:00 PM"
-        },
-        {
-          "id": "afternoon",
-          "name": "Afternoon",
-          "time": "1:00 PM - 5:00 PM"
-        },
-        {
-          "id": "evening",
-          "name": "Evening",
-          "time": "5:00 PM - 9:00 PM"
-        },
-      ]
-      $scope.layouts = [
-        {
-          name: "1 Division (Video)",
-          tempId: "temp2",
-          content: [
-            {
-              "label": "Side A",
-              "filetype": "video/*",
-              "name": "video",
-              "type": "video"
-            }
-          ],
-          url: "https://i.imgur.com/mYKALk9.png",
-        },
-        {
-          name: "1 Division (Img/GIF)",
-          tempId: "temp4",
-          content: [
-            {
-              "label": "Side A",
-              "filetype": "image/*",
-              "name": "img/gif",
-              "type": "gif"
-            }
-          ],
-          url: "https://i.imgur.com/WslqN5q.png",
-        },
-      ];
+      $scope.campaign.startDate_formatted = moment($scope.datePicker.date.startDate).format('MMM D')
+      $scope.campaign.endDate_formatted = moment($scope.datePicker.date.endDate).format('MMM D')
+      $scope.days = DemoService.days()
+      $scope.shifts = DemoService.shifts()
+      $scope.layouts = DemoService.layouts()
+      $scope.locations = DemoService.locations()
 
       $scope.selected_layout = $scope.layouts[0]
 
@@ -124,121 +84,7 @@ angular.module('Aircast.controllers')
         $scope.campaign.content_type = $scope.selected_layout.content[0].type
       }
 
-      $scope.locations = [
-        {
-          id: "rpidemo",
-          name: "Gameplan Office",
-          total: 8,
-          areas: [
-            {
-              "name": "HR Dept",
-              "rpi_id": 1,
-              "area": "Quezon City",
-              "quantity": 2
-            },{
-              "name": "Executive Dept",
-              "rpi_id": 2,
-              "area": "Quezon City",
-              "quantity": 3
-            }, {
-              "name": "SSI Dept",
-              "rpi_id": 3,
-              "area": "Quezon City",
-              "quantity": 3
-          }]
-        },
-        {
-          id: "school",
-          name: "Univesities",
-          total: 8,
-          areas: [
-            {
-              "name": "University of the Philippines",
-              "rpi_id": 4,
-              "area": "Quezon City",
-              "quantity": 2
-            },{
-              "name": "Ateneo de Manila",
-              "rpi_id": 5,
-              "area": "Quezon City",
-              "quantity": 3
-            }, {
-              "name": "La Salle University",
-              "rpi_id": 6,
-              "area": "Makati",
-              "quantity": 3
-          }],
-        },
-        {
-          id: "foodpark",
-          name: "Food Park",
-          total: 9,
-          areas: [
-            {
-              "name": "The Yard",
-              "rpi_id": 4,
-              "area": "Quezon City",
-              "quantity": 2
-            },{
-              "name": "Katorini",
-              "rpi_id": 5,
-              "area": "Ortigas",
-              "quantity": 3
-            }, {
-              "name": "Game Over",
-              "rpi_id": 6,
-              "area": "Makati",
-              "quantity": 4
-            }
-          ],
-        },
-        {
-          id: "gym",
-          name: "Fitness Centers",
-          total: 10,
-          areas: [
-            {
-              "name": "Gold's Gym Alabang",
-              "rpi_id": 7,
-              "area": "Alabang",
-              "quantity": 3
-            },{
-              "name": "Gold's Gym Katipunan",
-              "rpi_id": 8,
-              "area": "Quezon City",
-              "quantity": 2
-            }, {
-              "name": "Fitness First",
-              "rpi_id": 9,
-              "area": "Ortigas",
-              "quantity": 5
-            }
-          ]
-        },
-        {
-          id: "bpo",
-          name: "BPO",
-          total: 10,
-          areas: [
-            {
-              "name": "The Results",
-              "rpi_id": 10,
-              "area": "Mandaluyong",
-              "quantity": 3
-            },{
-              "name": "HGS Alabang",
-              "rpi_id": 11,
-              "area": "Alabang",
-              "quantity": 2
-            }, {
-              "name": "Convergys Ortigas",
-              "rpi_id": 12,
-              "area": "Ortigas",
-              "quantity": 5
-            }
-          ]
-        },
-      ]
+
 
       $scope.go_location = function(loc) {
         $scope.clicked_location = loc
@@ -264,6 +110,7 @@ angular.module('Aircast.controllers')
         $scope.campaign.file = x
         $scope.campaign.extension = x.name.split('.').pop()
         $scope.campaign.duration = "N/A"
+
         if($scope.campaign.content_type == 'gif') {
           $scope.campaign.weight = 1
         }
@@ -283,21 +130,24 @@ angular.module('Aircast.controllers')
       }
 
       $scope.next =function() {
-        // _.each($scope.campaign.layout.content, function(x){
-        //   type:
-        //   extension = name.split('.').pop();
-        //   x["ext"] = extension;
-        // });
+        
+        _.each($scope.campaign.layout.content, function(x){
+          type:
+          extension = name.split('.').pop();
+          x["ext"] = extension;
+        });
 
         $scope.next_disabled = true
+        console.log($scope.campaign.content_type)
         payload = []
         d = {}
+
         d["ext"] = $scope.campaign.extension
         d["type"] = $scope.campaign.content_type
         payload.push(d)
 
         data = {
-          UserId: 1,
+          UserID: 1,
           Template: $scope.campaign.layout.tempId,
           CampaignName: $scope.campaign.name,
           payload: payload,
@@ -309,6 +159,7 @@ angular.module('Aircast.controllers')
             console.log(d)
             $scope.campaign.fileUrl = d.data.FileUrl
             $scope.form_part = $scope.form_part + 1
+            $scope.campaign.id = d.data.CampaignID
             counter_f = 1
             count_files = d.data.FileUrl.length
             // _.each(d.data.FileUrl, function(x){
@@ -316,14 +167,14 @@ angular.module('Aircast.controllers')
             //
             //   RpiService.upload(x)
             //     .then(function(res) {
-            //
-            //       x.uploaded = true
-            //
-            //       if(counter_f == count_files) {
-            //
-            //         isUploaded(d.data, count_files)
-            //       }
-            //       counter_f++
+            //       //
+            //       // x.uploaded = true
+            //       //
+            //       // if(counter_f == count_files) {
+            //       //
+            //       //   isUploaded(d.data, count_files)
+            //       // }
+            //       // counter_f++
             //   })
             // });
         });
@@ -339,17 +190,28 @@ angular.module('Aircast.controllers')
         }
       };
 
+      $scope.hello = function() {
+        console.log($scope.all_shifts.selected)
+        $scope.campaign.aired_formatted = []
+        _.each(_.keys($scope.all_shifts.selected), function(y) {
+          d = {}
+          d["name"] = y
+          $scope.campaign.aired_formatted.push(d)
+        })
+      }
+
       $scope.times_aired = function() {
         aired_content = []
-        $scope.campaign.aired_formatted = _.keys($scope.aired)
-        _.each($scope.campaign.aired_formatted, function(x) {
+        _.each(_.keys($scope.aired), function(x) {
           d = {}
           d["name"] = x
           d["repeat"] = $scope.aired[x]
           aired_content.push(d)
         });
         $scope.campaign.aired_content = aired_content
+
         $scope.campaign.aired_total = _.reduce(_.values($scope.aired), function(memo, num){ return memo + num; }, 0);
+        calculate_total()
       }
 
       $scope.checkedLocation = function() {
@@ -359,7 +221,6 @@ angular.module('Aircast.controllers')
            selected_locations.push(loc)
         })
         $scope.selected_locations = _.flatten(selected_locations)
-
       }
 
       $scope.launch = function() {
@@ -371,30 +232,46 @@ angular.module('Aircast.controllers')
 
         data = {
           "CampaignName": $scope.campaign.name,
-          "template": $scope.campaign.layout.tempId,
-          "locations": $scope.selected_locations,
+          "Template": $scope.campaign.layout.tempId,
+          "Location": $scope.selected_locations,
           "StartDate": $scope.campaign.startDate,
           "EndDate": $scope.campaign.endDate,
-          "days": $scope.campaign.days,
-          "aired": $scope.campaign.aired,
+          "Days": $scope.campaign.days,
+          "Timeslot": $scope.campaign.aired,
           "aired_total": $scope.campaign.aired_total,
           "weight": $scope.campaign.weight,
           "price_per_spot": $scope.campaign.price_per_spot,
-          "fileUrl": $scope.campaign.fileUrl[0].url,
-          "file": $scope.campaign.file
+          "url": $scope.campaign.fileUrl[0].url,
+          "FileUrl": $scope.campaign.fileUrl,
+          "file": $scope.campaign.file,
+          "CampaignID": $scope.campaign.id
         }
 
-        // RpiService.upload(x)
-        //   .then(function(res) {
-        //
-        //     x.uploaded = true
-        //
-        //     if(counter_f == count_files) {
-        //
-        //       isUploaded(d.data, count_files)
-        //     }
-        //     counter_f++
-        // })
+        upload_data = {
+          "file": $scope.campaign.file,
+          "url": $scope.campaign.fileUrl[0].url,
+        }
+
+        RpiService.upload(upload_data)
+          .then(function(res) {
+            console.log(res)
+
+            RpiService.rpi_upload(data)
+              .then(function(result) {
+                // $scope.loading = false
+                console.log(result)
+                // progressbar.complete();
+
+                $state.go('nav.home')
+            })
+            // x.uploaded = true
+            //
+            // if(counter_f == count_files) {
+            //
+            //   isUploaded(d.data, count_files)
+            // }
+            // counter_f++
+        })
 
 
 

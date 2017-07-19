@@ -1,12 +1,9 @@
 angular.module('Aircast.controllers')
   .controller('HomeController',
-  ['$scope', '$state', 'NgMap',
-    function($scope, $state, NgMap) {
+  ['$scope', '$state', 'NgMap', 'RpiService',
+    function($scope, $state, NgMap, RpiService) {
 
       NgMap.getMap().then(function(map) {
-        console.log(map.getCenter());
-        console.log('markers', map.markers);
-        console.log('shapes', map.shapes);
       });
 
       $scope.stats = [
@@ -43,80 +40,80 @@ angular.module('Aircast.controllers')
             "area": "Quezon City",
             "quantity": 3
         }]
-      },{
-        "header": "Chibog Time Roadtrip in Ilocos with Wil Dasovich and Coca-Cola",
-        "added": "25 June 2017",
-        "status": "active",
-        "length": "1:22",
-        "sites": 17,
-        "image": "http://i.imgur.com/DYG0YIU.png",
-        "areas": [
-          {
-            "name": "HR Dept",
-            "rpi_id": 1,
-            "area": "Quezon City",
-            "quantity": 2
-          },{
-            "name": "Executive Dept",
-            "rpi_id": 2,
-            "area": "Quezon City",
-            "quantity": 3
-          }, {
-            "name": "SSI Dept",
-            "rpi_id": 3,
-            "area": "Quezon City",
-            "quantity": 3
-        }]
-      }, {
-        "header": "Make every meal time more special with COKE!",
-        "added": "10 June 2017",
-        "status": "paused",
-        "length": "1:22",
-        "sites": 43,
-        "image": "http://i.imgur.com/IQnlzPv.png",
-        "areas": [
-          {
-            "name": "HR Dept",
-            "rpi_id": 1,
-            "area": "Quezon City",
-            "quantity": 2
-          },{
-            "name": "Executive Dept",
-            "rpi_id": 2,
-            "area": "Quezon City",
-            "quantity": 3
-          }, {
-            "name": "SSI Dept",
-            "rpi_id": 3,
-            "area": "Quezon City",
-            "quantity": 3
-        }]
-      },{
-        "header": "Araw-arawin ang Coca-Cola with the Suki Cap Promo!",
-        "added": "04 June 2017",
-        "status": "pending",
-        "length": "0:45",
-        "sites": 43,
-        "image": "http://i.imgur.com/OdyNCZ5.png",
-        "areas": [
-          {
-            "name": "HR Dept",
-            "rpi_id": 1,
-            "area": "Quezon City",
-            "quantity": 2
-          },{
-            "name": "Executive Dept",
-            "rpi_id": 2,
-            "area": "Quezon City",
-            "quantity": 3
-          }, {
-            "name": "SSI Dept",
-            "rpi_id": 3,
-            "area": "Quezon City",
-            "quantity": 3
-        }]
-      }
-    ]
+        },{
+          "header": "Chibog Time Roadtrip in Ilocos with Wil Dasovich and Coca-Cola",
+          "added": "25 June 2017",
+          "status": "active",
+          "length": "1:22",
+          "sites": 17,
+          "image": "http://i.imgur.com/DYG0YIU.png",
+          "areas": [
+            {
+              "name": "HR Dept",
+              "rpi_id": 1,
+              "area": "Quezon City",
+              "quantity": 2
+            },{
+              "name": "Executive Dept",
+              "rpi_id": 2,
+              "area": "Quezon City",
+              "quantity": 3
+            }, {
+              "name": "SSI Dept",
+              "rpi_id": 3,
+              "area": "Quezon City",
+              "quantity": 3
+          }]
+        }, {
+          "header": "Make every meal time more special with COKE!",
+          "added": "10 June 2017",
+          "status": "paused",
+          "length": "1:22",
+          "sites": 43,
+          "image": "http://i.imgur.com/IQnlzPv.png",
+          "areas": [
+            {
+              "name": "HR Dept",
+              "rpi_id": 1,
+              "area": "Quezon City",
+              "quantity": 2
+            },{
+              "name": "Executive Dept",
+              "rpi_id": 2,
+              "area": "Quezon City",
+              "quantity": 3
+            }, {
+              "name": "SSI Dept",
+              "rpi_id": 3,
+              "area": "Quezon City",
+              "quantity": 3
+          }]
+        },{
+          "header": "Araw-arawin ang Coca-Cola with the Suki Cap Promo!",
+          "added": "04 June 2017",
+          "status": "pending",
+          "length": "0:45",
+          "sites": 43,
+          "image": "http://i.imgur.com/OdyNCZ5.png",
+          "areas": [
+            {
+              "name": "HR Dept",
+              "rpi_id": 1,
+              "area": "Quezon City",
+              "quantity": 2
+            },{
+              "name": "Executive Dept",
+              "rpi_id": 2,
+              "area": "Quezon City",
+              "quantity": 3
+            }, {
+              "name": "SSI Dept",
+              "rpi_id": 3,
+              "area": "Quezon City",
+              "quantity": 3
+          }]
+        }
+      ]
 
       $scope.locations = [
         {
@@ -233,5 +230,60 @@ angular.module('Aircast.controllers')
           ]
         },
       ]
+
+      data = {
+        UserID: 1,
+      }
+      $scope.all_enabled_campaigns = {
+        selected:{}
+      };
+
+
+      RpiService.getCampaigns(data)
+        .then(function(d){
+
+
+            _.each(d.data, function(x) {
+              x.StartDate = moment(x.StartDate).format('L')
+              x.EndDate = moment(x.EndDate).format('L')
+              x.total_tvs = x.Location[0].areas.length
+              x.all_enabled = _.filter(x.Location[0].areas, function(i){ return i.isEnabled == 1; });
+              x.all_ready = _.filter(x.Location[0].areas, function(i){ return i.isReady == 1; });
+            })
+            $scope.campaigns = d.data.reverse()
+            console.log($scope.campaigns)
+
+
+            _.each($scope.campaigns, function(x) {
+              if(x.all_enabled.length>0) {
+                $scope.all_enabled_campaigns.selected[x.CampaignID] = true
+              }
+            })
+
+      });
+
+
+      $scope.live =function() {
+        console.log($scope.all_enabled_campaigns)
+
+        ngDialog.openConfirm({ templateUrl: 'shared/confirm.html',
+                        className: 'ngdialog-theme-default',
+                        width: '750px',
+                        scope: $scope,
+
+                    }).then(function (location) {
+
+                    }, function (value) {
+                        //Do something
+                    });
+      }
+
+
+
+
+
+
+
+
 
 }]);

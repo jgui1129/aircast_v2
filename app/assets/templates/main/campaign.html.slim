@@ -47,7 +47,8 @@
             em.add-margin-left
               | (Double click to show more)
           .locations
-            label.inline-block ng-dblclick="go_location(location)" ng-repeat="location in locations" ng-class="{ 'active': all_locations.selected[location.id] === location.id }"
+            label.inline-block ng-repeat="location in locations" ng-class="{ 'active': all_locations.selected[location.id] === location.id }"
+              span.line-icon.icon-map-location ng-click="go_location(location)"
               input ng-change="checkedLocation()" type="checkbox" ng-model="all_locations.selected[location.id]" ng-true-value="'{{location.id}}'" ng-false-value="''"
               | {{location.name}}, {{location.total}} TVs
           
@@ -69,7 +70,7 @@
             .col-sm-6  
               .locations
                 label.inline-block.shifts  ng-class="{ 'active': all_shifts.selected[shift.id] === shift.id }"
-                  input type="checkbox" ng-model="all_shifts.selected[shift.id]" ng-true-value="'{{shift.id}}'" ng-false-value="''"
+                  input ng-change="hello()" type="checkbox" ng-model="all_shifts.selected[shift.id]" ng-true-value="'{{shift.id}}'" ng-false-value="''"
                   | {{shift.name}}: {{shift.time}}
             .col-sm-6 ng-if="all_shifts.selected[shift.id] === shift.id"
               p
@@ -126,20 +127,20 @@
                 | {{d}}. 
             p.no-margin  
               | During: 
-              strong ng-repeat="day in campaign.aired_formatted"
+              strong ng-repeat="day in campaign.aired_content"
                 | {{day.name}}({{day.repeat}}x). 
         h5.row-space-top-5 
           | Spot Breakdown (Spots per Content * # of times Aired * # of TVs * Price Per Spot ): 
         .row.row-space-top-3 ng-repeat="location in selected_locations"
           .col-sm-8
-            | {{location.name}} ({{location.total}}TVs*{{campaign.repeats_formatted}}*{{campaign.weight}}*{{campaign.price_per_spot}})
+            | {{location.name}} ({{location.total}}TVs*{{campaign.aired_total}}*{{campaign.weight}}*{{campaign.price_per_spot}})
             ul
               li ng-repeat="area in location.areas" 
                 p.no-margin 
                   | {{area.name}}({{area.quantity}}TVs)
           .col-sm-4.align-right
             p 
-              | {{location.total * campaign.sum_repeats * campaign.weight * campaign.price_per_spot}}
+              | ₱{{location.total * campaign.aired_total * campaign.weight * campaign.price_per_spot | number: 2}}
         
         hr
         .row.row-space-top-3
@@ -149,6 +150,6 @@
                 | Total
           .col-sm-6.align-right
             p
-              | {{campaign.total}}
+              | ₱{{campaign.total | number: 2}}
           
             
