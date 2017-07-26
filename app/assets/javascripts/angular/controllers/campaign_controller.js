@@ -97,7 +97,7 @@ angular.module('Aircast.controllers')
 
       $scope.go_location = function(loc) {
         $scope.clicked_location = loc
-        ngDialog.openConfirm({ 
+        ngDialog.openConfirm({
           templateUrl: 'shared/location.html',
             className: 'ngdialog-theme-default',
             width: '750px',
@@ -265,51 +265,57 @@ angular.module('Aircast.controllers')
       }
 
       $scope.launch = function() {
-        $scope.campaign.timeslot = _.values($scope.all_shifts.selected)
-        $scope.campaign.days = _.values($scope.all_days.selected)
-        $scope.campaign.startDate = moment($scope.datePicker.date.startDate).unix()
-        $scope.campaign.endDate = moment($scope.datePicker.date.endDate).unix();
-        $scope.campaign.aired = $scope.campaign.aired_content
 
-        data = {
-          "CampaignName": $scope.campaign.name,
-          "Template": $scope.campaign.layout.tempId,
-          "Location": $scope.selected_locations,
-          "StartDate": $scope.campaign.startDate,
-          "EndDate": $scope.campaign.endDate,
-          "Days": $scope.campaign.days,
-          "Timeslot": $scope.campaign.aired,
-          "aired_total": $scope.campaign.aired_total,
-          "weight": $scope.campaign.weight,
-          "price_per_spot": $scope.campaign.price_per_spot,
-          "url": $scope.campaign.fileUrl[0].url,
-          "FileUrl": $scope.campaign.fileUrl,
-          "file": $scope.campaign.file,
-          "CampaignID": $scope.campaign.id
-        }
+        AuthService.currentUser()
+          .then(function(d) {
+            $scope.campaign.timeslot = _.values($scope.all_shifts.selected)
+            $scope.campaign.days = _.values($scope.all_days.selected)
+            $scope.campaign.startDate = moment($scope.datePicker.date.startDate).unix()
+            $scope.campaign.endDate = moment($scope.datePicker.date.endDate).unix();
+            $scope.campaign.aired = $scope.campaign.aired_content
 
-        upload_data = {
-          "file": $scope.campaign.file,
-          "url": $scope.campaign.fileUrl[0].url,
-        }
+            data = {
+              "UserID": d.UserID,
+              "CampaignName": $scope.campaign.name,
+              "Template": $scope.campaign.layout.tempId,
+              "Location": $scope.selected_locations,
+              "StartDate": $scope.campaign.startDate,
+              "EndDate": $scope.campaign.endDate,
+              "Days": $scope.campaign.days,
+              "Timeslot": $scope.campaign.aired,
+              "aired_total": $scope.campaign.aired_total,
+              "weight": $scope.campaign.weight,
+              "price_per_spot": $scope.campaign.price_per_spot,
+              "url": $scope.campaign.fileUrl[0].url,
+              "FileUrl": $scope.campaign.fileUrl,
+              "file": $scope.campaign.file,
+              "CampaignID": $scope.campaign.id
+            }
 
-        RpiService.upload(upload_data)
-          .then(function(res) {
-            console.log(res)
+            upload_data = {
+              "file": $scope.campaign.file,
+              "url": $scope.campaign.fileUrl[0].url,
+            }
 
-            RpiService.rpi_upload(data)
-              .then(function(result) {
-                // $scope.loading = false
-                console.log(result)
-                // progressbar.complete();
+            RpiService.upload(upload_data)
+              .then(function(res) {
+                console.log(res)
 
-                $state.go('nav.home')
+                RpiService.rpi_upload(data)
+                  .then(function(result) {
+                    // $scope.loading = false
+                    console.log(result)
+                    // progressbar.complete();
+
+                    $state.go('nav.home')
+                })
             })
-        })
 
 
 
-        console.log(data)
+            console.log(data)
+        });
+
       }
 
 
