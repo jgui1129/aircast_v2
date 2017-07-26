@@ -91,46 +91,41 @@ angular.module('Aircast.services')
     };
 
     this.login = function(params) {
+      console.log(params)
       var d = $q.defer();
       $http({
-        url: '/users/login',
+        url: 'http://54.254.248.115/AircastLogin',
         method: 'POST',
-        data: {
-          user: params
-        }
+        data: params
       }).then(function(response) {
-        if (response.success) {
-          var user = response.data.user;
-          user.auth_token = response.data.auth_token;
+        if (response.status) {
+          var user = response.data;
           AuthService.setCurrentUser(user);
           d.resolve(user);
         } else {
           d.reject(response);
         }
-      }).error(function(reason) {
-        d.reject(reason);
-      });
+      })
+
       return d.promise;
     };
 
-    this.logout = function(id) {
+    this.logout = function() {
+      $cookies.remove('user')
+    };
+
+    this.getWallet = function(data) {
+
       var d = $q.defer();
       $http({
-        url: '/users/' + id + '/logout',
-        method: 'DELETE'
-      }).then(function(response) {
-        console.log(response)
-        service._user = null;
-        $cookies.remove('user')
-        console.log($cookies.getAll())
-        $rootScope.isLoggedIn = false;
-        d.resolve();
-      }).error(function(reason){
-        console.log(reason)
-        d.reject();
-        // TODO: implement if logout fails
+        method: 'POST',
+        url: 'http://54.254.248.115/AircastWallet',
+        data: data,
+      }).then(function(data){
+        d.resolve(data);
       });
-      return d.promise;
-    };
 
+      return d.promise;
+
+    }
 }]);

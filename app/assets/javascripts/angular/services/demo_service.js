@@ -84,25 +84,47 @@ angular.module('Aircast.services')
       return [
         {
           id: "rpidemo",
-          name: "Gameplan Office",
-          total: 8,
+          name: "Palm Solutions",
+          total: 4,
           areas: [
             {
-              "name": "HR Dept",
+              "name": "Digital Dept",
               "rpi_id": 1,
               "area": "Quezon City",
-              "quantity": 2
+              "quantity": 1
             },{
               "name": "Executive Dept",
               "rpi_id": 2,
               "area": "Quezon City",
-              "quantity": 3
+              "quantity": 1
             }, {
               "name": "SSI Dept",
               "rpi_id": 3,
               "area": "Quezon City",
-              "quantity": 3
-          }]
+              "quantity": 1
+            }, {
+              "name": "HR Dept",
+              "rpi_id": 4,
+              "area": "Quezon City",
+              "quantity": 1
+            }]
+        },
+        {
+          id: "davids",
+          name: "David's Salon",
+          total: 2,
+          areas: [
+            {
+              "name": "David's Salon Podium",
+              "rpi_id": 17,
+              "area": "Ortigas",
+              "quantity": 1
+            },{
+              "name": "David's Salon Makati Med",
+              "rpi_id": 18,
+              "area": "Makati City",
+              "quantity": 1
+            }]
         },
         {
           id: "school",

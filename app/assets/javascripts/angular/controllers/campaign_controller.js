@@ -97,20 +97,21 @@ angular.module('Aircast.controllers')
 
       $scope.go_location = function(loc) {
         $scope.clicked_location = loc
-        ngDialog.openConfirm({ templateUrl: 'shared/location.html',
-                        className: 'ngdialog-theme-default',
-                        width: '750px',
-                        controller: 'ModalController',
-                        scope: $scope,
+        ngDialog.openConfirm({ 
+          templateUrl: 'shared/location.html',
+            className: 'ngdialog-theme-default',
+            width: '750px',
+            controller: 'ModalController',
+            scope: $scope,
 
-                    }).then(function (location) {
-                      index = _.findIndex($scope.selected_locations, function(item) { return item.id == location.id })
-                      location["areas"] = location["selected_areas"]
-                      $scope.selected_locations[index] = location
+        }).then(function (location) {
+          index = _.findIndex($scope.selected_locations, function(item) { return item.id == location.id })
+          location["areas"] = location["selected_areas"]
+          $scope.selected_locations[index] = location
 
-                    }, function (value) {
-                        //Do something
-                    });
+        }, function (value) {
+            //Do something
+        });
       }
 
 

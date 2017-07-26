@@ -22,12 +22,12 @@ nav.navbar
       ul.nav.navbar-nav.navbar-right  
         li
           a ui-sref="#" ng-class="{active: $state.includes('nav.balance')}"
-            | Av. Bal: P300.00 
+            | Available Spots: {{wallet}}
         li
           a ui-sref="#" 
             | |
         li
-          a ui-sref="nav.signout" ng-class="{active: $state.includes('nav.signout')}"
+          a ng-click="logout()"
             | SIGNOUT
 .height-75
 

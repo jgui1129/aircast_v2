@@ -30,7 +30,12 @@ angular.module('Aircast.controllers')
       }, 3000, 0);
 
       $scope.login = function() {
-        console.log($scope.user)
+        data = $scope.user
+        UserService.login(data)
+          .then(function(d){
+            console.log(d)
+            $state.go('nav.home')
+        });
       }
 
       $scope.signup = function() {
