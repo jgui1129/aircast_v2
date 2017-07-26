@@ -1,0 +1,117 @@
+.app-content
+  .container
+    h3.row-space-top-7.italic.light-blue Hi Deenu!
+    .item-header
+      ul
+        li.links ng-click="tab('all')" 
+          strong.tab_choices ng-class="{tab_choices_active: selection=='all'}"
+            | ALL ITEMS
+        li.links ng-click="tab('transaction')" 
+          strong.tab_choices ng-class="{tab_choices_active: selection=='transaction'}"
+            | TRANSACTION HISTORY
+        li.links ng-click="tab('settings')" 
+          strong.tab_choices ng-class="{tab_choices_active: selection=='settings'}"
+            | SETTINGS
+        li.links.pull-right.dashboard_credits
+          strong.pink
+            | Credits: 100 Coins. 
+            u
+              | Buy more Coins
+      .content_tab ng-switch="" on="selection" 
+        .all_items.row-space-top-7 ng-switch-when="all" 
+          .row 
+            .col-md-2
+              p Filter by
+            .col-md-3
+              button.outline-button.outline-button-green.green.add-margin-right Wins
+              button.outline-button.outline-button-orange.orange.add-margin-right Active
+              button.outline-button.outline-button-red.red Lost
+            .col-md-offset-4.col-md-3
+              input type="text" class="form-control" placeholder="Search"
+          table.row-space-top-7
+            tr
+              th
+                | Date
+              th
+                | Name
+              th
+                | Number of Bidders
+              th
+                | Your Bids
+              th
+                | Total Cost
+              th
+                | Expiry
+              th
+                | Status
+            tr ng-repeat="t in tables"
+              td
+                | {{t.date}}
+              td
+                | {{t.name}}
+              td
+                | {{t.bidders}}
+              td
+                | {{t.bids}}
+              td
+                | {{t.total}}
+              td
+                | {{t.expiry}}
+              td
+                | {{t.status}}
+        table.row-space-top-7 ng-switch-when="transaction" 
+          tr
+            th
+              | Purchase Date
+            th
+              | # of Coins
+            th
+              | Cost per Coin
+            th
+              | Total Cost
+            th
+              | Payment Method
+          tr ng-repeat="t in history"
+            td
+              | {{t.date}}
+            td
+              | {{t.coins}}
+            td
+              | {{t.cost}}
+            td
+              | {{t.total}}
+            td
+              | {{t.method}}
+        .row-space-top-7.settings ng-switch-when="settings" 
+          h5 Personal Information
+          .pull-right
+            button.outline-button.outline-button-light-blue.light-blue.add-margin-right EDIT
+          label.row-space-top-3
+            | First name
+          p 
+            | Leo
+          label
+            | Last name
+          p 
+            | Lofranco
+          label
+            | Email
+          p 
+            | leolopelofranco@gmail.com
+          label
+            | Password
+          p 
+            | *******
+          h5.row-space-top-5 
+            | Shipping Details
+          .pull-right
+            button.outline-button.outline-button-light-blue.light-blue.add-margin-right EDIT
+          label.row-space-top-3 NAME
+          p Deenu Paulo Haulo
+          label MOBILE
+          p 0917 531 4928
+          label ADDRESS
+          p Ludo Jupiter Street, Makati City, Metro Manila Philipines
+          label ZIPCODE
+          p 1803
+            

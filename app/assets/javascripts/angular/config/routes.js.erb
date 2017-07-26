@@ -16,8 +16,31 @@ Aircast.config(["$stateProvider", "$httpProvider", "$urlRouterProvider", "$locat
       }
     })
 
+    .state('login', {
+      url: '/login',
+      templateUrl: 'main/login.html',
+      controller: 'UserController'
+    })
+
+    .state('register', {
+      url: '/register',
+      templateUrl: 'main/register.html',
+      controller: 'UserController'
+    })
+
+
+    .state('nav.settings', {
+      url: '/settings',
+      views: {
+        'content@nav': {
+          templateUrl: 'main/settings.html',
+          controller: 'SettingsController'
+        }
+      }
+    })
+
     .state('nav.campaigns', {
-      url: '/',
+      url: '/campaigns',
       views: {
         'content@nav': {
           templateUrl: 'main/campaign.html',

@@ -1,14 +1,23 @@
 angular.module('Aircast.controllers')
   .controller('CampaignController',
-  ['$scope', '$state','ngDialog', 'RpiService', 'Upload', 'DemoService',
-    function($scope, $state, ngDialog, RpiService, Upload, DemoService) {
+  ['$scope', '$state','ngDialog', 'RpiService', 'Upload', 'DemoService', '$rootScope', 'AuthService',
+    function($scope, $state, ngDialog, RpiService, Upload, DemoService, $rootScope, AuthService) {
+
+      AuthService.currentUser()
+        .then(function(d){
+          if(!d) {
+            $state.go('login')
+          }
+      });
 
       $scope.form_part = 1
       var video_divisor = 15
       var spot_limiter = 5
-
+      $scope.warning = false
+      $rootScope.progress = ""
       //initialization
       $scope.campaign = {}
+      $scope.campaign.sum_of_days = 1
       $scope.campaign.price_per_spot = 25
       $scope.campaign.weight = 1
       $scope.campaign.aired_total = 1
@@ -38,7 +47,7 @@ angular.module('Aircast.controllers')
         _.each($scope.campaign.locations, function(x){
           sum = sum + x.total
         })
-        $scope.campaign.total = sum*$scope.campaign.aired_total*$scope.campaign.price_per_spot*$scope.campaign.weight
+        $scope.campaign.total = sum*$scope.campaign.aired_total*$scope.campaign.price_per_spot*$scope.campaign.weight*$scope.campaign.sum_of_days
         $scope.campaign.total_spots = $scope.campaign.total/25
       }
       $scope.all_shifts = {
@@ -129,55 +138,63 @@ angular.module('Aircast.controllers')
         }
       }
 
+      $scope.delete = function() {
+        $scope.campaign.file = ""
+      }
+
       $scope.next =function() {
-        
-        _.each($scope.campaign.layout.content, function(x){
-          type:
-          extension = name.split('.').pop();
-          x["ext"] = extension;
-        });
 
-        $scope.next_disabled = true
-        console.log($scope.campaign.content_type)
-        payload = []
-        d = {}
+        if($scope.campaign.file) {
 
-        d["ext"] = $scope.campaign.extension
-        d["type"] = $scope.campaign.content_type
-        payload.push(d)
+          _.each($scope.campaign.layout.content, function(x){
+            extension = name.split('.').pop();
+            x["ext"] = extension;
+          });
 
-        data = {
-          UserID: 1,
-          Template: $scope.campaign.layout.tempId,
-          CampaignName: $scope.campaign.name,
-          payload: payload,
-          Weight: $scope.campaign.weight
+          $scope.next_disabled = true
+          payload = []
+          d = {}
+
+          d["ext"] = $scope.campaign.extension
+          d["type"] = $scope.campaign.content_type
+          payload.push(d)
+
+          data = {
+            UserID: 1,
+            Template: $scope.campaign.layout.tempId,
+            CampaignName: $scope.campaign.name,
+            payload: payload,
+            Weight: $scope.campaign.weight
+          }
+
+          RpiService.fileUrl(data)
+            .then(function(d){
+              console.log(d)
+              $scope.campaign.fileUrl = d.data.FileUrl
+              $scope.form_part = $scope.form_part + 1
+              $scope.campaign.id = d.data.CampaignID
+              counter_f = 1
+              count_files = d.data.FileUrl.length
+              // _.each(d.data.FileUrl, function(x){
+              //   x.file = $scope.campaign[x.type]
+              //
+              //   RpiService.upload(x)
+              //     .then(function(res) {
+              //       //
+              //       // x.uploaded = true
+              //       //
+              //       // if(counter_f == count_files) {
+              //       //
+              //       //   isUploaded(d.data, count_files)
+              //       // }
+              //       // counter_f++
+              //   })
+              // });
+          });
         }
-
-        RpiService.fileUrl(data)
-          .then(function(d){
-            console.log(d)
-            $scope.campaign.fileUrl = d.data.FileUrl
-            $scope.form_part = $scope.form_part + 1
-            $scope.campaign.id = d.data.CampaignID
-            counter_f = 1
-            count_files = d.data.FileUrl.length
-            // _.each(d.data.FileUrl, function(x){
-            //   x.file = $scope.campaign[x.type]
-            //
-            //   RpiService.upload(x)
-            //     .then(function(res) {
-            //       //
-            //       // x.uploaded = true
-            //       //
-            //       // if(counter_f == count_files) {
-            //       //
-            //       //   isUploaded(d.data, count_files)
-            //       // }
-            //       // counter_f++
-            //   })
-            // });
-        });
+        else {
+          $scope.warning = true
+        }
 
       }
 
@@ -186,6 +203,8 @@ angular.module('Aircast.controllers')
             'apply.daterangepicker' : function() {
                 $scope.campaign.startDate_formatted = moment($scope.datePicker.date.startDate).format('MMM D')
                 $scope.campaign.endDate_formatted = moment($scope.datePicker.date.endDate).format('MMM D')
+                $scope.checkedDays()
+                calculate_total()
             }
         }
       };
@@ -198,6 +217,7 @@ angular.module('Aircast.controllers')
           d["name"] = y
           $scope.campaign.aired_formatted.push(d)
         })
+        calculate_total()
       }
 
       $scope.times_aired = function() {
@@ -221,6 +241,26 @@ angular.module('Aircast.controllers')
            selected_locations.push(loc)
         })
         $scope.selected_locations = _.flatten(selected_locations)
+      }
+
+      $scope.checkedDays = function() {
+        selected_days_array = []
+        _.each(_.keys($scope.all_days.selected), function(x) {
+          if($scope.all_days.selected[x] != "") {
+           loc = _.filter($scope.days, function(num){ return num.name == x; });
+           selected_days_array.push(loc)
+          }
+        })
+        selected_days_array = _.flatten(selected_days_array)
+        number_of_day_array = []
+        _.each(selected_days_array, function(x) {
+          number_of_day = DemoService.days_calculate($scope.datePicker.date.startDate,$scope.datePicker.date.endDate,x.id)
+          number_of_day_array.push(number_of_day)
+          d = {}
+        })
+
+        $scope.campaign.sum_of_days = number_of_day_array.reduce(function(pv, cv) { return pv + cv; }, 0);
+        calculate_total()
       }
 
       $scope.launch = function() {
@@ -264,13 +304,6 @@ angular.module('Aircast.controllers')
 
                 $state.go('nav.home')
             })
-            // x.uploaded = true
-            //
-            // if(counter_f == count_files) {
-            //
-            //   isUploaded(d.data, count_files)
-            // }
-            // counter_f++
         })
 
 

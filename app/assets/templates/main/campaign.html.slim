@@ -39,6 +39,13 @@
               p ngf-no-file-drop=""  File Drag/Drop is not supported for this browser
               p
                 small Accepts jpgs up to 500MB each
+          .align-right ng-if="campaign.file"  
+            .clip.line-icon.icon-clip-2.inline-block
+            p.inline-block
+              | {{campaign.file.name}}
+            .clip.line-icon.icon-delete-3.inline-block.delete ng-click="delete()"
+          .alert.alert-warning.row-space-top-3 role="alert" ng-show="warning" 
+            | Oops. We did not detect any file uploaded.
           .align-right.row-space-top-5.row-space-5
             button.btn.aircast-button ng-disabled="next_disabled" ng-click="next()" Next
         div ng-if="form_part == 2"  
@@ -62,10 +69,10 @@
                 | Days
               .locations.row-space-top-2
                 label.inline-block ng-repeat="day in days" ng-class="{ 'active': all_days.selected[day.name] === day.name }"
-                  input type="checkbox" ng-model="all_days.selected[day.name]" ng-true-value="'{{day.name}}'" ng-false-value="''"
+                  input ng-change="checkedDays()" type="checkbox" ng-model="all_days.selected[day.name]" ng-true-value="'{{day.name}}'" ng-false-value="''"
                   | {{day.name}}
           h5.row-space-top-5.row-space-2
-            | Time of Day and Number of Times Aired
+            | Time of Day and Number of Times Aired Per Day
           .row ng-repeat="shift in shifts"
             .col-sm-6  
               .locations
@@ -76,6 +83,10 @@
               p
                 input.number_type ng-change="times_aired()" ng-model="aired[shift.name]" type="number" placeholder="Number of Times Aired"
                 | Times Aired
+          .progress ng-if="progress" 
+            .progress-bar aria-valuemax="100" aria-valuemin="0" aria-valuenow="{{progress}}" role="progressbar" style=("width: {{progress}};") 
+              | {{progress}}
+
           .left.row-space-top-5
             button.outline-button.orange-btn ng-click="previous()" Previous
           .align-right.row-space-top-5.row-space-5
@@ -130,17 +141,17 @@
               strong ng-repeat="day in campaign.aired_content"
                 | {{day.name}}({{day.repeat}}x). 
         h5.row-space-top-5 
-          | Spot Breakdown (Spots per Content * # of times Aired * # of TVs * Price Per Spot ): 
+          | Spot Breakdown (Spots per Content * # of times Aired * # of Days * # of TVs * Price Per Spot ): 
         .row.row-space-top-3 ng-repeat="location in selected_locations"
           .col-sm-8
-            | {{location.name}} ({{location.total}}TVs*{{campaign.aired_total}}*{{campaign.weight}}*{{campaign.price_per_spot}})
+            | {{location.name}} ({{location.total}}TVs*{{campaign.aired_total}}*{{campaign.weight}}*{{campaign.price_per_spot}} * {{campaign.sum_of_days}})
             ul
               li ng-repeat="area in location.areas" 
                 p.no-margin 
                   | {{area.name}}({{area.quantity}}TVs)
           .col-sm-4.align-right
             p 
-              | ₱{{location.total * campaign.aired_total * campaign.weight * campaign.price_per_spot | number: 2}}
+              | ₱{{location.total * campaign.aired_total * campaign.weight * campaign.price_per_spot * campaign.sum_of_days | number: 2}}
         
         hr
         .row.row-space-top-3

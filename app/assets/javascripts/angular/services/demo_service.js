@@ -3,25 +3,25 @@ angular.module('Aircast.services')
     this.days = function() {
       return [
         {
-          id: "0",
+          id: 0,
           "name": "Sun"
         },{
-          id: "1",
+          id: 1,
           "name": "Mon"
         },{
-          id:"2",
+          id:2,
           "name": "Tue"
         },{
-          id: "3",
+          id:3,
           "name": "Wed"
         },{
-          id: "4",
+          id: 4,
           "name": "Thu"
         },{
-          id: "5",
+          id: 5,
           "name": "Fri"
         },{
-          id:"6",
+          id:6,
           "name": "Sat"
         }
       ]
@@ -197,4 +197,25 @@ angular.module('Aircast.services')
         },
       ]
     }
+
+    this.days_calculate = function(d1, d2, isoWeekday) {
+      // ensure we have valid moment instances
+      d1 = moment(d1);
+      d2 = moment(d2);
+      // figure out how many days to advance to get to the next
+      // specified weekday (might be 0 if d1 is already the
+      // specified weekday).
+      var daysToAdd = ((7 + isoWeekday) - d1.isoWeekday()) % 7;
+      var nextTuesday = d1.clone().add(daysToAdd, 'days');
+      // if we are already passed the end date, there must not
+      // be any of that day in the given period.
+      if (nextTuesday.isAfter(d2)) {
+          return 0;
+      }
+      // otherwise, just return the whole number of weeks
+      // difference plus one for the day we already advanced to
+      var weeksBetween = d2.diff(nextTuesday, 'weeks');
+      return weeksBetween + 1;
+  }
+
 }]);

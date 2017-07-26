@@ -14,9 +14,9 @@
               .row 
                 .col-sm-12.no-padding-right
                   p 
-                    | Starts: {{campaign.StartDate}} | Ends: {{campaign.EndDate}} | Live at {{campaign.all_enabled.length}}/{{campaign.total_tvs}}                    
+                    | Airs: {{campaign.StartDate}} - {{campaign.EndDate}} | Live at {{campaign.all_enabled.length}}/{{campaign.total_tvs}}                    
             .col-sm-2.switch_campaign
-              switch.green ng-change="live()" id="enabled" name="enabled" ng-model="all_enabled_campaigns.selected[campaign.CampaignID]"
+              switch.green ng-change="live(campaign.CampaignID, all_enabled_campaigns.selected[campaign.CampaignID])" id="enabled" name="enabled" ng-model="all_enabled_campaigns.selected[campaign.CampaignID]"
             
     .col-sm-5
       .stats ng-repeat="stat in stats"
@@ -29,4 +29,5 @@
             p 
               | Check the map below to see your live TVs
               
-      .map ng-map="" center="[40.74, -74.18]"
+      div map-lazy-load="https://maps.google.com/maps/api/js" map-lazy-load-params="{{gmap_api}}" 
+        ng-map center="[40.74, -74.18]" zoom="3" 

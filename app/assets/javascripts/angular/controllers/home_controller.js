@@ -1,9 +1,18 @@
 angular.module('Aircast.controllers')
   .controller('HomeController',
-  ['$scope', '$state', 'NgMap', 'RpiService',
-    function($scope, $state, NgMap, RpiService) {
+  ['$scope', '$state', 'NgMap', 'RpiService', 'ngDialog', 'AuthService', '$rootScope',
+    function($scope, $state, NgMap, RpiService, ngDialog, AuthService, $rootScope) {
 
       NgMap.getMap().then(function(map) {
+      });
+
+      $rootScope.gmap_api = 'https://maps.googleapis.com/maps/api/js?key='+'AIzaSyC41pxTAW-h6B9HlesIM4iW5ZupZ0y4MmYcontent_copy'
+
+      AuthService.currentUser()
+        .then(function(d){
+          if(!d) {
+            $state.go('login')
+          }
       });
 
       $scope.stats = [
@@ -242,7 +251,7 @@ angular.module('Aircast.controllers')
       RpiService.getCampaigns(data)
         .then(function(d){
 
-
+          console.log(d)
             _.each(d.data, function(x) {
               x.StartDate = moment(x.StartDate).format('L')
               x.EndDate = moment(x.EndDate).format('L')
@@ -251,7 +260,7 @@ angular.module('Aircast.controllers')
               x.all_ready = _.filter(x.Location[0].areas, function(i){ return i.isReady == 1; });
             })
             $scope.campaigns = d.data.reverse()
-            console.log($scope.campaigns)
+
 
 
             _.each($scope.campaigns, function(x) {
@@ -263,18 +272,40 @@ angular.module('Aircast.controllers')
       });
 
 
-      $scope.live =function() {
-        console.log($scope.all_enabled_campaigns)
+      $scope.live =function(CampaignID,y) {
+        if(y) {
+          $scope.turning = "turn on"
+        }
+        else {
+          $scope.turning = "turn off"
+        }
 
         ngDialog.openConfirm({ templateUrl: 'shared/confirm.html',
                         className: 'ngdialog-theme-default',
-                        width: '750px',
+                        width: '600px',
                         scope: $scope,
 
-                    }).then(function (location) {
+                    }).then(function (status) {
+                        campaign = _.filter($scope.campaigns, function(i){ return i.CampaignID == CampaignID; });
 
+                        console.log(campaign[0])
+                        _.each(campaign[0].Location, function(u) {
+                          _.each(u.areas, function(i) {
+
+                            i.isEnabled = y
+                            console.log(i.isEnabled)
+                          })
+                        })
+                        data = {
+                          "CampaignID": CampaignID,
+                          "Location": campaign[0].Location
+                        }
+                        RpiService.switchCampaign(data)
+                          .then(function(d){
+                            console.log(d)
+                          });
                     }, function (value) {
-                        //Do something
+                      $scope.all_enabled_campaigns.selected[CampaignID] = !y
                     });
       }
 

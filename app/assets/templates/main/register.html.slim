@@ -1,0 +1,48 @@
+.container.user_forms.row-space-top-4
+  .row
+    .col-md-4
+      = image_tag "aircast.png"
+    .col-md-8
+      h4 Get started with Aircast
+      p 
+        | Already have a Aircast account? 
+        a href="#" ui-sref="login"
+          | Log in here
+      .row
+        .col-sm-6
+          label
+            | First Name
+            input type="text" ng-model="register.FirstName"
+        .col-sm-6
+          label
+            | Last Name
+            input type="text" ng-model="register.LastName" 
+      label
+        | Username
+        input type="text" ng-model="register.UserName" 
+      label
+        | Email
+        input type="text" ng-model="register.Email"             
+      label
+        | Password
+        input type="password" ng-model="register.Password"
+      label
+        | Retype Password
+        input type="password" ng-model="register.Password2"
+      label
+        | Company
+        input type="text" ng-model="register.Company"
+      .row
+        .col-sm-6
+          label
+            | Birthday
+            datepicker date-format='MMM dd yyyy'
+              input ng-model="register.Birthday" type="text" 
+        .col-sm-6
+          label
+            | Mobile
+            input type="text" ng-model="register.Mobile" 
+
+      hr
+      a.btn.btn-sm.animated-button.victoria-three ng-click="signup()"
+        | Register

@@ -1,0 +1,13 @@
+.login-container.user_forms
+  .login-nav
+    = image_tag "aircast.png"
+    label
+      | Username
+      input type="text" ng-model="user.username"
+    label
+      | Password
+      input type="password" ng-model="user.password" 
+    hr
+    a.btn.btn-sm.animated-button.victoria-three ng-click="login()"
+      | Login
+  .login-main.background-img-1.animate-show fadeIn="" ng-style="{'background-image': 'url(' + background_image + ')', 'transform': transform, '-webkit-transform': transform, '-ms-transform': transform}"

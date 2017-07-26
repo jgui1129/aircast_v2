@@ -156,5 +156,16 @@
   p {
     font-weight: 300;
   }
+}
 
+.clip {
+  font-size: 20px;
+  top: 6px;
+  position: relative;
+}
+
+.delete {
+  margin-left: 6px;
+  color: red;
+  cursor: pointer;
 }

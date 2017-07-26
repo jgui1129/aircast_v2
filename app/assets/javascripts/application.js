@@ -19,7 +19,9 @@
 //= require ng-map
 //= require ng-file-upload
 //= require ngDialog.min
+//= require angular-cookies.js
 //= require daterangepicker
+//= require angular-datepicker.min
 //= require angular-daterangepicker.min
 //= require angular-ui-switch
 //= require_tree ../templates

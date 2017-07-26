@@ -1,5 +1,5 @@
 angular.module('Aircast.services')
-  .service('RpiService',['$http', '$q', function($http, $q) {
+  .service('RpiService',['$http', '$q', 'Upload', '$rootScope', function($http, $q, Upload, $rootScope) {
 
     this.advert = function(data) {
       var d = $q.defer();
@@ -30,8 +30,8 @@ angular.module('Aircast.services')
 
   this.upload = function(data) {
     var d = $q.defer();
-    $http({
-      method: 'PUT',
+    Upload.upload({
+      method: "PUT",
       url: data.url,
       data: data.file,
       headers: { 'Content-Type': data.type },
@@ -42,7 +42,7 @@ angular.module('Aircast.services')
         d.resolve(error);
       },function(evt) {
         var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-        $rootScope.progress = progressPercentage + '% ';
+        $rootScope.progress = progressPercentage + '%'
       });
 
     return d.promise;

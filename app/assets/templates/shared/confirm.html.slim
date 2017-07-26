@@ -1,4 +1,9 @@
-h3 Live Changes
-
-p 
-  | Are you sure you want to turn off 
+.campaign_switch
+  h3 
+    | Are you sure you want to {{turning}} the campaign?
+  p 
+    | Please note that status changes would require the approval of the admin to take effect.
+  .row-space-top-5.inline-block
+    button.outline-button.orange-btn ng-click="closeThisDialog('Some value')" Cancel
+  .pull-right.row-space-top-5.row-space-5
+    button.btn.aircast-button.confirm-button ng-click="confirm('change')" Confirm
