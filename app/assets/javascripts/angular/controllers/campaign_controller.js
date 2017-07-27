@@ -87,10 +87,12 @@ angular.module('Aircast.controllers')
       $scope.locations = DemoService.locations()
 
       $scope.selected_layout = $scope.layouts[0]
+      $scope.campaign.content_type = $scope.selected_layout.content[0].type
 
       $scope.change_layout = function(layout) {
         $scope.selected_layout = layout
         $scope.campaign.content_type = $scope.selected_layout.content[0].type
+
       }
 
 
@@ -163,6 +165,7 @@ angular.module('Aircast.controllers')
               d["type"] = $scope.campaign.content_type
               payload.push(d)
 
+              console.log($scope.campaign.content_type)
               data = {
                 UserID: user.UserID,
                 Template: $scope.campaign.layout.tempId,
