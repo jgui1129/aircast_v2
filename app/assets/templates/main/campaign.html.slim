@@ -90,7 +90,8 @@
           .left.row-space-top-5
             button.outline-button.orange-btn ng-click="previous()" Previous
           .align-right.row-space-top-5.row-space-5
-            button.btn.aircast-button ng-click="launch()" Launch
+            button.btn.aircast-button ng-disabled="launch_disabled" ng-click="launch()" 
+              | Launch
 
     .col-sm-5
       .receipt.stats

@@ -62,7 +62,7 @@ angular.module('Aircast.controllers')
                   else {
                       $scope.all_approved_campaigns.selected[x.CampaignID] = true
                   }
-                  console.log(x.Preview)
+
                   if(x.Preview.indexOf(".mp4") !== -1)  {
                     x.Preview = 'http://i.imgur.com/xckPPS5.jpg'
                   }
@@ -102,7 +102,7 @@ angular.module('Aircast.controllers')
             _.each($scope.campaigns, function(x) {
               if(x.CampaignID == d.data.CampaignID) {
                 x.isApproved =d.data.isApproved
-                console.log('hello')
+                
               }
             })
 

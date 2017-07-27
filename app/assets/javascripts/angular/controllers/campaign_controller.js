@@ -27,6 +27,7 @@ angular.module('Aircast.controllers')
         selected:{}
       };
       $scope.next_disabled = false
+      $scope.launch_disabled = false
       $scope.selected_locations = []
 
       $scope.$watch('selected_locations', function () {
@@ -300,6 +301,8 @@ angular.module('Aircast.controllers')
           "url": $scope.campaign.fileUrl[0].url,
         }
 
+        $scope.launch_disabled = true
+
         RpiService.upload(upload_data)
           .then(function(res) {
             console.log(res)
@@ -308,6 +311,7 @@ angular.module('Aircast.controllers')
               .then(function(result) {
                 // $scope.loading = false
                 console.log(result)
+
                 // progressbar.complete();
 
                 $state.go('nav.home')
