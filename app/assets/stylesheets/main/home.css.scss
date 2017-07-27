@@ -10,6 +10,14 @@ table {
   width: 100%;
 }
 
+.orange {
+  color: $orange;
+}
+
+.base-color {
+  color: $base-color !important;
+}
+
 body,html {
   color: $base-color;
   font-family: $base-font;

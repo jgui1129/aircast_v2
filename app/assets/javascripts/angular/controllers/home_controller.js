@@ -23,11 +23,11 @@ angular.module('Aircast.controllers')
 
       AuthService.currentUser()
         .then(function(d) {
-
+          console.log(d.UserID)
           if(d.UserID == 1) {
             $scope.isAdmin = true
           }
-          
+
 
           data = {
             UserID: d.UserID,
@@ -61,6 +61,10 @@ angular.module('Aircast.controllers')
                   }
                   else {
                       $scope.all_approved_campaigns.selected[x.CampaignID] = true
+                  }
+                  console.log(x.Preview)
+                  if(x.Preview.indexOf(".mp4") !== -1)  {
+                    x.Preview = 'http://i.imgur.com/xckPPS5.jpg'
                   }
 
                 })

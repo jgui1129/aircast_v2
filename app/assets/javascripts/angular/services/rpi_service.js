@@ -30,7 +30,7 @@ angular.module('Aircast.services')
 
   this.upload = function(data) {
     var d = $q.defer();
-    Upload.upload({
+    $http({
       method: "PUT",
       url: data.url,
       data: data.file,

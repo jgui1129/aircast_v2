@@ -147,51 +147,55 @@ angular.module('Aircast.controllers')
 
         if($scope.campaign.file) {
 
-          _.each($scope.campaign.layout.content, function(x){
-            extension = name.split('.').pop();
-            x["ext"] = extension;
-          });
+          AuthService.currentUser()
+            .then(function(user) {
 
-          $scope.next_disabled = true
-          payload = []
-          d = {}
+              _.each($scope.campaign.layout.content, function(x){
+                extension = name.split('.').pop();
+                x["ext"] = extension;
+              });
 
-          d["ext"] = $scope.campaign.extension
-          d["type"] = $scope.campaign.content_type
-          payload.push(d)
+              $scope.next_disabled = true
+              payload = []
+              d = {}
 
-          data = {
-            UserID: 1,
-            Template: $scope.campaign.layout.tempId,
-            CampaignName: $scope.campaign.name,
-            payload: payload,
-            Weight: $scope.campaign.weight
-          }
+              d["ext"] = $scope.campaign.extension
+              d["type"] = $scope.campaign.content_type
+              payload.push(d)
 
-          RpiService.fileUrl(data)
-            .then(function(d){
-              console.log(d)
-              $scope.campaign.fileUrl = d.data.FileUrl
-              $scope.form_part = $scope.form_part + 1
-              $scope.campaign.id = d.data.CampaignID
-              counter_f = 1
-              count_files = d.data.FileUrl.length
-              // _.each(d.data.FileUrl, function(x){
-              //   x.file = $scope.campaign[x.type]
-              //
-              //   RpiService.upload(x)
-              //     .then(function(res) {
-              //       //
-              //       // x.uploaded = true
-              //       //
-              //       // if(counter_f == count_files) {
-              //       //
-              //       //   isUploaded(d.data, count_files)
-              //       // }
-              //       // counter_f++
-              //   })
-              // });
-          });
+              data = {
+                UserID: user.UserID,
+                Template: $scope.campaign.layout.tempId,
+                CampaignName: $scope.campaign.name,
+                payload: payload,
+                Weight: $scope.campaign.weight
+              }
+
+              RpiService.fileUrl(data)
+                .then(function(d){
+                  console.log(d)
+                  $scope.campaign.fileUrl = d.data.FileUrl
+                  $scope.form_part = $scope.form_part + 1
+                  $scope.campaign.id = d.data.CampaignID
+                  counter_f = 1
+                  count_files = d.data.FileUrl.length
+                  // _.each(d.data.FileUrl, function(x){
+                  //   x.file = $scope.campaign[x.type]
+                  //
+                  //   RpiService.upload(x)
+                  //     .then(function(res) {
+                  //       //
+                  //       // x.uploaded = true
+                  //       //
+                  //       // if(counter_f == count_files) {
+                  //       //
+                  //       //   isUploaded(d.data, count_files)
+                  //       // }
+                  //       // counter_f++
+                  //   })
+                  // });
+              });
+            });
         }
         else {
           $scope.warning = true
@@ -265,57 +269,48 @@ angular.module('Aircast.controllers')
       }
 
       $scope.launch = function() {
+        $scope.campaign.timeslot = _.values($scope.all_shifts.selected)
+        $scope.campaign.days = _.values($scope.all_days.selected)
+        $scope.campaign.startDate = moment($scope.datePicker.date.startDate).unix()
+        $scope.campaign.endDate = moment($scope.datePicker.date.endDate).unix();
+        $scope.campaign.aired = $scope.campaign.aired_content
 
-        AuthService.currentUser()
-          .then(function(d) {
-            $scope.campaign.timeslot = _.values($scope.all_shifts.selected)
-            $scope.campaign.days = _.values($scope.all_days.selected)
-            $scope.campaign.startDate = moment($scope.datePicker.date.startDate).unix()
-            $scope.campaign.endDate = moment($scope.datePicker.date.endDate).unix();
-            $scope.campaign.aired = $scope.campaign.aired_content
+        data = {
+          "CampaignName": $scope.campaign.name,
+          "Template": $scope.campaign.layout.tempId,
+          "Location": $scope.selected_locations,
+          "StartDate": $scope.campaign.startDate,
+          "EndDate": $scope.campaign.endDate,
+          "Days": $scope.campaign.days,
+          "Timeslot": $scope.campaign.aired,
+          "aired_total": $scope.campaign.aired_total,
+          "weight": $scope.campaign.weight,
+          "price_per_spot": $scope.campaign.price_per_spot,
+          "url": $scope.campaign.fileUrl[0].url,
+          "FileUrl": $scope.campaign.fileUrl,
+          "file": $scope.campaign.file,
+          "CampaignID": $scope.campaign.id
+        }
 
-            data = {
-              "UserID": d.UserID,
-              "CampaignName": $scope.campaign.name,
-              "Template": $scope.campaign.layout.tempId,
-              "Location": $scope.selected_locations,
-              "StartDate": $scope.campaign.startDate,
-              "EndDate": $scope.campaign.endDate,
-              "Days": $scope.campaign.days,
-              "Timeslot": $scope.campaign.aired,
-              "aired_total": $scope.campaign.aired_total,
-              "weight": $scope.campaign.weight,
-              "price_per_spot": $scope.campaign.price_per_spot,
-              "url": $scope.campaign.fileUrl[0].url,
-              "FileUrl": $scope.campaign.fileUrl,
-              "file": $scope.campaign.file,
-              "CampaignID": $scope.campaign.id
-            }
+        upload_data = {
+          "file": $scope.campaign.file,
+          "url": $scope.campaign.fileUrl[0].url,
+        }
 
-            upload_data = {
-              "file": $scope.campaign.file,
-              "url": $scope.campaign.fileUrl[0].url,
-            }
+        RpiService.upload(upload_data)
+          .then(function(res) {
+            console.log(res)
 
-            RpiService.upload(upload_data)
-              .then(function(res) {
-                console.log(res)
+            RpiService.rpi_upload(data)
+              .then(function(result) {
+                // $scope.loading = false
+                console.log(result)
+                // progressbar.complete();
 
-                RpiService.rpi_upload(data)
-                  .then(function(result) {
-                    // $scope.loading = false
-                    console.log(result)
-                    // progressbar.complete();
-
-                    $state.go('nav.home')
-                })
+                $state.go('nav.home')
             })
-
-
-
-            console.log(data)
-        });
-
+        })
+        console.log(data)
       }
 
 

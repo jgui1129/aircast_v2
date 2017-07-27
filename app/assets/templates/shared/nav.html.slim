@@ -16,18 +16,18 @@ nav.navbar
         li
           a ui-sref="nav.campaigns" ng-class="{active: $state.includes('nav.campaigns')}"
             | CREATE A CAMPAIGN
-        li
-          a ui-sref="nav.settings" ng-class="{active: $state.includes('nav.settings')}"
-            | SETTINGS
+        / li
+        /   a ui-sref="nav.settings" ng-class="{active: $state.includes('nav.settings')}"
+        /     | SETTINGS
       ul.nav.navbar-nav.navbar-right  
         li
-          a ui-sref="#" ng-class="{active: $state.includes('nav.balance')}"
+          a.base-color ui-sref="#" ng-class="{active: $state.includes('nav.balance')}"
             | Available Spots: {{wallet}}
         li
           a ui-sref="#" 
             | |
         li
-          a ng-click="logout()"
+          a.base-color ng-click="logout()"
             | SIGNOUT
 .height-75
 
