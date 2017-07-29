@@ -4,7 +4,7 @@
       h4.no-margin
         | Recent Campaigns 
       .row-space-top-4
-        .campaign ng-repeat="campaign in campaigns"
+        .campaign ng-click="enable_locations(campaign)" ng-repeat="campaign in campaigns"
           .row.no-margin
             .col-sm-2.no-padding
               img ng-src="{{campaign.Preview}}"
@@ -23,8 +23,10 @@
                     | For Approval
               .row 
                 .col-sm-12.no-padding-right
-                  p 
-                    | Airs: {{campaign.StartDate}} - {{campaign.EndDate}} | Live at {{campaign.all_enabled.length}}/{{campaign.total_tvs}}                    
+                  p.inline-block 
+                    | Aires: {{campaign.StartDate}} - {{campaign.EndDate}} | Live at {{campaign.all_enabled.length}}/{{campaign.total_tvs}} |                   
+                    span.add-margin-left ng-show="isAdmin" ng-click="enable_locations(campaign)"
+                      | Edit
             .col-sm-2.switch_campaign ng-show="isAdmin"
               p Approval
               switch.green ng-change="approval(campaign.CampaignID, all_approved_campaigns.selected[campaign.CampaignID])" id="enabled" name="enabled" ng-model="all_approved_campaigns.selected[campaign.CampaignID]"

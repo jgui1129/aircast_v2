@@ -39,6 +39,16 @@ Aircast.config(["$stateProvider", "$httpProvider", "$urlRouterProvider", "$locat
       }
     })
 
+    .state('nav.edit', {
+      url: '/edit?campaignID',
+      views: {
+        'content@nav': {
+          templateUrl: 'main/edit.html',
+          controller: 'EditController'
+        }
+      }
+    })
+
     .state('nav.campaigns', {
       url: '/campaigns',
       views: {

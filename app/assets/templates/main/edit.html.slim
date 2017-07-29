@@ -1,0 +1,49 @@
+.container-aircast
+  .row
+    .col-md-7.no-padding-right
+      .create.stats
+        h3.header_campaign Edit a Campaign
+        .locations ng-repeat="loc in campaign.Location"
+          h5 
+            | Location Name: {{loc.id}}
+          div ng-repeat="area in loc.areas"
+            .row
+              .col-md-10
+                p 
+                  | Rpi_id: {{area.rpi_id}}
+              .col-md-2.switch_campaign
+                switch.green ng-change="approval(loc.id, area.rpi_id, all_enabled_areas.selected[area.rpi_id])" id="enabled" name="enabled" ng-model="all_enabled_areas.selected[area.rpi_id]"
+
+        .left.row-space-top-5
+          button.outline-button.orange-btn ui-sref="nav.home" Cancel
+        .align-right.row-space-top-5.row-space-5
+          button.btn.aircast-button ng-disabled="launch_disabled" ng-click="save()" 
+            | Save
+    .col-sm-5
+      .receipt.stats
+        .center
+          h3
+            | {{campaign.CampaignName}}
+          p 
+            | By: {{campaign.Company}}
+        hr
+        div ng-if="campaign.type == 'video'"
+          videogular vg-theme="config.theme.url" 
+            vg-media vg-preload="config.preload" vg-src="config.sources" vg-tracks="config.tracks" 
+            vg-controls vg-autohide="config.plugins.controls.autoHide" vg-autohide-time="config.plugins.controls.autoHideTime" 
+              vg-play-pause-button
+              vg-time-display  
+                | {{ currentTime | date:'mm:ss':'+0000' }}
+              vg-scrub-bar
+                vg-scrub-bar-current-time
+              vg-time-display  
+                | {{ timeLeft | date:'mm:ss':'+0000' }}
+              vg-volume
+                vg-mute-button
+                vg-volume-bar
+              vg-fullscreen-button
+              .my-button.iconButton
+                =image_tag "aircast.png", :class => "photo-logo"
+        div ng-if="campaign.type == 'image'"
+          img.photo-logo ng-src="{{campaign.Preview}}"
+          

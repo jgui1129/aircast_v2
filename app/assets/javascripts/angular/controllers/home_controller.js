@@ -18,7 +18,9 @@ angular.module('Aircast.controllers')
       $scope.isAdmin = false
 
 
-
+      $scope.enable_locations = function(campaign) {
+        $state.go('nav.edit', {campaignID: campaign.CampaignID})
+      }
 
 
       AuthService.currentUser()
@@ -102,7 +104,7 @@ angular.module('Aircast.controllers')
             _.each($scope.campaigns, function(x) {
               if(x.CampaignID == d.data.CampaignID) {
                 x.isApproved =d.data.isApproved
-                
+
               }
             })
 

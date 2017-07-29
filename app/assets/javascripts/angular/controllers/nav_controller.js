@@ -15,7 +15,6 @@ angular.module('Aircast.controllers')
           }
           UserService.getWallet(data)
             .then(function(d){
-              console.log(d)
               $scope.wallet = d.data.Wallet
             });
       });

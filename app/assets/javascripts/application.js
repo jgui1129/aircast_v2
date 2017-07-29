@@ -6,6 +6,12 @@
 //= require angular
 //= require angular-ui-router
 
+//= require angular-sanitize
+//= require videogular
+//= require vg-controls
+//= require vg-poster
+//= require vg-time-display
+
 
 //= require angular/app
 //= require angular/controllers/application_controller
