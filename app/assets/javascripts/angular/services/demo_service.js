@@ -88,26 +88,27 @@ angular.module('Aircast.services')
           total: 4,
           areas: [
             {
-              "name": "Digital Dept",
+              "name": "Office",
               "rpi_id": 1,
               "area": "Quezon City",
               "quantity": 1
             },{
-              "name": "Executive Dept",
+              "name": "Terminal",
               "rpi_id": 2,
               "area": "Quezon City",
               "quantity": 1
             }, {
-              "name": "SSI Dept",
+              "name": "School",
               "rpi_id": 3,
               "area": "Quezon City",
               "quantity": 1
-            }, {
-              "name": "HR Dept",
-              "rpi_id": 4,
-              "area": "Quezon City",
-              "quantity": 1
             }]
+            // }, {
+            //   "name": "HR Dept",
+            //   "rpi_id": 4,
+            //   "area": "Quezon City",
+            //   "quantity": 1
+            // }]
         },
         {
           id: "davids",

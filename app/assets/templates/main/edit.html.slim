@@ -10,7 +10,7 @@
             .row
               .col-md-10
                 p 
-                  | Rpi_id: {{area.rpi_id}}
+                  | Area: {{area.name}}
               .col-md-2.switch_campaign
                 switch.green ng-change="approval(loc.id, area.rpi_id, all_enabled_areas.selected[area.rpi_id])" id="enabled" name="enabled" ng-model="all_enabled_areas.selected[area.rpi_id]"
 
