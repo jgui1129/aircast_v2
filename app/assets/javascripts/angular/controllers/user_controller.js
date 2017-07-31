@@ -7,7 +7,6 @@ angular.module('Aircast.controllers')
 
       AuthService.currentUser()
         .then(function(d){
-          console.log(d)
           if(d) {
             $state.go('nav.home')
           }

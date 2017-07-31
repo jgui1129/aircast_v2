@@ -19,9 +19,7 @@ angular.module('Aircast.services')
 
     this.currentUser = function() {
       var d = $q.defer();
-      if (service._user) {
-        d.resolve(service._user);
-      } else if ($cookies.getObject('user')) {
+      if ($cookies.getObject('user')) {
         service.setCurrentUser($cookies.getObject('user'));
         d.resolve(service._user);
       } else {

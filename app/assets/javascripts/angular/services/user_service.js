@@ -1,5 +1,5 @@
 angular.module('Aircast.services')
-  .service('UserService', ["$q", "$http", "$cookies", "$rootScope", "AuthService", function($q, $http, $cookies, $rootScope, AuthService){
+  .service('UserService', ["$q", "$http", "$cookies", "$rootScope", "AuthService", "$state", function($q, $http, $cookies, $rootScope, AuthService, $state){
     var service = this;
 
     this.setUserFromFb = function(fb_credentials) {
