@@ -1,35 +1,36 @@
 nav.navbar
-  .container-fluid
-    .navbar-header
-      button.navbar-toggle data-target="#myNavbar" data-toggle="collapse" type="button"
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
-      / a href="#"  WebSiteName
-      a.navbar-brand href="/"
-        = image_tag 'aircast.png'
-    #myNavbar.collapse.navbar-collapse
-      ul.nav.navbar-nav
-        li
-          a ui-sref="nav.home" ng-class="{active: $state.includes('nav.home')}"
-            | HOME
-        li
-          a ui-sref="nav.campaigns" ng-class="{active: $state.includes('nav.campaigns')}"
-            | CREATE A CAMPAIGN
-        / li
-        /   a ui-sref="nav.settings" ng-class="{active: $state.includes('nav.settings')}"
-        /     | SETTINGS
-      ul.nav.navbar-nav.navbar-right  
-        li
-          a.base-color ui-sref="#" ng-class="{active: $state.includes('nav.balance')}"
-            | Available Spots: {{wallet}}
-        li
-          a ui-sref="#" 
-            | |
-        li
-          a.base-color ng-click="logout()"
-            | SIGNOUT
-.height-75
+  .navbar-header
+    button.navbar-toggle.collapsed.background-gray data-target="#myNavbar" data-toggle="collapse" type="button"
+      span.icon-bar
+      span.icon-bar
+      span.icon-bar
+    / a href="#"  WebSiteName
+    a.navbar-brand href="/"
+      = image_tag 'aircast.png'
+  #myNavbar.collapse.navbar-collapse
+    ul.nav.navbar-nav
+      li
+        a ui-sref="nav.home" ng-class="{active: $state.includes('nav.home')}"
+          | HOME
+      li
+        a ui-sref="nav.campaigns" ng-class="{active: $state.includes('nav.campaigns')}"
+          | CREATE A CAMPAIGN
+      / li
+      /   a ui-sref="nav.settings" ng-class="{active: $state.includes('nav.settings')}"
+      /     | SETTINGS
+    ul.nav.navbar-nav.navbar-right  
+      li
+        a.base-color ui-sref="#" ng-class="{active: $state.includes('nav.balance')}"
+          | Available Spots: {{wallet}}
+      li
+        a ui-sref="#" 
+          | |
+      li
+        a.base-color ng-click="logout()"
+          | SIGNOUT
+
+
+.height-75 
 
 .home
   div ui-view="content"

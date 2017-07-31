@@ -2,24 +2,27 @@
   height: 75px;
 }
 .navbar {
+  z-index: 999;
   font-family: $header-font;
   position: fixed;
   width: 100%;
   border-radius: inherit;
   height: 75px;
-  z-index: 16;
   margin-bottom: 0px;
   border-bottom: 2px solid #eee;
   background: white;
 
   ul {
-    margin: 1em 0 0 4em;
+    margin: 1em 0 0 0;
     font-size: 13px;
   }
 
   .container-fluid {
     padding-right: 3%;
     padding-left: 3%;
+  }
+  .navbar-right {
+    margin-right: 0 !important;
   }
 
   .navbar-header {
@@ -48,4 +51,19 @@
   .navbar-toggle {
     margin-top: 20px;
   }
+}
+.icon-bar {
+  border: 1px solid $base-color;
+}
+
+.in {
+  background: rgb(248, 248, 248);
+}
+
+.navbar-fixed-top {
+  top: -70px; /* you'll have to figure out the exact number here */
+}
+
+.navbar-fixed-top, .navbar-fixed-bottom {
+  position: relative; /* this can also be static */
 }

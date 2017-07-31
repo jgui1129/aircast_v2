@@ -27,10 +27,10 @@
                     | Aires: {{campaign.StartDate}} - {{campaign.EndDate}} | Live at {{campaign.all_enabled.length}}/{{campaign.total_tvs}} |                   
                     span.add-margin-left ng-show="isAdmin" ng-click="enable_locations(campaign)"
                       | Edit
-            .col-sm-2.switch_campaign ng-show="isAdmin"
+            .col-sm-2.switch_campaign.switches ng-show="isAdmin"
               p Approval
               switch.green ng-change="approval(campaign.CampaignID, all_approved_campaigns.selected[campaign.CampaignID])" id="enabled" name="enabled" ng-model="all_approved_campaigns.selected[campaign.CampaignID]"
-            .col-sm-2.switch_campaign.pull-right
+            .col-sm-2.switch_campaign.switches
               p Enabled
               switch.green ng-change="live(campaign.CampaignID, all_enabled_campaigns.selected[campaign.CampaignID])" id="enabled" name="enabled" ng-model="all_enabled_campaigns.selected[campaign.CampaignID]"
             

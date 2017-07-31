@@ -1,6 +1,7 @@
 //= require jquery
 //= require lodash
 //= require moment
+//= require bootstrap
 
 // ANGULAR: Core Angular Files
 //= require angular

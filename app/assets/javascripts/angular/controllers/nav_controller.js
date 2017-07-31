@@ -7,7 +7,7 @@ angular.module('Aircast.controllers')
         UserService.logout()
         $state.go('login')
       }
-
+      $scope.isCollapsed = true;
       AuthService.currentUser()
         .then(function(d){
           data = {
@@ -18,6 +18,8 @@ angular.module('Aircast.controllers')
               $scope.wallet = d.data.Wallet
             });
       });
+
+      $scope.expand = true
 
 
 
