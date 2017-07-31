@@ -51,13 +51,12 @@
         div ng-if="form_part == 2"  
           h5.row-space-3.row-space-top-3
             | Locations
-            em.add-margin-left
-              | (Double click to show more)
           .locations
             label.inline-block ng-repeat="location in locations" ng-class="{ 'active': all_locations.selected[location.id] === location.id }"
               span.line-icon.icon-map-location ng-click="go_location(location)"
               input ng-change="checkedLocation()" type="checkbox" ng-model="all_locations.selected[location.id]" ng-true-value="'{{location.id}}'" ng-false-value="''"
-              | {{location.name}}, {{location.total}} TVs
+              p.inline-block.add-margin-left
+                | {{location.name}}, {{location.total}} TVs
           
           .row
             .col-sm-6  

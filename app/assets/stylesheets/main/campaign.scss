@@ -59,6 +59,11 @@
   outline: none;
 }
 
+.icon-map-location {
+  padding: 10px;
+  border-right: 1px solid;
+}
+
 .locations {
   label {
     border: 1px solid #558ab7;
@@ -80,6 +85,9 @@
   .shifts {
     width: 100%;
     text-align: center;
+  }
+  p {
+    margin-bottom: 0;
   }
 }
 

@@ -84,7 +84,7 @@ angular.module('Aircast.services')
       return [
         {
           id: "rpidemo",
-          name: "Palm Solutions",
+          name: "Coke Trade Fair",
           total: 4,
           areas: [
             {
