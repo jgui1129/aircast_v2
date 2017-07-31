@@ -112,6 +112,7 @@ angular.module('Aircast.services')
 
     this.logout = function() {
       $cookies.remove('user')
+      return 'success'
     };
 
     this.getWallet = function(data) {
