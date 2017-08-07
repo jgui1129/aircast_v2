@@ -113,15 +113,10 @@ angular.module('Aircast.services')
         {
           id: "davids",
           name: "David's Salon",
-          total: 2,
+          total: 1,
           areas: [
             {
-              "name": "David's Salon Podium",
-              "rpi_id": 17,
-              "area": "Ortigas",
-              "quantity": 1
-            },{
-              "name": "David's Salon Makati Med",
+              "name": "David's Salon Valero Branch",
               "rpi_id": 18,
               "area": "Makati City",
               "quantity": 1
