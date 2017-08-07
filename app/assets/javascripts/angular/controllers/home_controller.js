@@ -18,7 +18,7 @@ angular.module('Aircast.controllers')
       $scope.isAdmin = false
 
 
-      $scope.enable_locations = function(campaign) {
+      $scope.edit = function(campaign) {
         $state.go('nav.edit', {campaignID: campaign.CampaignID})
       }
 

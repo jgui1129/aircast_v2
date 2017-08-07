@@ -25,7 +25,7 @@
                 .col-sm-12.no-padding-right
                   p.inline-block 
                     | Aires: {{campaign.StartDate}} - {{campaign.EndDate}} | Live at {{campaign.all_enabled.length}}/{{campaign.total_tvs}} |                   
-                    span.add-margin-left ng-show="isAdmin" ng-click="enable_locations(campaign)"
+                    span.add-margin-left ng-show="isAdmin" ng-click="edit(campaign)"
                       | Edit
             .col-sm-2.switch_campaign.switches ng-show="isAdmin"
               p Approval
