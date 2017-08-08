@@ -7,6 +7,7 @@ angular.module('Aircast.controllers')
 
       AuthService.currentUser()
         .then(function(d){
+          console.log(d)
           if(d) {
             $state.go('nav.home')
           }
@@ -33,17 +34,23 @@ angular.module('Aircast.controllers')
         UserService.login(data)
           .then(function(d){
             console.log(d)
-            $state.go('nav.home')
+            if(d.error == 'username or password incorrect') {
+              $scope.error = true
+            }
+            else {
+              $state.go('nav.home')
+            }
+
         });
       }
-
+      $scope.error = false
       $scope.signup = function() {
         $scope.register.Birthday = moment($scope.register.Birthday).unix()
         data = $scope.register
-        console.log(data)
         UserService.signup1(data)
           .then(function(d){
-            $state.go('nav.home')
+            console.log(d)
+            // $state.go('nav.home')
         });
       }
 }]);

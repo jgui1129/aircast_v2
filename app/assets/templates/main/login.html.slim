@@ -1,6 +1,9 @@
 .login-container.user_forms
   .login-nav
     = image_tag "aircast.png"
+    div ng-if="error"
+      .alert.alert-danger
+        | Oops. Wrong username or password.
     label
       | Email
       input type="text" ng-model="user.Email"
