@@ -83,6 +83,23 @@ angular.module('Aircast.services')
     this.locations = function() {
       return [
         {
+          id: "hgs",
+          name: "Hinduja Global Solutions",
+          total: 2,
+          areas: [
+            {
+              "name": "HGS 1800",
+              "rpi_id": 19,
+              "area": "Eastwood",
+              "quantity": 1
+            },{
+              "name": "HGS 1800",
+              "rpi_id": 20,
+              "area": "Eastwood",
+              "quantity": 1
+            }]
+        },
+        {
           id: "rpidemo",
           name: "Coke Trade Fair",
           total: 4,
