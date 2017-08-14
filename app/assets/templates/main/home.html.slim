@@ -3,8 +3,16 @@
     .col-sm-12.no-padding-right
       h4.no-margin
         | Recent Campaigns 
+      / .filter-form
+      /   p
+      /     | Quick Filters:
+      /     div ng-repeat="" Images or Video
+      /   .pull-right
+      /     input type="text" ng-model="keyword" placeholder="Search"
+      /   
+        
       .row-space-top-4
-        .campaign ng-click="enable_locations(campaign)" ng-repeat="campaign in campaigns"
+        .campaign ng-click="enable_locations(campaign)" ng-repeat="campaign in campaigns | filter : keyword"
           .row.no-margin
             .col-sm-2.no-padding
               img ng-src="{{campaign.Preview}}"

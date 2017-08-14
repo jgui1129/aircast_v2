@@ -49,8 +49,7 @@ angular.module('Aircast.controllers')
         data = $scope.register
         UserService.signup1(data)
           .then(function(d){
-            console.log(d)
-            // $state.go('nav.home')
+            $state.go('nav.home')
         });
       }
 }]);

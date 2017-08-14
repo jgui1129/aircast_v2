@@ -93,7 +93,7 @@ angular.module('Aircast.services')
               "area": "Eastwood",
               "quantity": 1
             },{
-              "name": "HGS 1800",
+              "name": "HGS 1880",
               "rpi_id": 20,
               "area": "Eastwood",
               "quantity": 1
