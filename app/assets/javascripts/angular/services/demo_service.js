@@ -137,6 +137,16 @@ angular.module('Aircast.services')
               "rpi_id": 18,
               "area": "Makati City",
               "quantity": 1
+            }, {
+              "name": "David's Salon Juno Branch",
+              "rpi_id": 23,
+              "area": "Makati City",
+              "quantity": 1
+            }, {
+              "name": "David's Salon SM Makati Branch",
+              "rpi_id": 24,
+              "area": "Makati City",
+              "quantity": 1
             }]
         },
         {
