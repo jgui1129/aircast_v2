@@ -148,7 +148,7 @@ angular.module('Aircast.services')
               "area": "Makati City",
               "quantity": 1
             }]
-        },
+        4},
         {
           id: "school",
           name: "Univesities",
@@ -177,21 +177,28 @@ angular.module('Aircast.services')
           total: 9,
           areas: [
             {
-              "name": "The Yard",
-              "rpi_id": 4,
+              "name": "The Yard Xavierville",
+              "rpi_id": 21,
               "area": "Quezon City",
               "quantity": 2
-            },{
-              "name": "Katorini",
-              "rpi_id": 5,
-              "area": "Ortigas",
-              "quantity": 3
-            }, {
-              "name": "Game Over",
-              "rpi_id": 6,
-              "area": "Makati",
-              "quantity": 4
-            }
+            },
+            {
+              "name": "The Yard Underground",
+              "rpi_id": 22,
+              "area": "Quezon City",
+              "quantity": 2
+            },
+            // {
+            //   "name": "Katorini",
+            //   "rpi_id": 5,
+            //   "area": "Ortigas",
+            //   "quantity": 3
+            // }, {
+            //   "name": "Game Over",
+            //   "rpi_id": 6,
+            //   "area": "Makati",
+            //   "quantity": 4
+            // }
           ],
         },
         {
