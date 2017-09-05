@@ -119,6 +119,11 @@ angular.module('Aircast.services')
               "rpi_id": 3,
               "area": "Quezon City",
               "quantity": 1
+            }, {
+              "name": "HR Dept",
+              "rpi_id": 4,
+              "area": "Quezon City",
+              "quantity": 1
             }]
             // }, {
             //   "name": "HR Dept",
