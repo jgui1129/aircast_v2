@@ -153,7 +153,7 @@ angular.module('Aircast.services')
               "area": "Makati City",
               "quantity": 1
             }]
-        4},
+        },
         {
           id: "school",
           name: "Univesities",
