@@ -321,7 +321,7 @@ angular.module('Aircast.controllers')
                     "message": "User:" + $scope.campaign.user.UserID + ' just uploaded a content.'
                   },
                   {
-                    "mobile": '639178350261',
+                    "mobile": '639175314928',
                     "message": "User:" + $scope.campaign.user.UserID + ' just uploaded a content.'
                   },
                   // {
@@ -340,14 +340,17 @@ angular.module('Aircast.controllers')
                   if(ctr <= reminders.length) {
                     ReminderService.sms(x)
                       .then(function(d){
+                        console.log(d)
+                        $state.go('nav.home')
                         ctr++
                       });
                   }
-                  else {
+                  if(ctr == reminders.length) {
                     // progressbar.complete();
 
-                    $state.go('nav.home')
+
                   }
+
                 });
             })
         })
