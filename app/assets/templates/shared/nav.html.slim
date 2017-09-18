@@ -15,6 +15,9 @@ nav.navbar
       li
         a ui-sref="nav.campaigns" ng-class="{active: $state.includes('nav.campaigns')}"
           | CREATE A CAMPAIGN
+      li
+        a ui-sref="nav.locations" ng-if="navLocations == true" ng-class="{active: $state.includes('nav.locations')}"
+          | LOCATIONS
       / li
       /   a ui-sref="nav.settings" ng-class="{active: $state.includes('nav.settings')}"
       /     | SETTINGS

@@ -1,14 +1,7 @@
 angular.module('Aircast.controllers')
   .controller('CampaignController',
-  ['$scope', '$state','ngDialog', 'RpiService', 'Upload', 'DemoService', '$rootScope', 'AuthService',
-    function($scope, $state, ngDialog, RpiService, Upload, DemoService, $rootScope, AuthService) {
-
-      AuthService.currentUser()
-        .then(function(d){
-          if(!d) {
-            $state.go('login')
-          }
-      });
+  ['$scope', '$state','ngDialog', 'RpiService', 'Upload', 'DemoService', '$rootScope', 'AuthService', 'ReminderService',
+    function($scope, $state, ngDialog, RpiService, Upload, DemoService, $rootScope, AuthService, ReminderService) {
 
       $scope.form_part = 1
       var video_divisor = 15
@@ -29,6 +22,17 @@ angular.module('Aircast.controllers')
       $scope.next_disabled = false
       $scope.launch_disabled = false
       $scope.selected_locations = []
+
+      AuthService.currentUser()
+        .then(function(d){
+
+          if(!d) {
+            $state.go('login')
+          }
+          else {
+            $scope.campaign.user = d
+          }
+      });
 
       $scope.$watch('selected_locations', function () {
 
@@ -166,7 +170,7 @@ angular.module('Aircast.controllers')
               d["type"] = $scope.campaign.content_type
               payload.push(d)
 
-              console.log($scope.campaign.content_type)
+
               data = {
                 UserID: user.UserID,
                 Template: $scope.campaign.layout.tempId,
@@ -177,7 +181,7 @@ angular.module('Aircast.controllers')
 
               RpiService.fileUrl(data)
                 .then(function(d){
-                  console.log(d)
+
                   $scope.campaign.fileUrl = d.data.FileUrl
                   $scope.form_part = $scope.form_part + 1
                   $scope.campaign.id = d.data.CampaignID
@@ -219,7 +223,7 @@ angular.module('Aircast.controllers')
       };
 
       $scope.hello = function() {
-        console.log($scope.all_shifts.selected)
+
         $scope.campaign.aired_formatted = []
         _.each(_.keys($scope.all_shifts.selected), function(y) {
           d = {}
@@ -305,16 +309,46 @@ angular.module('Aircast.controllers')
 
         RpiService.upload(upload_data)
           .then(function(res) {
-            console.log(res)
-
             RpiService.rpi_upload(data)
               .then(function(result) {
                 // $scope.loading = false
                 console.log(result)
+                console.log($scope.campaign)
 
-                // progressbar.complete();
+                reminders = [
+                  {
+                    "mobile": '639175314928',
+                    "message": "User:" + $scope.campaign.user.UserID + ' just uploaded a content.'
+                  },
+                  {
+                    "mobile": '639178350261',
+                    "message": "User:" + $scope.campaign.user.UserID + ' just uploaded a content.'
+                  },
+                  // {
+                  //   "mobile": '639173253810',
+                  //   "message": "User:" + $scope.campaign.user.UserID + ' just uploaded a content.'
+                  // },
+                  // {
+                  //   "mobile": '639175314928',
+                  //   "message": 'Awesome! You have successfully uploaded your ' + $scope.campaign.name
+                  // },
+                ]
 
-                $state.go('nav.home')
+                ctr = 1
+                _.each(reminders, function(x) {
+
+                  if(ctr <= reminders.length) {
+                    ReminderService.sms(x)
+                      .then(function(d){
+                        ctr++
+                      });
+                  }
+                  else {
+                    // progressbar.complete();
+
+                    $state.go('nav.home')
+                  }
+                });
             })
         })
         console.log(data)

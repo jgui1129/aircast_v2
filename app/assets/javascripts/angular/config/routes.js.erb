@@ -59,6 +59,16 @@ Aircast.config(["$stateProvider", "$httpProvider", "$urlRouterProvider", "$locat
       }
     })
 
+    .state('nav.locations', {
+      url: '/locations',
+      views: {
+        'content@nav': {
+          templateUrl: 'main/locations.html',
+          controller: 'LocationController'
+        }
+      }
+    })
+
 
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode({

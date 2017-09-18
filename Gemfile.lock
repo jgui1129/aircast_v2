@@ -146,6 +146,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.2.0)
   bourbon
   coffee-rails (~> 4.0.0)
+  compass
   jbuilder (~> 2.0)
   jquery-rails
   jquery-ui-rails
@@ -165,4 +166,4 @@ RUBY VERSION
    ruby 2.2.4p230
 
 BUNDLED WITH
-   1.12.3
+   1.15.3
