@@ -236,7 +236,7 @@ angular.module('Aircast.services')
           areas: [
             {
               "name": "The Results",
-              "rpi_id": 10,
+              "rpi_id": 14,
               "area": "Mandaluyong",
               "quantity": 3
             },{
