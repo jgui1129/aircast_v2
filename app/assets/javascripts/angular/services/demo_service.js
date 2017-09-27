@@ -152,6 +152,11 @@ angular.module('Aircast.services')
               "rpi_id": 24,
               "area": "Makati City",
               "quantity": 1
+            }, {
+              "name": "Aircast Demo",
+              "rpi_id": 6,
+              "area": "Quezon City",
+              "quantity": 1
             }]
         },
         {
