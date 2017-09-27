@@ -174,11 +174,18 @@ angular.module('Aircast.services')
               "rpi_id": 5,
               "area": "Quezon City",
               "quantity": 3
-            }, {
-              "name": "La Salle University",
+            }],
+        },
+        {
+          id: "school",
+          name: "Aircast Demo",
+          total: 1,
+          areas: [
+            {
+              "name": "Aircast TV",
               "rpi_id": 6,
               "area": "Makati",
-              "quantity": 3
+              "quantity": 1
           }],
         },
         {
