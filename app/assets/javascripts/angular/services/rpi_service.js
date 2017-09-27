@@ -104,4 +104,16 @@ angular.module('Aircast.services')
 
     }
 
+    this.locations = function(data) {
+      var d = $q.defer();
+      $http({
+        method: 'POST',
+        url: 'http://54.254.248.115/AircastApprovalSwitch',
+        data: data,
+      }).then(function(data){
+        d.resolve(data);
+      });
+      return d.promise;
+    }
+
 }]);

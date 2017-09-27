@@ -160,7 +160,7 @@ angular.module('Aircast.services')
             }]
         },
         {
-          id: "school",
+          id: "universities",
           name: "Univesities",
           total: 8,
           areas: [
@@ -287,4 +287,5 @@ angular.module('Aircast.services')
       return weeksBetween + 1;
   }
 
+  // Parameters: location_id
 }]);
