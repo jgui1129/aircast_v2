@@ -150,6 +150,10 @@ angular.module('Aircast.controllers')
         $scope.campaign.file = ""
       }
 
+      $scope.previous = function() {
+        $scope.form_part = 1
+      }
+
       $scope.next =function() {
 
         if($scope.campaign.file) {
@@ -306,7 +310,7 @@ angular.module('Aircast.controllers')
         }
 
         $scope.launch_disabled = true
-
+        $scope.progressbar = true
         RpiService.upload(upload_data)
           .then(function(res) {
             RpiService.rpi_upload(data)
@@ -314,26 +318,47 @@ angular.module('Aircast.controllers')
                 // $scope.loading = false
                 console.log(result)
                 console.log($scope.campaign)
+                if($scope.campaign.user.UserID == 11) {
 
-                reminders = [
-                  {
-                    "mobile": '639175314928',
-                    "message": "User:" + $scope.campaign.user.UserID + ' just uploaded a content.'
-                  },
-                  {
-                    "mobile": '639175314928',
-                    "message": "User:" + $scope.campaign.user.UserID + ' just uploaded a content.'
-                  },
-                  // {
-                  //   "mobile": '639173253810',
-                  //   "message": "User:" + $scope.campaign.user.UserID + ' just uploaded a content.'
-                  // },
-                  // {
-                  //   "mobile": '639175314928',
-                  //   "message": 'Awesome! You have successfully uploaded your ' + $scope.campaign.name
-                  // },
-                ]
-
+                  reminders = [
+                    {
+                      "mobile": '639175396126',
+                      "message": "Awesome Anna! You've successfully uploaded your content. In a while, it will be up and running. Thank you!",
+                    },
+                    {
+                      "mobile": '639175314928',
+                      "message": "Awesome Anna! You've successfully uploaded your content. In a while, it will be up and running. Thank you!",
+                    },
+                    // {
+                    //   "mobile": '639173253810',
+                    //   "message": "User:" + $scope.campaign.user.UserID + ' just uploaded a content.'
+                    // },
+                    // {
+                    //   "mobile": '639175314928',
+                    //   "message": 'Awesome! You have successfully uploaded your ' + $scope.campaign.name
+                    // },
+                  ]
+                }
+                else {
+                  reminders = [
+                    {
+                      "mobile": '639175314928',
+                      "message": "User:" + $scope.campaign.user.UserID + ' just uploaded a content.'
+                    },
+                    {
+                      "mobile": '639175314928',
+                      "message": "User:" + $scope.campaign.user.UserID + ' just uploaded a content.'
+                    },
+                    // {
+                    //   "mobile": '639173253810',
+                    //   "message": "User:" + $scope.campaign.user.UserID + ' just uploaded a content.'
+                    // },
+                    // {
+                    //   "mobile": '639175314928',
+                    //   "message": 'Awesome! You have successfully uploaded your ' + $scope.campaign.name
+                    // },
+                  ]
+                }
                 ctr = 1
                 _.each(reminders, function(x) {
 

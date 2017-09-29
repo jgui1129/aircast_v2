@@ -35,14 +35,15 @@ angular.module('Aircast.services')
       url: data.url,
       data: data.file,
       headers: { 'Content-Type': data.type },
+      uploadEventHandlers: {
+        progress: function (evt) {
+          var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+          $rootScope.progress = progressPercentage + '%'
+          
+        }
+      },
     }).then(function(response) {
         d.resolve(response);
-      }, function(response) {
-        error = 'Error status: ' + response.status
-        d.resolve(error);
-      },function(evt) {
-        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-        $rootScope.progress = progressPercentage + '%'
       });
 
     return d.promise;
@@ -56,7 +57,12 @@ angular.module('Aircast.services')
         data: data,
       }).then(function(data){
         d.resolve(data);
-      });
+      }, function(evt) {
+                var progressPercentage = parseInt(100.0 *
+                  evt.loaded / evt.total);
+                $scope.progress = progressPercentage + '% ';
+                console.log($scope.progress)
+              });
 
       return d.promise;
     }
