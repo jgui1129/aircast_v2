@@ -39,7 +39,7 @@ angular.module('Aircast.services')
         progress: function (evt) {
           var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
           $rootScope.progress = progressPercentage + '%'
-          
+
         }
       },
     }).then(function(response) {
@@ -113,8 +113,8 @@ angular.module('Aircast.services')
     this.locations = function(data) {
       var d = $q.defer();
       $http({
-        method: 'POST',
-        url: 'http://54.254.248.115/AircastApprovalSwitch',
+        method: 'GET',
+        url: 'http://gpdigital.crabdance.com/api/v0/aircast_status.php?location=hgs',
         data: data,
       }).then(function(data){
         d.resolve(data);

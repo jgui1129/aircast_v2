@@ -97,6 +97,11 @@ angular.module('Aircast.services')
               "rpi_id": 20,
               "area": "Eastwood",
               "quantity": 1
+            },,{
+              "name": "HGS Ecomm",
+              "rpi_id": 20,
+              "area": "Eastwood",
+              "quantity": 1
             }]
         },
         {

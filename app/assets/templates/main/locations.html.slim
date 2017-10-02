@@ -1,18 +1,18 @@
 .location-cards
-  .cards
+  .cards ng-repeat="location in locations"
     img ng-src="https://www.cebucitytour.com/wp-content/uploads/2015/04/davids3.jpg"
     .card-header 
       p 
-        | Name
+        | {{location.Room}}
       p
-        | Category
+        | {{location.RpiID}}
     hr
     .card-header  
       .row
         .col-md-4
           p 
-            | 3/5 TVs
+            | {{location.last}} 
         .col-md-8  
           p.align-right 
-            | LIVE
+            | {{location.status}}
     
