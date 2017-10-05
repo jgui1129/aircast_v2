@@ -114,7 +114,7 @@ angular.module('Aircast.services')
       var d = $q.defer();
       $http({
         method: 'GET',
-        url: 'http://gpdigital.crabdance.com/api/v0/aircast_status.php?location=hgs',
+        url: 'http://gpdigital.crabdance.com/api/v0/aircast_status.php?location=all',
         data: data,
       }).then(function(data){
         d.resolve(data);
