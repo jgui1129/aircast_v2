@@ -85,7 +85,7 @@ angular.module('Aircast.services')
         {
           id: "hgs",
           name: "Hinduja Global Solutions",
-          total: 2,
+          total: 8,
           areas: [
             {
               "name": "HGS 1800",
@@ -97,10 +97,35 @@ angular.module('Aircast.services')
               "rpi_id": 20,
               "area": "Eastwood",
               "quantity": 1
-            },,{
+            },{
+              "name": "HGS Alabang",
+              "rpi_id": 15,
+              "area": "Alabang",
+              "quantity": 1
+            }, {
               "name": "HGS Ecomm",
-              "rpi_id": 20,
+              "rpi_id": 37,
               "area": "Eastwood",
+              "quantity": 1
+            }, ,{
+              "name": "HGS Plaza E",
+              "rpi_id": 26,
+              "area": "Plaza E",
+              "quantity": 1
+            },{
+              "name": "HGS South Key",
+              "rpi_id": 27,
+              "area": "South",
+              "quantity": 1
+            }, {
+              "name": "HGS Aeon",
+              "rpi_id": 25,
+              "area": "Aeon",
+              "quantity": 1
+            }, {
+              "name": "HGS Filinvest",
+              "rpi_id": 41,
+              "area": "Filinvest",
               "quantity": 1
             }]
         },
