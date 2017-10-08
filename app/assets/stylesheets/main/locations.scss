@@ -16,6 +16,9 @@
   border-bottom-left-radius: 4px;
   background: #fff;
 
+  .card-height {
+    height: 205px;
+  }
   img {
     width: 100%;
     border-bottom: 1px solid;
@@ -32,5 +35,6 @@
   }
   .card-header {
     padding:10px;
+    text-align: left;
   }
 }

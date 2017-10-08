@@ -6,6 +6,37 @@ angular.module('Aircast.controllers')
       NgMap.getMap().then(function(map) {
       });
 
+      // paginate = function(campaigns) {
+      //
+      //   var vm = this;
+      //
+      //   vm.dummyItems = campaigns
+      //   vm.pager = {};
+      //   vm.setPage = setPage;
+      //
+      //   initController();
+      //
+      //   function initController() {
+      //       // initialize to page 1
+      //       vm.setPage(1);
+      //   }
+      //
+      //   function setPage(page) {
+      //       if (page < 1 || page > vm.pager.totalPages) {
+      //           return;
+      //       }
+      //
+      //       // get pager object from service
+      //       vm.pager = PagerService.GetPager(vm.dummyItems.length, page);
+      //
+      //       // get current page of items
+      //       vm.items = vm.dummyItems.slice(vm.pager.startIndex, vm.pager.endIndex + 1);
+      //   }
+      // }
+
+
+
+
       $rootScope.gmap_api = 'https://maps.googleapis.com/maps/api/js?key='+'AIzaSyC41pxTAW-h6B9HlesIM4iW5ZupZ0y4MmYcontent_copy'
 
       AuthService.currentUser()
@@ -22,6 +53,15 @@ angular.module('Aircast.controllers')
         $state.go('nav.edit', {campaignID: campaign.CampaignID})
       }
 
+      $scope.checked = function(val) {
+        console.log(val)
+        if(val.value == 'all') {
+          $scope.campaigns = $scope.original_campaigns
+        }
+        else {
+          $scope.campaigns = _.filter($scope.original_campaigns, function(i){ return i.Company== val.value; });
+        }
+      }
 
       AuthService.currentUser()
         .then(function(d) {
@@ -65,13 +105,32 @@ angular.module('Aircast.controllers')
                       $scope.all_approved_campaigns.selected[x.CampaignID] = true
                   }
 
-                  if(x.Preview.indexOf(".mp4") !== -1)  {
-                    x.Preview = 'http://i.imgur.com/xckPPS5.jpg'
-                  }
+                  // if(x.Preview.indexOf(".mp4") !== -1)  {
+                  //   x.Preview = 'http://i.imgur.com/xckPPS5.jpg'
+                  // }
 
                 })
+                $scope.accounts = [
+                  {
+                    name: 'All',
+                    value: 'all'
+                  }
+                ]
+                _.each(_.uniq(_.map($scope.campaigns, function(x) {return x.Company})), function(x){
+                  d = {
+                    name: x,
+                    value: x
+                  }
+                  $scope.accounts.push(d)
+                })
 
+                $scope.account_chosen = $scope.accounts[0]
+
+                $scope.checkradioasd = $scope.accounts[3].value;
+
+                console.log($scope.accounts)
                 console.log($scope.campaigns)
+                $scope.original_campaigns = $scope.campaigns
 
 
 
@@ -150,6 +209,7 @@ angular.module('Aircast.controllers')
                       $scope.all_enabled_campaigns.selected[CampaignID] = !y
                     });
       }
+
 
 
 

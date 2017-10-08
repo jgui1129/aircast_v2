@@ -12,12 +12,12 @@ Aircast.controller('EditController', ['$scope', 'RpiService', '$stateParams', 'A
         RpiService.getCampaigns(data)
           .then(function(d){
             campaign = _.filter(d.data, function(i){ return i.CampaignID == $stateParams.campaignID; });
-            if(campaign[0].Preview.indexOf(".mp4") !== -1)  {
-              campaign[0].type = 'video'
-            }
-            else {
-              campaign[0].type = 'image'
-            }
+            // if(campaign[0].Preview.indexOf(".mp4") !== -1)  {
+            //   campaign[0].type = 'video'
+            // }
+            // else {
+            //   campaign[0].type = 'image'
+            // }
 
             _.each(campaign[0].Location, function(i) {
               _.each(i.areas, function(u) {

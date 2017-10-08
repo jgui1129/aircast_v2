@@ -39,6 +39,8 @@ gem 'angular-rails-templates'
 gem 'susy'
 gem 'slim'
 gem 'bourbon'
+gem 'whenever', :require => false
+gem 'mailgun-ruby', '~>1.1.6'
 
 gem 'rails_12factor', group: :production
 
