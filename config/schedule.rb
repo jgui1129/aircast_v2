@@ -28,6 +28,6 @@ end
 
 Time.zone = "Asia/Singapore"
 
-# every 3.hours do
-#   rake 'jane:send_pulse'
-# end
+every 3.hours do
+  rake 'jane:send_pulse'
+end
