@@ -105,9 +105,12 @@ angular.module('Aircast.controllers')
                       $scope.all_approved_campaigns.selected[x.CampaignID] = true
                   }
 
-                  // if(x.Preview.indexOf(".mp4") !== -1)  {
-                  //   x.Preview = 'http://i.imgur.com/xckPPS5.jpg'
-                  // }
+                  if(x.Preview) {
+                    if(x.Preview.indexOf(".mp4") !== -1)  {
+                      x.Preview = 'http://i.imgur.com/xckPPS5.jpg'
+                    }
+                  }
+
 
                 })
                 $scope.accounts = [
