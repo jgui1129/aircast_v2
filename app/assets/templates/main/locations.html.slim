@@ -1,18 +1,61 @@
-.location-cards
-  .cards ng-repeat="location in locations"
-    img ng-src="https://www.cebucitytour.com/wp-content/uploads/2015/04/davids3.jpg"
-    .card-header 
-      p 
-        | {{location.Room}}
-      p
+nav.navbar
+  #myNavbar.collapse.navbar-collapse
+    input.search-bar type="text" ng-model="keyword" placeholder="Quick Search"
+    .filters
+      p Sort by
+      select ng-change="checked(account_chosen)" ng-options="account.name for account in accounts" name="layout" ng-model="account_chosen" 
+      
+
+          
+.height-75  
+  
+.wrapper
+  .table
+    .row-table.header.green
+      .cell
+        | ID
+      .cell
+        | Category
+      .cell
+        | Location
+      .cell
+        | Currently Playing
+      .cell
+        | Last
+      .cell
+        | Status
+      .cell
+        | Course of Action
+    .row-table ng-repeat="location in locations | filter : keyword"
+      .cell
         | {{location.RpiID}}
-    hr
-    .card-header  
-      .row
-        .col-md-4
-          p 
-            | {{location.last}} 
-        .col-md-8  
-          p.align-right 
-            | {{location.status}}
-    
+      .cell
+        | {{location.Location}}
+      .cell
+        | {{location.Room}}
+      .cell
+        | {{location.CurrentPlaying.CampaignName}}
+      .cell
+        | {{location.last}}
+      .cell
+        | {{location.status}}
+      .cell
+        | Turn it on
+/ .location-cards
+/   .cards ng-repeat="location in locations"
+/     img ng-src="https://www.cebucitytour.com/wp-content/uploads/2015/04/davids3.jpg"
+/     .card-header 
+/       p 
+/         | {{location.Room}}
+/       p
+/         | {{location.RpiID}}
+/     hr
+/     .card-header  
+/       .row
+/         .col-md-4
+/           p 
+/             | {{location.last}} 
+/         .col-md-8  
+/           p.align-right 
+/             | {{location.status}}
+/     

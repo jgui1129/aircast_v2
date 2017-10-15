@@ -9,6 +9,17 @@ angular.module('Aircast.controllers')
       // hgs
       // 11
 
+      $scope.checked = function(val) {
+        console.log(val)
+        if(val.value == 'all') {
+          $scope.locations = $scope.original_locations
+        }
+        else {
+          $scope.locations = _.filter($scope.original_locations, function(i){ return i.Location== val.value; });
+        }
+      }
+
+
       AuthService.currentUser()
         .then(function(d){
 
@@ -19,11 +30,8 @@ angular.module('Aircast.controllers')
             loc = {
               loc: "hgs"
             }
-            // location = {
-            //   location: "11"
-            // }
-
-            RpiService.locations(location)
+          }
+          RpiService.locations(location)
               .then(function(d){
                 _.each(d.data, function(i) {
                   i.last = moment(i.LastAlive).calendar()
@@ -42,9 +50,26 @@ angular.module('Aircast.controllers')
                 })
 
                 $scope.locations = d.data
+
+                $scope.accounts = [
+                  {
+                    name: 'All',
+                    value: 'all'
+                  }
+                ]
+
+                $scope.account_chosen = $scope.accounts[0]
+
+                _.each(_.uniq(_.map($scope.locations, function(x) {return x.Location})), function(x){
+                  d = {
+                    name: x,
+                    value: x
+                  }
+                  $scope.accounts.push(d)
+                })
                 console.log($scope.locations)
-            });
-          }
+                $scope.original_locations = $scope.locations
+        })
       });
 
 
