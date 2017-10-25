@@ -188,9 +188,27 @@ angular.module('Aircast.services')
               "area": "Makati City",
               "quantity": 1
             }, {
-              "name": "Aircast Demo",
-              "rpi_id": 6,
-              "area": "Quezon City",
+              "name": "Davids Salon Shang Ri La",
+              "rpi_id": 30,
+              "area": "Shaw",
+              "quantity": 1
+            },
+            {
+              "name": "Davids Salon SM Mega 1",
+              "rpi_id": 31,
+              "area": "Ortigas",
+              "quantity": 1
+            },
+            {
+              "name": "Davids Salon SM Mega 2",
+              "rpi_id": 32,
+              "area": "Ortigas",
+              "quantity": 1
+            },
+            {
+              "name": "Davids Salon Eastwood",
+              "rpi_id": 39,
+              "area": "Libis",
               "quantity": 1
             }]
         },
