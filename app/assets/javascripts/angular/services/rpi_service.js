@@ -115,7 +115,18 @@ angular.module('Aircast.services')
       $http({
         method: 'GET',
         url: 'http://gpdigital.crabdance.com/api/v0/aircast_status.php?location=all',
-        data: data,
+      }).then(function(data){
+        d.resolve(data);
+      });
+      return d.promise;
+    }
+
+    this.location_reset = function(data) {
+      console.log(data)
+      var d = $q.defer();
+      $http({
+        method: 'GET',
+        url: 'http://gpdigital.crabdance.com/api/v0/aircast_reboot.php?Action=reboot&RpiID=' + data,  
       }).then(function(data){
         d.resolve(data);
       });

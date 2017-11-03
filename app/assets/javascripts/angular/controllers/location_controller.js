@@ -20,6 +20,23 @@ angular.module('Aircast.controllers')
       }
 
 
+      $scope.reset = function(id) {
+
+        RpiService.location_reset(id)
+            .then(function(d){
+              console.log(d)
+              $scope.locations = _.each($scope.locations, function(i){
+                if(i.RpiID == id) {
+                  i.status = 'Rebooting'
+                }
+              });
+
+
+            })
+
+      }
+
+
       AuthService.currentUser()
         .then(function(d){
 
@@ -68,6 +85,7 @@ angular.module('Aircast.controllers')
                   $scope.accounts.push(d)
                 })
                 console.log($scope.locations)
+                $scope.locations = _.filter($scope.locations, function(i){ return i.Location.MobileNumber !=0; });
                 $scope.original_locations = $scope.locations
         })
       });

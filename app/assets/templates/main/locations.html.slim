@@ -28,7 +28,7 @@ nav.navbar
         | Status
       .cell
         | Course of Action
-    .row-table ng-repeat="location in locations | filter : keyword"
+    .row-table ng-repeat="location in locations | filter : keyword" ng-if="location.MobileNumber !=0"
       .cell
         | {{location.RpiID}}
       .cell
@@ -43,9 +43,11 @@ nav.navbar
         | {{location.MobileNumber}}
       .cell
         | {{location.status}}
-      .cell
-        | Turn it on
-/ .location-cards
+      .cell.center
+        button.btn.btn-warning ng-if="location.status == 'Inactive'" ng-click="reset(location.RpiID)"
+          | Reset
+        p ng-if="location.status != 'Inactive'"
+          | None
 /   .cards ng-repeat="location in locations"
 /     img ng-src="https://www.cebucitytour.com/wp-content/uploads/2015/04/davids3.jpg"
 /     .card-header 
