@@ -51,13 +51,36 @@ Aircast.config(["$stateProvider", "$httpProvider", "$urlRouterProvider", "$locat
 
     .state('nav.campaigns', {
       url: '/campaigns',
+      abstract: true,
       views: {
         'content@nav': {
           templateUrl: 'main/campaign.html',
+        }
+      }
+    })
+
+
+    .state('nav.campaigns.upload', {
+      url: '/upload',
+      views: {
+        'subcontent': {
+          templateUrl: 'main/upload.html',
           controller: 'CampaignController'
         }
       }
     })
+
+    .state('nav.campaigns.social', {
+      url: '/social',
+      views: {
+        'subcontent': {
+          templateUrl: 'main/social.html',
+          controller: 'CampaignController'
+        }
+      }
+    })
+
+
 
     .state('nav.locations', {
       url: '/locations',
