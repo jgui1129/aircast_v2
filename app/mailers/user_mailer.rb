@@ -1,23 +1,53 @@
 class UserMailer < ActionMailer::Base
-  default from: 'notifications@aircast.com'
 
-  require 'mailgun'
+
+  require 'mailjet'
+  Mailjet.configure do |config|
+    config.api_key = '786033b61fb4dc87db3b046cbcaca036'
+    config.secret_key = 'e61a7d032b5ef43ef2a733f82d105035'
+    config.api_version = "v3.1"
+  end
+
+  require "tzinfo"
+
+  def local(time)
+    TZInfo::Timezone.get('Asia/Singapore').local_to_utc(Time.parse(time))
+  end
 
   # send a signup email to the user, pass in the user object that   contains the user's email address
   def send_pulse
-    mg_client = Mailgun::Client.new 'pubkey-737fae69820e229ec81c1b55896d06ac'
-    
-    message_params =  { from: 'bob@sending_domain.com',
-                    to:   'leolopelofranco@gmail.com',
-                    subject: 'The Ruby SDK is awesome!',
-                    text:    'It is really easy to send a message!'
-                  }
-    mg_client.send_message 'aircast-notifications.palmsolutions.co', message_params
-    # @user = user
-    # Rails.logger.info 'hello'
-    # emails = ['leolopelofranco@gmail.com', 'leo@palmsolutions.co']
-    #
-    # mail(to: user["to"], subject: user["subject"])
+    require 'rest-client'
 
+    response = RestClient.get 'http://gpdigital.crabdance.com/api/v0/aircast_status.php?location=all'
+    response = JSON.parse(response)
+
+    response.each do |d|
+
+      d["last_active"] = Time.zone.parse(d["LastAlive"])
+      d["beforetime"] = Time.zone.parse(d["OpenTime"])
+      d["aftertime"] = Time.zone.parse(d["CloseTime"])
+      now = DateTime.now
+      unless now.between?(d["beforetime"], d["aftertime"])
+      end
+    end
+
+    # variable = Mailjet::Send.create(messages: [{
+    #     'From'=> {
+    #         'Email'=> 'leo@palmsolutions.co',
+    #         'Name'=> 'Leo'
+    #     },
+    #     'To'=> [
+    #         {
+    #             'Email'=> 'leo@palmsolutions.co',
+    #             'Name'=> 'Leo Lope Lofranco'
+    #         }
+    #     ],
+    #     'Subject'=> 'Aircast Pulse',
+    #     'TextPart'=> 'Dear HGS, welcome to Mailjet! May the delivery force be with you!',
+    #     'HTMLPart'=> '<h3>Dear passenger 1, welcome to Mailjet!</h3>≷br/>May the delivery force be with you!'
+    # }]
+    # )
+    # p variable.attributes['Messages']
   end
+
 end

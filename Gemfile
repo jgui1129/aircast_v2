@@ -17,7 +17,11 @@ gem 'coffee-rails', '~> 4.0.0'
 # gem 'therubyracer',  platforms: :ruby
 
 gem 'compass'
-
+gem 'mailjet'
+gem 'mime-types', '~> 3.1'
+gem 'netrc', '~> 0.11.0'
+gem 'http-accept', '~> 1.7'
+gem 'http-cookie', '~> 1.0', '>= 1.0.3'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

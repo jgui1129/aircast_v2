@@ -4,9 +4,6 @@ nav.navbar
     .filters
       p Sort by
       select ng-change="checked(account_chosen)" ng-options="account.name for account in accounts" name="layout" ng-model="account_chosen" 
-      
-
-          
 .height-75  
   
 .wrapper
@@ -15,13 +12,13 @@ nav.navbar
       .cell
         | ID
       .cell
-        | Category
-      .cell
         | Location
       .cell
         | Open Time
       .cell
         | Close Time
+      .cell
+        | Location
       .cell
         | Currently Playing
       .cell

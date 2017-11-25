@@ -30,10 +30,7 @@ angular.module('Aircast.controllers')
                   i.status = 'Rebooting'
                 }
               });
-
-
             })
-
       }
 
 
@@ -56,8 +53,18 @@ angular.module('Aircast.controllers')
                   end = moment(new Date());
                   var duration = moment.duration(end.diff(startTime));
                   var hours = duration.asHours();
+                  var format = 'hh:mm:ss'
+
+                  var time = moment()
+                  beforeTime = moment(i.OpenTime, format)
+                  afterTime = moment(i.CloseTime, format)
+
+
                   if(hours<1) {
                     i.status = 'LIVE'
+                  }
+                  unless(time.isBetween(beforeTime, afterTime)) {
+                    i.status = 'Out of Operating Hours'
                   }
                   else {
                     i.status = 'Inactive'
