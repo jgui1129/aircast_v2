@@ -165,7 +165,7 @@ angular.module('Aircast.services')
         {
           id: "davids",
           name: "David's Salon",
-          total: 1,
+          total: 13,
           areas: [
             {
               "name": "David's Salon Juno",
@@ -242,36 +242,6 @@ angular.module('Aircast.services')
           ]
         },
         {
-          id: "universities",
-          name: "Univesities",
-          total: 8,
-          areas: [
-            {
-              "name": "University of the Philippines",
-              "rpi_id": 4,
-              "area": "Quezon City",
-              "quantity": 2
-            },{
-              "name": "Ateneo de Manila",
-              "rpi_id": 5,
-              "area": "Quezon City",
-              "quantity": 3
-            }
-          ]
-        },
-        {
-          id: "school",
-          name: "Aircast Demo",
-          total: 1,
-          areas: [
-            {
-              "name": "Aircast TV",
-              "rpi_id": 6,
-              "area": "Makati",
-              "quantity": 1
-          }]
-        },
-        {
           id: "foodpark",
           name: "Food Park",
           total: 9,
@@ -335,7 +305,7 @@ angular.module('Aircast.services')
         {
           id: "gym",
           name: "Fitness Centers",
-          total: 10,
+          total: 3,
           areas: [
             {
               "name": "Anytime Fitness Maginhawa",
@@ -358,7 +328,7 @@ angular.module('Aircast.services')
         {
           id: "tua",
           name: "Universities",
-          total: 10,
+          total: 1,
           areas: [
             {
               "name": "Trinity Library",
