@@ -63,7 +63,7 @@ angular.module('Aircast.controllers')
                   if(hours<1) {
                     i.status = 'LIVE'
                   }
-                  unless(time.isBetween(beforeTime, afterTime)) {
+                  else if (time.isBetween(beforeTime, afterTime) == false) {
                     i.status = 'Out of Operating Hours'
                   }
                   else {
