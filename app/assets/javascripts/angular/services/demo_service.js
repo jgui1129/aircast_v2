@@ -112,7 +112,7 @@ angular.module('Aircast.services')
               "rpi_id": 37,
               "area": "Eastwood",
               "quantity": 1
-            }, ,{
+            },{
               "name": "HGS Plaza E",
               "rpi_id": 26,
               "area": "Plaza E",
@@ -159,13 +159,8 @@ angular.module('Aircast.services')
               "rpi_id": 4,
               "area": "Quezon City",
               "quantity": 1
-            }]
-            // }, {
-            //   "name": "HR Dept",
-            //   "rpi_id": 4,
-            //   "area": "Quezon City",
-            //   "quantity": 1
-            // }]
+            }
+          ]
         },
         {
           id: "davids",
@@ -215,8 +210,7 @@ angular.module('Aircast.services')
               "rpi_id": 35,
               "area": "Makati City",
               "quantity": 1
-            },
-            {
+            },{
               "name": "David's Salon Valero",
               "rpi_id": 36,
               "area": "Makati City",
@@ -262,7 +256,8 @@ angular.module('Aircast.services')
               "rpi_id": 5,
               "area": "Quezon City",
               "quantity": 3
-            }],
+            }
+          ]
         },
         {
           id: "school",
@@ -274,7 +269,7 @@ angular.module('Aircast.services')
               "rpi_id": 6,
               "area": "Makati",
               "quantity": 1
-          }],
+          }]
         },
         {
           id: "foodpark",
@@ -335,7 +330,7 @@ angular.module('Aircast.services')
               "area": "Quezon City",
               "quantity": 2
             }
-          ],
+          ]
         },
         {
           id: "gym",
