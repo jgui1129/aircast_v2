@@ -268,37 +268,43 @@ angular.module('Aircast.services')
               "name": "Keatchen Food Park",
               "rpi_id": 42,
               "area": "Quezon City",
-              "quantity": 2
+              "quantity": 1
             },
             {
               "name": "Village Eats",
               "rpi_id": 43,
               "area": "Quezon City",
-              "quantity": 2
+              "quantity": 1
             },
             {
               "name": "Kalye",
               "rpi_id": 49,
               "area": "Quezon City",
-              "quantity": 2
+              "quantity": 1
             },
             {
               "name": "Open Kitchen",
               "rpi_id": 22,
               "area": "Quezon City",
-              "quantity": 2
+              "quantity": 1
             },
             {
               "name": "Nova Food Park",
               "rpi_id": 22,
               "area": "Quezon City",
-              "quantity": 2
+              "quantity": 1
             },
             {
               "name": "Open Kitchen",
               "rpi_id": 60,
               "area": "Quezon City",
-              "quantity": 2
+              "quantity": 1
+            },
+            {
+              "name": "Hangout",
+              "rpi_id": 52,
+              "area": "Quezon City",
+              "quantity": 1
             }
           ]
         },
