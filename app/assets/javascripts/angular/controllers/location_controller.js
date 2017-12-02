@@ -92,9 +92,36 @@ angular.module('Aircast.controllers')
                   $scope.accounts.push(d)
                 })
                 console.log($scope.locations)
-                $scope.locations = _.filter($scope.locations, function(i){ return i.Location.MobileNumber !=0; });
+                $scope.locations = _.filter($scope.locations, function(i){ return i.MobileNumber !=0; });
                 $scope.original_locations = $scope.locations
+
+                stats($scope.locations)
         })
+
+
+
+
+        stats = function(locations) {
+          $scope.active_sites = _.filter(locations, function(i){ return i.status =='LIVE'; });
+          active_sites_len = _.filter(locations, function(i){ return i.status =='LIVE'; }).length;
+          $scope.inactive_sites = _.filter(locations, function(i){ return i.status =='Inactive'; });
+          inactive_sites_len = _.filter(locations, function(i){ return i.status =='Inactive'; }).length;
+          total_sites = locations.length
+
+          $scope.location_stats = [{
+            label: "Total Sites",
+            description: "Check the number of total deployed sites",
+            stat: total_sites
+          }, {
+            label: "Active Sites",
+            description: "Check the number of total active sites",
+            stat: active_sites_len
+          }, {
+            label: "Inactive Sites",
+            description: "Check the number of total inactive sites",
+            stat: inactive_sites_len
+          }]
+        }
       });
 
 

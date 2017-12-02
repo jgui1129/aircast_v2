@@ -42,12 +42,29 @@
 
 .wrapper {
   margin: 0 auto;
-  padding: 40px;
+  padding: 20px 40px;
   width: 100%
 }
 
+.active-table {
+  margin: 0 auto;
+  width: 100%;
+  padding: 15px 30px;
+
+  ul {
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+    list-style: none;
+    padding: 0;
+  }
+  li {
+    padding: 10px;
+  }
+}
+
 .table {
-  margin: 0 0 40px 0;
+  margin: 0 0 10px 0;
   width: 100%;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   display: table;
@@ -72,6 +89,11 @@
 }
 .row-table.green {
   background: #27ae60;
+}
+
+.location-stats {
+  margin: 0 auto;
+  padding: 30px 25px 0px 30px;
 }
 
 @media screen and (max-width: 580px) {

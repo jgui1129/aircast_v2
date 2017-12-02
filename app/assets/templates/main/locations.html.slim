@@ -6,6 +6,36 @@ nav.navbar
       select ng-change="checked(account_chosen)" ng-options="account.name for account in accounts" name="layout" ng-model="account_chosen" 
 .height-75  
   
+.row.location-stats  
+  .col-sm-4 ng-repeat="stat in location_stats"
+    .receipt.stats
+      .row
+        .col-md-2
+          h3 
+            | {{stat.stat}}
+        .col-md-10
+          h5      
+            | {{stat.label}}
+          p.subheader-color 
+            | {{stat.description}}
+.row.active-table
+  .col-md-6
+    .table
+      .row-table.header.green
+        .cell
+          | Active Sites      
+      ul
+        li ng-repeat="i in active_sites"
+          | {{i.Room}}
+  .col-md-6
+    .table
+      .row-table.header.green
+        .cell
+          | Inactive Sites      
+      ul
+        li ng-repeat="i in inactive_sites"
+          | {{i.Room}}  
+                  
 .wrapper
   .table
     .row-table.header.green
