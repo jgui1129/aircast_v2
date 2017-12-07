@@ -28,6 +28,21 @@ angular.module('Aircast.services')
         return d.promise;
       }
 
+  this.status_logs = function(data) {
+
+      var d = $q.defer();
+      $http({
+        method: 'POST',
+        url: 'http://ec2-54-169-234-246.ap-southeast-1.compute.amazonaws.com/api/v0/aircast_tv_monitoring.php',
+        data: data,
+
+      }).then(function(data){
+        d.resolve(data);
+      });
+
+      return d.promise;
+    }
+
   this.upload = function(data) {
     var d = $q.defer();
     $http({
@@ -126,7 +141,7 @@ angular.module('Aircast.services')
       var d = $q.defer();
       $http({
         method: 'GET',
-        url: 'http://gpdigital.crabdance.com/api/v0/aircast_reboot.php?Action=reboot&RpiID=' + data,  
+        url: 'http://gpdigital.crabdance.com/api/v0/aircast_reboot.php?Action=reboot&RpiID=' + data,
       }).then(function(data){
         d.resolve(data);
       });

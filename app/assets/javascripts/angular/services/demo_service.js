@@ -149,12 +149,7 @@ angular.module('Aircast.services')
               "rpi_id": 2,
               "area": "Quezon City",
               "quantity": 1
-            }, {
-              "name": "School",
-              "rpi_id": 3,
-              "area": "Quezon City",
-              "quantity": 1
-            }, {
+            },{
               "name": "HR Dept",
               "rpi_id": 4,
               "area": "Quezon City",
@@ -341,6 +336,19 @@ angular.module('Aircast.services')
               "rpi_id": 37,
               "area": "Mandaluyong",
               "quantity": 3
+            }
+          ]
+        },
+        {
+          id: "rpidemo",
+          name: "Ikomai",
+          total: 1,
+          areas: [
+            {
+              "name": "Ikomai",
+              "rpi_id": 3,
+              "area": "Makati",
+              "quantity": 1
             }
           ]
         },
