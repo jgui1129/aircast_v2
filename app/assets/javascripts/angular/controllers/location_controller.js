@@ -30,9 +30,48 @@ angular.module('Aircast.controllers')
                   i.status = 'Rebooting'
                 }
               });
-
-
             })
+      }
+
+      logs = function(id) {
+
+
+
+              last_time = moment(d.data.Logs[0].Date).unix();
+              initial_time = moment(d.data.Logs[d.data.Logs.length - 1].Date).unix();
+
+
+              i = initial_time
+              unix_times = []
+              active_unix = []
+              while (i < last_time) {
+
+                unix_times.push(i)
+                i = moment(i).add(10, 'seconds').unix();// it will add 642 seconds in the current time and will give time in 03:35 PM format
+              }
+
+              _.each(d.data.Logs, function(i){
+                console.log(i)
+                active_unix.push(moment(i.Date).unix())
+              });
+
+
+              loggin_times = []
+              _.each(unix_times, function(i){
+                d = {}
+                if(_.include(active_unix, i)) {
+                  d["date"] = moment(i).unix()
+                  d["status"] = "live"
+                }
+                else {
+                  d["date"] = moment(i).unix()
+                  d["status"] = "inactive"
+                }
+                loggin_times.push(d)
+              });
+
+              console.log(active_unix)
+              console.log(unix_times)
 
       }
 
@@ -56,8 +95,18 @@ angular.module('Aircast.controllers')
                   end = moment(new Date());
                   var duration = moment.duration(end.diff(startTime));
                   var hours = duration.asHours();
+                  var format = 'hh:mm:ss'
+
+                  var time = moment()
+                  beforeTime = moment(i.OpenTime, format)
+                  afterTime = moment(i.CloseTime, format)
+
+
                   if(hours<1) {
                     i.status = 'LIVE'
+                  }
+                  else if (time.isBetween(beforeTime, afterTime) == false) {
+                    i.status = 'Out of Operating Hours'
                   }
                   else {
                     i.status = 'Inactive'
@@ -85,9 +134,38 @@ angular.module('Aircast.controllers')
                   $scope.accounts.push(d)
                 })
                 console.log($scope.locations)
-                $scope.locations = _.filter($scope.locations, function(i){ return i.Location.MobileNumber !=0; });
+                $scope.locations = _.filter($scope.locations, function(i){ return i.MobileNumber !=0; });
                 $scope.original_locations = $scope.locations
+
+                stats($scope.locations)
+
+
         })
+
+
+
+
+        stats = function(locations) {
+          $scope.active_sites = _.filter(locations, function(i){ return i.status =='LIVE'; });
+          active_sites_len = _.filter(locations, function(i){ return i.status =='LIVE'; }).length;
+          $scope.inactive_sites = _.filter(locations, function(i){ return i.status =='Inactive'; });
+          inactive_sites_len = _.filter(locations, function(i){ return i.status =='Inactive'; }).length;
+          total_sites = locations.length
+
+          $scope.location_stats = [{
+            label: "Total Sites",
+            description: "Check the number of total deployed sites",
+            stat: total_sites
+          }, {
+            label: "Active Sites",
+            description: "Check the number of total active sites",
+            stat: active_sites_len
+          }, {
+            label: "Inactive Sites",
+            description: "Check the number of total inactive sites",
+            stat: inactive_sites_len
+          }]
+        }
       });
 
 

@@ -112,7 +112,7 @@ angular.module('Aircast.services')
               "rpi_id": 37,
               "area": "Eastwood",
               "quantity": 1
-            }, ,{
+            },{
               "name": "HGS Plaza E",
               "rpi_id": 26,
               "area": "Plaza E",
@@ -149,97 +149,92 @@ angular.module('Aircast.services')
               "rpi_id": 2,
               "area": "Quezon City",
               "quantity": 1
-            }, {
-              "name": "School",
-              "rpi_id": 3,
-              "area": "Quezon City",
-              "quantity": 1
-            }, {
+            },{
               "name": "HR Dept",
               "rpi_id": 4,
               "area": "Quezon City",
               "quantity": 1
-            }]
-            // }, {
-            //   "name": "HR Dept",
-            //   "rpi_id": 4,
-            //   "area": "Quezon City",
-            //   "quantity": 1
-            // }]
+            }
+          ]
         },
         {
           id: "davids",
           name: "David's Salon",
-          total: 1,
+          total: 13,
           areas: [
             {
-              "name": "David's Salon Valero Branch",
-              "rpi_id": 18,
-              "area": "Makati City",
-              "quantity": 1
-            }, {
-              "name": "David's Salon Juno Branch",
+              "name": "David's Salon Juno",
               "rpi_id": 23,
               "area": "Makati City",
               "quantity": 1
-            }, {
-              "name": "David's Salon SM Makati Branch",
+            },
+            {
+              "name": "David's Salon SM Makati",
               "rpi_id": 24,
               "area": "Makati City",
               "quantity": 1
-            }, {
-              "name": "Davids Salon Shang Ri La",
+            },
+            {
+              "name": "David's Shangrila",
               "rpi_id": 30,
-              "area": "Shaw",
+              "area": "Makati City",
               "quantity": 1
-            },
-            {
-              "name": "Davids Salon SM Mega 1",
+            },{
+              "name": "David's Salon Mega 1",
               "rpi_id": 31,
-              "area": "Ortigas",
+              "area": "Ortigas City",
               "quantity": 1
-            },
-            {
-              "name": "Davids Salon SM Mega 2",
+            },{
+              "name": "David's Salon Mega 2",
               "rpi_id": 32,
-              "area": "Ortigas",
+              "area": "Ortigas City",
+              "quantity": 1
+            },{
+              "name": "David's Salon Market Market",
+              "rpi_id": 33,
+              "area": "Makati City",
+              "quantity": 1
+            },{
+              "name": "David's Salon Greenbelt",
+              "rpi_id": 34,
+              "area": "Makati City",
               "quantity": 1
             },
             {
-              "name": "Davids Salon Eastwood",
-              "rpi_id": 39,
+              "name": "David's Salon Burgos Circle",
+              "rpi_id": 35,
+              "area": "Makati City",
+              "quantity": 1
+            },{
+              "name": "David's Salon Valero",
+              "rpi_id": 36,
+              "area": "Makati City",
+              "quantity": 1
+            },
+            {
+              "name": "David's Makati Med",
+              "rpi_id": 38,
+              "area": "Makati City",
+              "quantity": 1
+            },{
+              "name": "David's SM Light",
+              "rpi_id": 48,
+              "area": "Shaw Blvd",
+              "quantity": 1
+            },
+            {
+              "name": "David's Salon Alabang",
+              "rpi_id": 55,
+              "area": "Alabang City",
+              "quantity": 1
+            },
+            {
+              "name": "David's Salon Eastwood",
+              "rpi_id": 36,
               "area": "Libis",
               "quantity": 1
-            }]
-        },
-        {
-          id: "universities",
-          name: "Univesities",
-          total: 8,
-          areas: [
-            {
-              "name": "University of the Philippines",
-              "rpi_id": 4,
-              "area": "Quezon City",
-              "quantity": 2
-            },{
-              "name": "Ateneo de Manila",
-              "rpi_id": 5,
-              "area": "Quezon City",
-              "quantity": 3
-            }],
-        },
-        {
-          id: "school",
-          name: "Aircast Demo",
-          total: 1,
-          areas: [
-            {
-              "name": "Aircast TV",
-              "rpi_id": 6,
-              "area": "Makati",
-              "quantity": 1
-          }],
+            },
+          ]
         },
         {
           id: "foodpark",
@@ -250,73 +245,138 @@ angular.module('Aircast.services')
               "name": "The Yard Xavierville",
               "rpi_id": 21,
               "area": "Quezon City",
-              "quantity": 2
+              "quantity": 1
             },
             {
               "name": "The Yard Underground",
               "rpi_id": 22,
               "area": "Quezon City",
-              "quantity": 2
+              "quantity": 1
             },
-            // {
-            //   "name": "Katorini",
-            //   "rpi_id": 5,
-            //   "area": "Ortigas",
-            //   "quantity": 3
-            // }, {
-            //   "name": "Game Over",
-            //   "rpi_id": 6,
-            //   "area": "Makati",
-            //   "quantity": 4
-            // }
-          ],
+            {
+              "name": "Chiebog",
+              "rpi_id": 29,
+              "area": "Quezon City",
+              "quantity": 1
+            },
+            {
+              "name": "Keatchen Food Park",
+              "rpi_id": 42,
+              "area": "Quezon City",
+              "quantity": 1
+            },
+            {
+              "name": "Village Eats",
+              "rpi_id": 43,
+              "area": "Quezon City",
+              "quantity": 1
+            },
+            {
+              "name": "Kalye",
+              "rpi_id": 49,
+              "area": "Quezon City",
+              "quantity": 1
+            },
+            {
+              "name": "Open Kitchen",
+              "rpi_id": 22,
+              "area": "Quezon City",
+              "quantity": 1
+            },
+            {
+              "name": "Nova Food Park",
+              "rpi_id": 22,
+              "area": "Quezon City",
+              "quantity": 1
+            },
+            {
+              "name": "Open Kitchen",
+              "rpi_id": 60,
+              "area": "Quezon City",
+              "quantity": 1
+            },
+            {
+              "name": "Hangout",
+              "rpi_id": 52,
+              "area": "Quezon City",
+              "quantity": 1
+            }
+          ]
         },
         {
           id: "gym",
           name: "Fitness Centers",
-          total: 10,
+          total: 3,
           areas: [
             {
-              "name": "Gold's Gym Alabang",
-              "rpi_id": 7,
+              "name": "Anytime Fitness Maginhawa",
+              "rpi_id": 44,
               "area": "Alabang",
               "quantity": 3
             },{
-              "name": "Gold's Gym Katipunan",
-              "rpi_id": 8,
+              "name": "Anytime Fitness Eton",
+              "rpi_id": 45,
               "area": "Quezon City",
               "quantity": 2
             }, {
-              "name": "Fitness First",
-              "rpi_id": 9,
+              "name": "Anytime Fitness Paseo",
+              "rpi_id": 46,
               "area": "Ortigas",
               "quantity": 5
             }
           ]
         },
         {
-          id: "bpo",
-          name: "BPO",
-          total: 10,
+          id: "tua",
+          name: "Universities",
+          total: 1,
           areas: [
             {
-              "name": "The Results",
-              "rpi_id": 14,
+              "name": "Trinity Library",
+              "rpi_id": 37,
               "area": "Mandaluyong",
               "quantity": 3
-            },{
-              "name": "HGS Alabang",
-              "rpi_id": 11,
-              "area": "Alabang",
-              "quantity": 2
-            }, {
-              "name": "Convergys Ortigas",
-              "rpi_id": 12,
-              "area": "Ortigas",
-              "quantity": 5
             }
           ]
         },
+        {
+          id: "ikomai",
+          name: "Ikomai",
+          total: 1,
+          areas: [
+            {
+              "name": "Ikomai",
+              "rpi_id": 3,
+              "area": "Makati",
+              "quantity": 1
+            }
+          ]
+        },
+        {
+          id: "office",
+          name: "Office",
+          total: 10,
+          areas: [
+            {
+              "name": "Warner Main",
+              "rpi_id": 61,
+              "area": "BGC",
+              "quantity": 3
+            },
+            {
+              "name": "David's Salon Main",
+              "rpi_id": 62,
+              "area": "Makati City",
+              "quantity": 1
+            },
+            {
+              "name": "Bonjour Main",
+              "rpi_id": 59,
+              "area": "Mandaluyong",
+              "quantity": 3
+            }
+          ]
+        }
       ]
     }
 
