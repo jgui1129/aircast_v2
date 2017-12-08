@@ -340,6 +340,19 @@ angular.module('Aircast.services')
           ]
         },
         {
+          id: "ikomai",
+          name: "Ikomai",
+          total: 1,
+          areas: [
+            {
+              "name": "Ikomai",
+              "rpi_id": 3,
+              "area": "Makati",
+              "quantity": 1
+            }
+          ]
+        },
+        {
           id: "office",
           name: "Office",
           total: 10,
