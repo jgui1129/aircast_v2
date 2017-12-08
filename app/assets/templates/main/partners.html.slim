@@ -1,0 +1,30 @@
+.height-75    
+  h4.no-margin.row-space-top-4
+    | All Campaigns 
+    
+  .row-space-top-4
+    .cards 
+      img.card-height ng-src="{{campaign.Preview}}"
+      .card-header 
+        h4 
+          | Title
+        p.inline-block 
+          | Sample       
+        div
+          i.fa.fa-check-square.green ng-show="campaign.isReady === 1"
+            span
+              | Live
+          i.fa.fa-dot-circle-o ng-show="campaign.isApproved ===0"
+            span.orange 
+              | For Approval
+      hr
+      .card-header  
+        .row
+          .col-md-6 ng-show="isAdmin"
+            p.center
+              | Approval
+            switch.green.campaign-switch ng-change="approval(campaign.CampaignID, all_approved_campaigns.selected[campaign.CampaignID])" id="enabled" name="enabled" ng-model="all_approved_campaigns.selected[campaign.CampaignID]"
+          .col-md-6  
+            p.center
+              | Enabled
+            switch.green.campaign-switch ng-change="live(campaign.CampaignID, all_enabled_campaigns.selected[campaign.CampaignID])" id="enabled" name="enabled" ng-model="all_enabled_campaigns.selected[campaign.CampaignID]"

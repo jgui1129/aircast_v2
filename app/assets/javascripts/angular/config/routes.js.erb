@@ -80,8 +80,6 @@ Aircast.config(["$stateProvider", "$httpProvider", "$urlRouterProvider", "$locat
       }
     })
 
-
-
     .state('nav.locations', {
       url: '/locations',
       views: {
@@ -90,6 +88,16 @@ Aircast.config(["$stateProvider", "$httpProvider", "$urlRouterProvider", "$locat
           controller: 'LocationController'
         }
       }
+    })
+
+    .state('nav.locationdetail', {
+       url: '/locations/:id',
+       views: {
+        'content@nav': {
+          templateUrl: 'main/locations.html',
+          controller: 'LocationController'
+        }
+       } 
     })
 
 
