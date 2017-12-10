@@ -1,9 +1,9 @@
 angular.module('Aircast.controllers')
-  .controller('PartnerController',
+  .controller('PartnersController',
   ['$scope', '$state', 'RpiService', 'AuthService',
     function($scope, $state, RpiService, AuthService) {
 
-    	
+
 
 
 }]);
