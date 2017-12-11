@@ -3,7 +3,7 @@ angular.module('Aircast.controllers')
   ['$scope', '$state','ngDialog', 'RpiService', 'Upload', 'DemoService', '$rootScope', 'AuthService', 'ReminderService',
     function($scope, $state, ngDialog, RpiService, Upload, DemoService, $rootScope, AuthService, ReminderService) {
 
-      $scope.form_part = 2
+      $scope.form_part = 1
       var video_divisor = 15
       var spot_limiter = 5
       $scope.warning = false
