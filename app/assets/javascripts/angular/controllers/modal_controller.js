@@ -10,7 +10,6 @@ angular.module('Aircast.controllers')
     //
     // console.log($scope)
 
-
     $scope.all_enabled_areas = {
       selected:{}
     };
@@ -22,9 +21,11 @@ angular.module('Aircast.controllers')
       $scope.all_enabled_areas.selected[x.rpi_id] = true
     })
 
+    console.log($scope.clicked_location.areas)
+
     $scope.active = function() {
       selected_areas = []
-      
+
       _.each(_.keys($scope.all_enabled_areas.selected), function(c) {
         if($scope.all_enabled_areas.selected[c] === true) {
           area = _.filter(clicked_loc.areas, function(num){ return num.rpi_id == c; });

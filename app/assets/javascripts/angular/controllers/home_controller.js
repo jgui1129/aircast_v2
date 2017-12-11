@@ -107,6 +107,8 @@ angular.module('Aircast.controllers')
 
                   if(x.Preview) {
                     if(x.Preview.indexOf(".mp4") !== -1)  {
+                      
+                      x.video = x.Preview
                       x.Preview = 'http://i.imgur.com/xckPPS5.jpg'
                     }
                   }
