@@ -284,6 +284,18 @@ angular.module('Aircast.services')
               "quantity": 1
             },
             {
+              "name": "Open Kitchen Cubao",
+              "rpi_id": 51,
+              "area": "Quezon City",
+              "quantity": 1
+            },
+            {
+              "name": "Open Kitchen Congress",
+              "rpi_id": 60,
+              "area": "Quezon City",
+              "quantity": 1
+            },
+            {
               "name": "Nova Food Park",
               "rpi_id": 22,
               "area": "Quezon City",
