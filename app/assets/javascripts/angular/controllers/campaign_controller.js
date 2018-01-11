@@ -37,7 +37,8 @@ angular.module('Aircast.controllers')
             $state.go('login')
           }
           else {
-            if($scope.campaign.user.UserID == 14) {
+            if(d.UserID == 14) {
+
               $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'tua'; });
             }
             $scope.campaign.user = d
