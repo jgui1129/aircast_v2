@@ -23,6 +23,13 @@ angular.module('Aircast.controllers')
       $scope.launch_disabled = false
       $scope.selected_locations = []
 
+      $scope.locations = DemoService.locations()
+
+      //add here
+
+
+
+
       AuthService.currentUser()
         .then(function(d){
 
@@ -30,6 +37,9 @@ angular.module('Aircast.controllers')
             $state.go('login')
           }
           else {
+            if($scope.campaign.user.UserID == 14) {
+              $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'tua'; });
+            }
             $scope.campaign.user = d
           }
       });
@@ -89,8 +99,9 @@ angular.module('Aircast.controllers')
       $scope.days = DemoService.days()
       $scope.shifts = DemoService.shifts()
       $scope.layouts = DemoService.layouts()
-      $scope.locations = DemoService.locations()
 
+
+      AuthService.c
       $scope.selected_layout = $scope.layouts[0]
       $scope.campaign.content_type = $scope.selected_layout.content[0].type
 

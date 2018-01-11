@@ -341,13 +341,25 @@ angular.module('Aircast.services')
         {
           id: "tua",
           name: "Universities",
-          total: 1,
+          total: 3,
           areas: [
             {
               "name": "Trinity Library",
-              "rpi_id": 37,
-              "area": "Mandaluyong",
-              "quantity": 3
+              "rpi_id": 77,
+              "area": "Quezon City",
+              "quantity": 1
+            },
+            {
+              "name": "Trinity Admin",
+              "rpi_id": 78,
+              "area": "Quezon City",
+              "quantity": 1
+            },
+            {
+              "name": "Trinity Director",
+              "rpi_id": 79,
+              "area": "Quezon City",
+              "quantity": 1
             }
           ]
         },
