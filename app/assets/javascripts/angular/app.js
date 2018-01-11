@@ -12,9 +12,11 @@ var Aircast = angular.module('Aircast', [
   '720kb.datepicker',
   'uiSwitch',
   'ngDialog',
+  'chart.js',
   'Aircast.controllers',
   'Aircast.services'
 ]);
+
 
 Aircast.filter('cut', function () {
         return function (value, wordwise, max, tail) {

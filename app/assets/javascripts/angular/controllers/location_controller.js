@@ -1,13 +1,114 @@
 angular.module('Aircast.controllers')
   .controller('LocationController',
-  ['$scope', '$state', 'RpiService', 'AuthService',
-    function($scope, $state, RpiService, AuthService) {
+  ['$scope', '$state', 'RpiService', 'AuthService', '$timeout', 'DemoService',
+    function($scope, $state, RpiService, AuthService, $timeout, DemoService) {
 
       // Parameters:
       // location
       //
       // hgs
       // 11
+
+
+
+  $scope.onClick = function (points, evt) {
+    console.log(points, evt);
+  };
+
+  $scope.datePicker = {}
+  $scope.datePicker.date = {
+    startDate: moment().subtract(2, "days"),
+    endDate: moment().subtract(1, "days")
+  };
+
+  location_name = 'davids'
+
+  $scope.status_logs = {}
+  $scope.status_logs.startDate = moment($scope.datePicker.date.startDate).unix()
+  $scope.status_logs.endDate= moment($scope.datePicker.date.endDate).unix()
+
+  $scope.options = {
+      scales: {
+        xAxes: [{
+          stacked: true,
+        }],
+        yAxes: [{
+            stacked: true,
+            ticks: {
+
+                   min: 0,
+                   max: 100,
+                   callback: function(value){return value+ "%"}
+                },
+								scaleLabel: {
+                   display: true,
+                   labelString: "Percentage"
+                }
+            }]
+      },
+    };
+
+  $scope.locations_picker = DemoService.locations()
+
+  $scope.update_status = function(location_name) {
+    check_status(location_name.id,$scope.status_logs.startDate, $scope.status_logs.endDate)
+  }
+  check_status = function(location_name, startDate, endDate) {
+    RpiService.status_logs(location_name, startDate, endDate)
+        .then(function(d){
+          console.log(d)
+          labels_c = []
+          all_active = []
+
+          all_inactive = []
+
+          _.each(d.data.tvs, function(i){
+            var start = moment(i.closetime, "HH:mm:ss");
+            var end = moment(i.opentime, "HH:mm:ss");
+            var start_of_day = moment('00:00:00', "HH:mm:ss");
+            var duration = moment.duration(end.diff(start));
+            var hours = duration.hours();
+
+            all_hrs = hours * 360
+            active = i.logs.length
+            // _.each(i.logs, function(time) {
+            //   formatted_time = moment(time.Date).format("HH:mm:ss");
+            //   console.log(formatted_time)
+            //   if (moment(formatted_time).isBetween(end, start)) {
+            //     validated_time.push(formatted_time)
+            //   }
+            // })
+            inactive = all_hrs - active
+
+            active_percentage = Math.abs((active/all_hrs)*100)
+            inactive_percentage = 100 - active_percentage
+
+            labels_c.push(i.name)
+            all_active.push(active_percentage)
+            all_inactive.push(inactive_percentage)
+          });
+
+          console.log(all_active)
+          console.log(all_inactive)
+          $scope.labels_c = labels_c
+          $scope.series_c = ['Active','Inactive'];
+          $scope.data_c = [all_active, all_inactive];
+
+        })
+      }
+
+      check_status('davids',$scope.status_logs.startDate, $scope.status_logs.endDate)
+
+      $scope.dateRangeOptions = {
+        eventHandlers : {
+            'apply.daterangepicker' : function() {
+                $scope.status_logs.startDate = moment($scope.datePicker.date.startDate).unix()
+                $scope.status_logs.endDate= moment($scope.datePicker.date.endDate).unix()
+                check_status(location_name.id,$scope.status_logs.startDate, $scope.status_logs.endDate)
+            }
+        }
+      };
+
 
       $scope.checked = function(val) {
         console.log(val)

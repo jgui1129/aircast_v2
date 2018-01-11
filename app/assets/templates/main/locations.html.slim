@@ -35,7 +35,12 @@ nav.navbar
       ul
         li ng-repeat="i in inactive_sites"
           | {{i.Room}}  
-                  
+
+.location_logs 
+  select ng-change="update_status(location_name)" ng-options="location.name for location in locations_picker" name="layout" ng-model="location_name" ng-init="location_name= locations_picker[0]"
+  input.width_250 date-range-picker="" class="form-control date-picker" type="text" ng-model="datePicker.date" options="dateRangeOptions"  
+  canvas.chart.chart-bar chart-data="data_c" chart-labels="labels_c" chart-series="series_c" chart-click="onClick" chart-options="options"
+  
 .wrapper
   .table
     .row-table.header.green

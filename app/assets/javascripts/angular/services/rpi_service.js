@@ -28,14 +28,14 @@ angular.module('Aircast.services')
         return d.promise;
       }
 
-  this.status_logs = function(data) {
-
+  this.status_logs = function(location_name, startDate, endDate) {
+    console.log(location_name)
+    console.log(startDate)
+    console.log(endDate)
       var d = $q.defer();
       $http({
-        method: 'POST',
-        url: 'http://ec2-54-169-234-246.ap-southeast-1.compute.amazonaws.com/api/v0/aircast_tv_monitoring.php',
-        data: data,
-
+        method: 'GET',
+        url: 'http://ec2-54-169-234-246.ap-southeast-1.compute.amazonaws.com/api/v0/aircast_location_monitoring.php?Location=' + location_name + '&StartDate='+ startDate + '&EndDate=' + endDate,
       }).then(function(data){
         d.resolve(data);
       });

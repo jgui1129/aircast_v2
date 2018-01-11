@@ -23,6 +23,8 @@
 
 // Imported javascripts
 //= require angular-ui-bootstrap-tpls
+//= require Chart.min
+//= require angular-chart.min
 //= require ng-map
 //= require ng-file-upload
 //= require ngDialog.min
