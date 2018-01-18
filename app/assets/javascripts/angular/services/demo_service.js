@@ -350,13 +350,13 @@ angular.module('Aircast.services')
               "quantity": 1
             },
             {
-              "name": "Trinity Admin",
+              "name": "Trinity Registrar",
               "rpi_id": 78,
               "area": "Quezon City",
               "quantity": 1
             },
             {
-              "name": "Trinity Director",
+              "name": "Trinity Nursing Lobby",
               "rpi_id": 79,
               "area": "Quezon City",
               "quantity": 1
