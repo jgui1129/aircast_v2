@@ -230,10 +230,35 @@ angular.module('Aircast.services')
             },
             {
               "name": "David's Salon Eastwood",
-              "rpi_id": 36,
+              "rpi_id": 57,
               "area": "Libis",
               "quantity": 1
             },
+          ]
+        },
+        {
+          id: "venetian",
+          name: "Venetian",
+          total: 3,
+          areas: [
+            {
+              "name": "Venetian Empire Bar",
+              "rpi_id": 63,
+              "area": "Quezon City",
+              "quantity": 1
+            },
+            {
+              "name": "Venetian Cafe Delmar",
+              "rpi_id": 64,
+              "area": "Quezon City",
+              "quantity": 1
+            },
+            {
+              "name": "Venetian New Bombay",
+              "rpi_id": 65,
+              "area": "Quezon City",
+              "quantity": 1
+            }
           ]
         },
         {
@@ -335,6 +360,64 @@ angular.module('Aircast.services')
               "rpi_id": 46,
               "area": "Ortigas",
               "quantity": 5
+            }
+          ]
+        },
+        {
+          id: "bonjour",
+          name: "Bonjour",
+          total: 10,
+          areas: [
+            {
+              "name": "Bonjour Shaw",
+              "rpi_id": 66,
+              "area": "Alabang",
+              "quantity": 1
+            },{
+              "name": "Bonjour Pasay",
+              "rpi_id": 67,
+              "area": "Quezon City",
+              "quantity": 1
+            }, {
+              "name": "Bonjour Fairview",
+              "rpi_id": 68,
+              "area": "Ortigas",
+              "quantity": 1
+            }, {
+              "name": "Bonjour NLEX",
+              "rpi_id": 69,
+              "area": "Ortigas",
+              "quantity": 1
+            }, {
+              "name": "Bonjour Merville",
+              "rpi_id": 70,
+              "area": "Ortigas",
+              "quantity": 1
+            }, {
+              "name": "Bonjour Las Pinas",
+              "rpi_id": 71,
+              "area": "Ortigas",
+              "quantity": 1
+            }, {
+              "name": "Bonjour NAIA",
+              "rpi_id": 72,
+              "area": "Ortigas",
+              "quantity": 1
+            }, {
+              "name": "Bonjour West Service",
+              "rpi_id": 73,
+              "area": "Ortigas",
+              "quantity": 1
+            }, {
+              "name": "Bonjour New Port",
+              "rpi_id": 74,
+              "area": "Ortigas",
+              "quantity": 1
+            }, {
+              "name": "Bonjour Sucat",
+              "rpi_id": 75,
+              "area": "Ortigas",
+              "quantity": 1
             }
           ]
         },
