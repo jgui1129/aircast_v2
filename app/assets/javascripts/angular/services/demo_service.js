@@ -447,6 +447,37 @@ angular.module('Aircast.services')
           ]
         },
         {
+          id: "fwd",
+          name: "FWD",
+          total: 4,
+          areas: [
+            {
+              "name": "FWD 80",
+              "rpi_id": 80,
+              "area": "Quezon City",
+              "quantity": 1
+            },
+            {
+              "name": "FWD 81",
+              "rpi_id": 81,
+              "area": "Quezon City",
+              "quantity": 1
+            },
+            {
+              "name": "FWD 82",
+              "rpi_id": 82,
+              "area": "Quezon City",
+              "quantity": 1
+            },
+            {
+              "name": "FWD 83",
+              "rpi_id": 82,
+              "area": "Quezon City",
+              "quantity": 1
+            }
+          ]
+        },
+        {
           id: "ikomai",
           name: "Ikomai",
           total: 1,
