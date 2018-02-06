@@ -230,7 +230,7 @@ angular.module('Aircast.services')
             },
             {
               "name": "David's Salon Eastwood",
-              "rpi_id": 36,
+              "rpi_id": 57,
               "area": "Libis",
               "quantity": 1
             },
