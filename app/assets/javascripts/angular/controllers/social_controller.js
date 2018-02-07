@@ -68,13 +68,23 @@ angular.module('Aircast.controllers')
 
 
     $scope.checkedFB = function() {
-      selected_facebook = []
-      _.each(_.values($scope.all_facebook_post.selected), function(x) {
-         fb = _.filter($scope.facebook_post, function(num){ return num.id == x; });
-         selected_facebook.push(fb)
-      })
-      selected_facebook = _.flatten(selected_facebook)
-      console.log(selected_facebook)
+      AuthService.currentUser()
+        .then(function(d){
+
+          selected_facebook = []
+          _.each(_.values($scope.all_facebook_post.selected), function(x) {
+             fb = _.filter($scope.facebook_post, function(num){ return num.id == x; });
+             selected_facebook.push(fb)
+          })
+          selected_facebook = _.flatten(selected_facebook)
+
+          data = {
+            user_id: d.UserID,
+            campaigns:selected_facebook
+          }
+          console.log(data)
+        });
+
     }
     $scope.numberWithCommas = function(x) {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
