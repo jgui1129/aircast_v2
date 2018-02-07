@@ -1,23 +1,26 @@
 
 .center
-
+  
   .height-75    
-    h3.no-margin.row-space-top-4
-      | Facebook Available Campaigns 
-    button.launch_fb.btn.btn-success ng-click="checkedFB()"
-      | Launch
-    .row-space-top-4
-      .cards ng-repeat="item in facebook_post"
-        img.card-height ng-src="{{item.full_picture}}"
-        .card-header 
-          p.inline-block 
-            | Total Engagement: {{numberWithCommas(item.reactions.summary.total_count)}} 
-          p.inline-block 
-            | Date Posted: {{item.created_time | date : format : longDate}}
-          p.inline-block.margin-top-10 
-            | <a href="https://facebook.com/{{item.id}}" target="_blank">View Actual FB Post</a>     
-        hr
-          .boost
-            label.inline-block ng-class="{ 'active': all_facebook_post.selected[item.id] === item.id }"
-              input type="checkbox" ng-model="all_facebook_post.selected[item.id]" ng-true-value="'{{item.id}}'" ng-false-value="''"
-              | Boost Post
+    div ng-if="userId!=18"
+      h4 This site is under maintenance. Thank you!
+    div ng-if="userId==18"  
+      h3.no-margin.row-space-top-4
+        | Facebook Available Campaigns 
+      button.launch_fb.btn.btn-success ng-click="checkedFB()"
+        | Launch
+      .row-space-top-4
+        .cards ng-repeat="item in facebook_post"
+          img.card-height ng-src="{{item.full_picture}}"
+          .card-header 
+            p.inline-block 
+              | Total Engagement: {{numberWithCommas(item.reactions.summary.total_count)}} 
+            p.inline-block 
+              | Date Posted: {{item.created_time | date : format : longDate}}
+            p.inline-block.margin-top-10 
+              | <a href="https://facebook.com/{{item.id}}" target="_blank">View Actual FB Post</a>     
+          hr
+            .boost
+              label.inline-block ng-class="{ 'active': all_facebook_post.selected[item.id] === item.id }"
+                input type="checkbox" ng-model="all_facebook_post.selected[item.id]" ng-true-value="'{{item.id}}'" ng-false-value="''"
+                | Boost Post

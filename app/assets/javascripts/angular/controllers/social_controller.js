@@ -15,6 +15,11 @@ angular.module('Aircast.controllers')
     };
 
 
+    AuthService.currentUser()
+      .then(function(d){
+        $scope.userId = d.UserID
+      });
+
       var url = 'https://graph.facebook.com/'+fb_post.api_version+'/'+fb_post.page_id+'/feed?fields=id,created_time,message,type,full_picture,reactions.summary(true).limit(0)&limit='+fb_post.fb_limit+'&access_token='+fb_post.access_token;
 
       console.log(url);
@@ -68,8 +73,7 @@ angular.module('Aircast.controllers')
 
 
     $scope.checkedFB = function() {
-      AuthService.currentUser()
-        .then(function(d){
+
 
           selected_facebook = []
           _.each(_.values($scope.all_facebook_post.selected), function(x) {
@@ -79,11 +83,10 @@ angular.module('Aircast.controllers')
           selected_facebook = _.flatten(selected_facebook)
 
           data = {
-            user_id: d.UserID,
+            user_id: $scope.userId,
             campaigns:selected_facebook
           }
           console.log(data)
-        });
 
     }
     $scope.numberWithCommas = function(x) {
