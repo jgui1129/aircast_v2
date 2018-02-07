@@ -1,2 +1,23 @@
-h4.center 
-  | Please contact our administrator at hello@palmsolutions.co to boost your Fb content automatically to Aircast sites. 
+
+.center
+
+  .height-75    
+    h3.no-margin.row-space-top-4
+      | Facebook Available Campaigns 
+    
+    .row-space-top-4
+      .cards ng-repeat="item in facebook_post"
+        img.card-height ng-src="{{item.full_picture}}"
+        .card-header 
+          p.inline-block 
+            | Total Engagement: {{numberWithCommas(item.reactions.summary.total_count)}} 
+          p.inline-block 
+            | Date Posted: {{item.created_time | date : format : longDate}}
+          p.inline-block.margin-top-10 
+            | <a href="https://facebook.com/{{item.id}}" target="_blank">View Actual FB Post</a>     
+        hr
+        .card-header  
+          .row
+            .col-md-6
+              button.center.btn.btn-default ng-click="boostPost(item)"
+                | Boost Post

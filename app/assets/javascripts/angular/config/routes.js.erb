@@ -75,12 +75,10 @@ Aircast.config(["$stateProvider", "$httpProvider", "$urlRouterProvider", "$locat
       views: {
         'subcontent': {
           templateUrl: 'main/social.html',
-          controller: 'CampaignController'
+          controller: 'SocialController'
         }
       }
     })
-
-
 
     .state('nav.locations', {
       url: '/locations',
@@ -90,6 +88,25 @@ Aircast.config(["$stateProvider", "$httpProvider", "$urlRouterProvider", "$locat
           controller: 'LocationController'
         }
       }
+    })
+
+    .state('nav.locationdetail', {
+       url: '/location-detail',
+       views: {
+        'content@nav': {
+          templateUrl: 'main/partners.html',
+          controller: 'PartnersController'
+        }
+       } 
+    })
+    .state('nav.category', {
+       url: '/location-detail/:category',
+       views: {
+        'content@nav': {
+          templateUrl: 'main/partners.html',
+          controller: 'PartnersController'
+        }
+       } 
     })
 
 
