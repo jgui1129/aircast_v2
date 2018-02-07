@@ -4,7 +4,8 @@
   .height-75    
     h3.no-margin.row-space-top-4
       | Facebook Available Campaigns 
-    
+    button.launch_fb.btn.btn-success ng-click="checkedFB()"
+      | Launch
     .row-space-top-4
       .cards ng-repeat="item in facebook_post"
         img.card-height ng-src="{{item.full_picture}}"
@@ -16,8 +17,7 @@
           p.inline-block.margin-top-10 
             | <a href="https://facebook.com/{{item.id}}" target="_blank">View Actual FB Post</a>     
         hr
-        .card-header  
-          .row
-            .col-md-6
-              button.center.btn.btn-default ng-click="boostPost(item)"
-                | Boost Post
+          .boost
+            label.inline-block ng-class="{ 'active': all_facebook_post.selected[item.id] === item.id }"
+              input type="checkbox" ng-model="all_facebook_post.selected[item.id]" ng-true-value="'{{item.id}}'" ng-false-value="''"
+              | Boost Post

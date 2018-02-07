@@ -1,3 +1,27 @@
 .margin-top-10 {
 	margin-top: 10px !important;
 }
+
+.launch_fb {
+	float: right;
+margin-right: 4em;
+width: 124px;
+}
+
+.boost {
+	label {
+		width: 78%;
+		border: 1px solid;
+		padding: 6px;
+		margin: 10px 10px 10px 10px;
+		cursor: pointer;
+	}
+
+	input {
+		visibility: hidden;
+	}
+	.active{
+		background: $base-color;
+		color: white;
+	}
+}

@@ -10,8 +10,12 @@ angular.module('Aircast.controllers')
       fb_limit: 100
     }
 
+    $scope.all_facebook_post = {
+      selected:{}
+    };
 
-      var url = 'https://graph.facebook.com/'+fb_post.api_version+'/'+fb_post.page_id+'/feed?fields=id,created_time,message,type,full_picture,reactions.summary(true).limit(0)&limit='+fb_post.fb_limit+'&access_token='+fb_post.access_token;  
+
+      var url = 'https://graph.facebook.com/'+fb_post.api_version+'/'+fb_post.page_id+'/feed?fields=id,created_time,message,type,full_picture,reactions.summary(true).limit(0)&limit='+fb_post.fb_limit+'&access_token='+fb_post.access_token;
 
       console.log(url);
       var getPost = function() {
@@ -58,10 +62,20 @@ angular.module('Aircast.controllers')
         }
 
         $scope.facebook_post = photo_arr; // this includes images and link
+        console.log($scope.facebook_post)
         //$scope.facebook_post = data.data; //all campaign inluding video and link
       })
 
 
+    $scope.checkedFB = function() {
+      selected_facebook = []
+      _.each(_.values($scope.all_facebook_post.selected), function(x) {
+         fb = _.filter($scope.facebook_post, function(num){ return num.id == x; });
+         selected_facebook.push(fb)
+      })
+      selected_facebook = _.flatten(selected_facebook)
+      console.log(selected_facebook)
+    }
     $scope.numberWithCommas = function(x) {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
