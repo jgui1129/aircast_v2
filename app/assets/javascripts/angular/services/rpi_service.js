@@ -28,6 +28,19 @@ angular.module('Aircast.services')
         return d.promise;
       }
 
+  this.sites = function() {
+      var d = $q.defer();
+      $http({
+        method: 'GET',
+        url: 'http://ec2-54-169-234-246.ap-southeast-1.compute.amazonaws.com/api/v0/aircast_location.php',
+      }).then(function(data){
+        d.resolve(data);
+      });
+
+      return d.promise;
+    }
+
+
   this.status_logs = function(location_name, startDate, endDate) {
     console.log(location_name)
     console.log(startDate)

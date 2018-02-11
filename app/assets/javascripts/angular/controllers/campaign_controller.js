@@ -23,10 +23,15 @@ angular.module('Aircast.controllers')
       $scope.launch_disabled = false
       $scope.selected_locations = []
 
-      $scope.locations = DemoService.locations()
-
       //add here
 
+      console.log('hello')
+      RpiService.sites()
+        .then(function(d){
+          console.log('hello')
+          console.log(d)
+          $scope.locations =d.data
+      });
 
 
 
