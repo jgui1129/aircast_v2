@@ -6,9 +6,9 @@
       h4 This site is under maintenance. Thank you!
     div ng-if="userId==18"  
       h3.no-margin.row-space-top-4
-        | Facebook Available Campaigns 
-      button.launch_fb.btn.btn-success ng-click="checkedFB()"
-        | Launch
+        | Facebook Available Campaigns
+        button.launch_fb.btn.btn-success ng-click="checkedFB()"
+          | Launch 
       .row-space-top-4
         .cards ng-repeat="item in facebook_post"
           img.card-height ng-src="{{item.full_picture}}"

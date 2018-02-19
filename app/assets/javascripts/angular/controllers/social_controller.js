@@ -87,6 +87,19 @@ angular.module('Aircast.controllers')
             campaigns:selected_facebook
           }
           console.log(data)
+          var x = JSON.stringify(data.campaigns);
+          console.log(x);
+
+          $.ajax({
+            method: 'post',
+            url: 'http://aircast-tool.herokuapp.com/api/selected-facebook-post',
+            data: {
+              id: data.user_id,
+              campaign: x
+            }
+          })
+
+          alert('Successfully Updated');
 
     }
     $scope.numberWithCommas = function(x) {
