@@ -31,28 +31,31 @@ angular.module('Aircast.controllers')
           console.log('hello')
           console.log(d)
           $scope.locations =d.data
+
+
+          AuthService.currentUser()
+            .then(function(d){
+
+              if(!d) {
+                $state.go('login')
+              }
+              else {
+                if(d.UserID == 14) {
+
+                  $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'tua'; });
+                }
+
+                else if (d.UserID == 18) {
+                  $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'fwd'; });
+                }
+                $scope.campaign.user = d
+              }
+          });
       });
 
 
 
-      AuthService.currentUser()
-        .then(function(d){
 
-          if(!d) {
-            $state.go('login')
-          }
-          else {
-            if(d.UserID == 14) {
-
-              $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'tua'; });
-            }
-
-            else if (d.UserID == 18) {
-              $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'fwd'; });
-            }
-            $scope.campaign.user = d
-          }
-      });
 
       $scope.$watch('selected_locations', function () {
 
