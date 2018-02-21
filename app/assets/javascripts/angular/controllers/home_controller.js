@@ -66,7 +66,7 @@ angular.module('Aircast.controllers')
       AuthService.currentUser()
         .then(function(d) {
           console.log(d.UserID)
-          if(d.UserID == 1) {
+          if(d.UserID == 1 || d.UserID == 5 ) {
             $scope.isAdmin = true
           }
 
@@ -107,7 +107,7 @@ angular.module('Aircast.controllers')
 
                   if(x.Preview) {
                     if(x.Preview.indexOf(".mp4") !== -1)  {
-                      
+
                       x.video = x.Preview
                       x.Preview = 'http://i.imgur.com/xckPPS5.jpg'
                     }
