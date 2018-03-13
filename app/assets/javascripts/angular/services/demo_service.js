@@ -51,7 +51,12 @@ angular.module('Aircast.services')
         {
           "id": "night",
           "name": "Nighttime",
-          "time": "9:00 PM - 6:00 AM"
+          "time": "9:00 PM - 12:00 AM"
+        },
+        {
+          "id": "graveyard",
+          "name": "Graveyard",
+          "time": "12:00 AM - 06:00 AM"
         },
       ]
     }
