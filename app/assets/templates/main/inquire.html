@@ -320,10 +320,52 @@
 		display: none;
 	}
 
-	@media only screen and (max-width: 800px) {
+	@media only screen and (max-width: 600px) {
 	    .features-icon {
 	        width: 40%;
 	    }
+	    #try-it-out .modal-body {
+	    	padding: 20px;
+	    }
+	    #number-of-sites-desc {
+	    	font-size: 20px;
+	    }
+	    #try-it-out input[type=range] {
+	    	width: 100%;
+	    }
+	    #spot-per-hour {
+	    	font-size: 15px;
+	    }
+	    #aircast-container img {
+	    	margin-bottom: 10px;
+	    }
+	    .aircast-description {
+	    	font-size: 16px;
+	    }
+	    #news-letter {
+	    	width: 100%;
+	    	padding: 30px 15px;
+	    }
+	    #news-letter h4 {
+	    	font-size: 23px;
+	    	line-height: 1.4;
+	    }
+	    .breadcrumb-image h1 {
+	    	font-size: 30px;
+	    	line-height: 25px;
+	    	margin-bottom: 30px;
+	    }
+	    .width-300 {
+	    	margin-bottom: 20px;
+	    	width: 200px;
+	    }
+	    .font-16 {
+	    	text-align: center;
+	    }
+		.img-100 {
+			width: 100px;
+		}
+
 	}
 
 
@@ -355,7 +397,7 @@
 					<div class="wow fadeInUp" data-wow-duration="1.5s">
 						<h2 class="margin-bottom-20">What is Aircast?</h2>
 						<p class="margin-bottom-20 font-16">Aircast is an on-demand digital broadcast advertising service. <br/> It has 3 core features.</p>
-						<div class="row font-16 margin-bottom-50" align="center" id="features-container">
+						<div class="row margin-bottom-50" align="center" id="features-container">
 						  <div class="col-sm-4">
 						  	<div><img  class="features-icon" src="https://s3-ap-southeast-1.amazonaws.com/rpitv/Email+Templates/targetted-audience.png" /></div>
 						  	<label>Targetted Audience</label>
@@ -655,14 +697,19 @@
 	        $('#try-it-out').modal('show');
 	    });
 
-		var typed = new Typed('#aircast-details', {
-		  strings: ["a Digital TV Broadcasting Service","Targetted Audience","Relevant Content","Accessible Anytime Anywhere", "a Digital TV Broadcasting Service"],
-		    typeSpeed: 50,
-		    backSpeed: 0,
-		    backDelay: 500,
-		    startDelay: 1000,
-		    loop: true,
-		});
+		 if ($(window).width() >= 600) {
+ 	
+		 		var typed = new Typed('#aircast-details', {
+				  strings: ["a Digital TV Broadcasting Service","Targetted Audience","Relevant Content","Accessible Anytime Anywhere", "a Digital TV Broadcasting Service"],
+				    typeSpeed: 50,
+				    backSpeed: 0,
+				    backDelay: 500,
+				    startDelay: 1000,
+				    loop: true,
+				});
+
+			}
+
 
 		$("#spot-per-hour").on('change',function(){
 			$("#campaign-summary").slideDown(300);
