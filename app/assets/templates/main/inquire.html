@@ -1,0 +1,799 @@
+<style>
+	
+	.breadcrumb-image {
+	    background-position: center center;
+	    background-repeat: no-repeat;
+	    background-size: cover;
+	    padding: 80px 0 80px;
+	    position: relative;
+	    width:100%;
+	}
+	.breadcrumb-image::before {
+	    background: rgba(0, 0, 0, 0.80) none repeat scroll 0 0;
+	    content: "";
+	    height: 100%;
+	    left: 0;
+	    position: absolute;
+	    top: 0;
+	    width: 100%;
+	    z-index: 0;
+	}
+	.breadcrumb-image h1 {
+	    color: #ffffff;
+	    font-size: 50px;
+	    font-weight: 600;
+	    line-height: 40px;
+	    position: relative;
+	    margin-bottom: 10px;
+	    text-transform: uppercase;
+	}
+	#aircast-details {
+		text-transform: lowercase;
+		color: white;
+		letter-spacing: 8px;
+	}
+	.breadcrumbs_path {
+	    color: #fff;
+	    margin-top: 8px;
+	    position: relative;
+	    z-index: 9;
+	}
+	.breadcrumbs_path > a {
+	    color: #fff;
+	    transition: all 0.3s ease 0s;
+	    font-size: 20px;
+    	margin-left: 20px;
+    	cursor: pointer;
+    	transition: .2s;
+    }
+    .breadcrumbs_path > a:hover {
+    	transform: scale(1.1);
+    }
+    .breadcrumbs_path span {
+    	margin-left: 20px;
+    }
+
+    #sign-up-container {
+    	padding: 50px 0;
+    }
+    #aircast-video {
+    	width: 100%;
+    	border: 5px solid white;
+    	box-shadow: 0 0 10px rgba(0,0,0,.5);
+    }
+    .features-container {
+    	padding-left: 20px;
+    	padding-right: 20px;
+    }
+    .features-icon {
+    	width: 80%;
+    }
+    .img-100 {
+    	width: 110px;
+
+    }
+    #reg-form {
+    	background: #f7f7f7;
+    	padding: 50px;
+    	box-shadow: 0 0 8px rgba(0,0,0,.2);
+    }
+    #video-container {
+    	text-align: center;
+    }
+    .margin-bottom-20 {
+    	margin-bottom: 20px;
+    }
+    .margin-bottom-30 {
+    	margin-bottom: 30px;
+    }
+    .margin-bottom-50 {
+    	margin-bottom: 50px;
+    }
+    #details-container {
+    	padding-left: 50px;
+    	padding-right: 50px;
+    	font-size: 16px;
+    }
+    #package-selection label {
+    	border-bottom: 2px solid rgba(0,0,0,.2);
+	    padding-bottom: 1px;
+	    margin-bottom: 10px;
+	    transition: .2s;
+    }
+    #package-selection label:hover {
+    	border-bottom: 2px solid rgba(0,0,0,.5);
+    }
+    #category-container {
+    	text-align: center;
+    }
+    .fixed {
+    	position: fixed;
+    	top: 0;
+    	width: 34%;
+    	box-shadow: 0 0 20px rgba(0,0,0,.2) !important;
+    }
+    textarea {
+    	resize: none;
+    }
+
+    .width-300 {
+    	width: 300px;
+    }
+    #register-account {
+    	height: 40px;
+	    background: green;
+	    outline: none;
+	    border: none;
+	    transition: .2s;
+    }
+    #register-account:hover {
+    	height: 50px;
+    }
+    #plan-selection {
+    	background: #91c036;
+	    display: flex;
+	    justify-content: space-around;
+	    color: white;
+	    padding: 10px;
+	    font-size: 20px;
+    }
+
+    .package-selection-container {
+    	padding: 0;
+    }
+    .package-selection {
+	   	border: 2px solid;
+	    padding-bottom: 20px;
+	    margin: 10px;
+	    text-align: center;
+    }
+    .package-selection h3 {
+    	border-bottom: 2px solid;
+    	padding-bottom: 5px;
+    }
+    .package-selection .total-spots {
+    	font-weight: bold;
+    }
+    .package-selection .spot-summary {
+    	    font-size: 12px;
+    }
+    .package-selected {
+    	background: rgba(195,255,178,.7);
+    }
+
+    .slidecontainer {
+	    width: 100%;
+	}
+
+	.slider {
+	    -webkit-appearance: none;
+	    width: 100%;
+	    height: 20px;
+	    background: #d3d3d3;
+	    outline: none;
+	    opacity: 0.7;
+	    -webkit-transition: .2s;
+	    transition: opacity .2s;
+	}
+
+	.slider:hover {
+	    opacity: 1;
+	}
+
+	.slider::-webkit-slider-thumb {
+	    -webkit-appearance: none;
+	    appearance: none;
+	    width: 30px;
+	    height: 30px;
+	    background: #4CAF50;
+	    cursor: pointer;
+	    border-radius: 50%
+	}
+
+	.slider::-moz-range-thumb {
+	    width: 25px;
+	    height: 25px;
+	    background: #4CAF50;
+	    cursor: pointer;
+	}
+	#number-of-sites-desc {
+		margin-bottom: 30px;
+	    font-size: 30px;
+	    background: #f6f6f6;
+	    border-radius: 5px;
+	    box-shadow: 0 0 20px;
+	    display: inline-block;
+	    padding: 10px 50px;
+	    text-align: center;
+	}
+	#spot-per-hour {
+		height: 40px;
+		text-align: center;
+		font-size: 20px;
+	}
+	#spot-per-hour::placeholder {
+		font-size: 16px;
+		text-align: center;
+		vertical-align: middle;
+	}
+	#summary p{
+		margin: 0;
+		font-size: 18px;
+	}
+	#summary p label {
+		color: grey;
+	}
+	#campaign-summary {
+		display: none;
+		box-shadow: 0 0 10px rgba(0,0,0,.2);
+	}
+	#campaign-summary #summary-text {
+		background: #89d75e;
+	    margin: 0;
+	    color: white;
+	    padding: 20px;
+	    font-size: 20px;
+	}
+	#summary-details {
+		padding: 20px;
+	}
+	.aircast-description {
+		font-size: 14px;
+    text-align: center;
+    margin: 0;
+	}
+	#table-summary, #aircast-container {
+		margin-top: 30px;
+		margin-bottom: 30px;
+	}
+	#total-summary {
+		background: #addfe6;
+	    padding: 30px;
+	    font-weight: bold;
+	    line-height: 1.6;
+	}
+	#news-letter {
+		display: none;
+		width: 90%;
+	    border: 2px solid;
+	    padding: 40px 40px;
+	}
+	#news-letter h4 {
+		font-size: 30px;
+	    color: #20d389;
+	    font-weight: bold;
+	    line-height: 1.3;
+	}
+	#news-letter input[type="text"] {
+		height: 50px;
+	    text-align: center;
+	    font-size: 20px;
+	}
+	#news-letter button {
+		height: 50px;
+	}
+	#try-it-out {
+		background: rgba(0,0,0,.7) !important;
+	}
+	#open-modal {
+		height: 50px;
+	}
+
+	#try-it-out .modal-body {
+		padding: 20px 50px;
+	}
+	#try-it-out input[type=range]{
+		display: block;
+	    width: 80%;
+	    margin: 0 auto;
+	}
+	.recommended-package {
+		border: 2px solid;
+	    padding-bottom: 20px;
+	    margin: 10px;
+	    text-align: center;
+	}
+
+	.recommended-package h3 {
+		border-bottom: 2px solid;
+	    padding-bottom: 10px;
+	    background: none;
+	    font-size: 30px;
+	    margin-bottom: 15px;
+	}
+
+	.recommended-package .spot-summary {
+		font-size: 12px !important;
+	}
+	#spot-hour-picker {
+		display: none;
+	}
+	#email-add {
+		text-align: center;
+	    height: 50px;
+	    font-size: 20px;
+	}
+	#email-alert {
+		display: none;
+	}
+	#thank-you {
+		display: none;
+	}
+
+	@media only screen and (max-width: 800px) {
+	    .features-icon {
+	        width: 40%;
+	    }
+	}
+
+
+
+</style>
+	<script type="text/javascript">
+		(function(t,e){"object"==typeof exports&&"object"==typeof module?module.exports=e():"function"==typeof define&&define.amd?define([],e):"object"==typeof exports?exports.Typed=e():t.Typed=e()})(this,function(){return function(t){function e(n){if(s[n])return s[n].exports;var i=s[n]={exports:{},id:n,loaded:!1};return t[n].call(i.exports,i,i.exports,e),i.loaded=!0,i.exports}var s={};return e.m=t,e.c=s,e.p="",e(0)}([function(t,e,s){"use strict";function n(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(e,"__esModule",{value:!0});var i=function(){function t(t,e){for(var s=0;s<e.length;s++){var n=e[s];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(t,n.key,n)}}return function(e,s,n){return s&&t(e.prototype,s),n&&t(e,n),e}}(),r=s(1),o=s(3),a=function(){function t(e,s){n(this,t),r.initializer.load(this,s,e),this.begin()}return i(t,[{key:"toggle",value:function(){this.pause.status?this.start():this.stop()}},{key:"stop",value:function(){this.typingComplete||this.pause.status||(this.toggleBlinking(!0),this.pause.status=!0,this.options.onStop(this.arrayPos,this))}},{key:"start",value:function(){this.typingComplete||this.pause.status&&(this.pause.status=!1,this.pause.typewrite?this.typewrite(this.pause.curString,this.pause.curStrPos):this.backspace(this.pause.curString,this.pause.curStrPos),this.options.onStart(this.arrayPos,this))}},{key:"destroy",value:function(){this.reset(!1),this.options.onDestroy(this)}},{key:"reset",value:function(){var t=arguments.length<=0||void 0===arguments[0]||arguments[0];clearInterval(this.timeout),this.replaceText(""),this.cursor&&this.cursor.parentNode&&(this.cursor.parentNode.removeChild(this.cursor),this.cursor=null),this.strPos=0,this.arrayPos=0,this.curLoop=0,t&&(this.insertCursor(),this.options.onReset(this),this.begin())}},{key:"begin",value:function(){var t=this;this.typingComplete=!1,this.shuffleStringsIfNeeded(this),this.insertCursor(),this.bindInputFocusEvents&&this.bindFocusEvents(),this.timeout=setTimeout(function(){t.currentElContent&&0!==t.currentElContent.length?t.backspace(t.currentElContent,t.currentElContent.length):t.typewrite(t.strings[t.sequence[t.arrayPos]],t.strPos)},this.startDelay)}},{key:"typewrite",value:function(t,e){var s=this;this.fadeOut&&this.el.classList.contains(this.fadeOutClass)&&(this.el.classList.remove(this.fadeOutClass),this.cursor&&this.cursor.classList.remove(this.fadeOutClass));var n=this.humanizer(this.typeSpeed),i=1;return this.pause.status===!0?void this.setPauseStatus(t,e,!0):void(this.timeout=setTimeout(function(){e=o.htmlParser.typeHtmlChars(t,e,s);var n=0,r=t.substr(e);if("^"===r.charAt(0)&&/^\^\d+/.test(r)){var a=1;r=/\d+/.exec(r)[0],a+=r.length,n=parseInt(r),s.temporaryPause=!0,s.options.onTypingPaused(s.arrayPos,s),t=t.substring(0,e)+t.substring(e+a),s.toggleBlinking(!0)}if("`"===r.charAt(0)){for(;"`"!==t.substr(e+i).charAt(0)&&(i++,!(e+i>t.length)););var u=t.substring(0,e),l=t.substring(u.length+1,e+i),c=t.substring(e+i+1);t=u+l+c,i--}s.timeout=setTimeout(function(){s.toggleBlinking(!1),e===t.length?s.doneTyping(t,e):s.keepTyping(t,e,i),s.temporaryPause&&(s.temporaryPause=!1,s.options.onTypingResumed(s.arrayPos,s))},n)},n))}},{key:"keepTyping",value:function(t,e,s){0===e&&(this.toggleBlinking(!1),this.options.preStringTyped(this.arrayPos,this)),e+=s;var n=t.substr(0,e);this.replaceText(n),this.typewrite(t,e)}},{key:"doneTyping",value:function(t,e){var s=this;this.options.onStringTyped(this.arrayPos,this),this.toggleBlinking(!0),this.arrayPos===this.strings.length-1&&(this.complete(),this.loop===!1||this.curLoop===this.loopCount)||(this.timeout=setTimeout(function(){s.backspace(t,e)},this.backDelay))}},{key:"backspace",value:function(t,e){var s=this;if(this.pause.status===!0)return void this.setPauseStatus(t,e,!0);if(this.fadeOut)return this.initFadeOut();this.toggleBlinking(!1);var n=this.humanizer(this.backSpeed);this.timeout=setTimeout(function(){e=o.htmlParser.backSpaceHtmlChars(t,e,s);var n=t.substr(0,e);if(s.replaceText(n),s.smartBackspace){var i=s.strings[s.arrayPos+1];i&&n===i.substr(0,e)?s.stopNum=e:s.stopNum=0}e>s.stopNum?(e--,s.backspace(t,e)):e<=s.stopNum&&(s.arrayPos++,s.arrayPos===s.strings.length?(s.arrayPos=0,s.options.onLastStringBackspaced(),s.shuffleStringsIfNeeded(),s.begin()):s.typewrite(s.strings[s.sequence[s.arrayPos]],e))},n)}},{key:"complete",value:function(){this.options.onComplete(this),this.loop?this.curLoop++:this.typingComplete=!0}},{key:"setPauseStatus",value:function(t,e,s){this.pause.typewrite=s,this.pause.curString=t,this.pause.curStrPos=e}},{key:"toggleBlinking",value:function(t){if(this.cursor&&!this.pause.status&&this.cursorBlinking!==t){this.cursorBlinking=t;var e=t?"infinite":0;this.cursor.style.animationIterationCount=e}}},{key:"humanizer",value:function(t){return Math.round(Math.random()*t/2)+t}},{key:"shuffleStringsIfNeeded",value:function(){this.shuffle&&(this.sequence=this.sequence.sort(function(){return Math.random()-.5}))}},{key:"initFadeOut",value:function(){var t=this;return this.el.className+=" "+this.fadeOutClass,this.cursor&&(this.cursor.className+=" "+this.fadeOutClass),setTimeout(function(){t.arrayPos++,t.replaceText(""),t.strings.length>t.arrayPos?t.typewrite(t.strings[t.sequence[t.arrayPos]],0):(t.typewrite(t.strings[0],0),t.arrayPos=0)},this.fadeOutDelay)}},{key:"replaceText",value:function(t){this.attr?this.el.setAttribute(this.attr,t):this.isInput?this.el.value=t:"html"===this.contentType?this.el.innerHTML=t:this.el.textContent=t}},{key:"bindFocusEvents",value:function(){var t=this;this.isInput&&(this.el.addEventListener("focus",function(e){t.stop()}),this.el.addEventListener("blur",function(e){t.el.value&&0!==t.el.value.length||t.start()}))}},{key:"insertCursor",value:function(){this.showCursor&&(this.cursor||(this.cursor=document.createElement("span"),this.cursor.className="typed-cursor",this.cursor.innerHTML=this.cursorChar,this.el.parentNode&&this.el.parentNode.insertBefore(this.cursor,this.el.nextSibling)))}}]),t}();e["default"]=a,t.exports=e["default"]},function(t,e,s){"use strict";function n(t){return t&&t.__esModule?t:{"default":t}}function i(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(e,"__esModule",{value:!0});var r=Object.assign||function(t){for(var e=1;e<arguments.length;e++){var s=arguments[e];for(var n in s)Object.prototype.hasOwnProperty.call(s,n)&&(t[n]=s[n])}return t},o=function(){function t(t,e){for(var s=0;s<e.length;s++){var n=e[s];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(t,n.key,n)}}return function(e,s,n){return s&&t(e.prototype,s),n&&t(e,n),e}}(),a=s(2),u=n(a),l=function(){function t(){i(this,t)}return o(t,[{key:"load",value:function(t,e,s){if("string"==typeof s?t.el=document.querySelector(s):t.el=s,t.options=r({},u["default"],e),t.isInput="input"===t.el.tagName.toLowerCase(),t.attr=t.options.attr,t.bindInputFocusEvents=t.options.bindInputFocusEvents,t.showCursor=!t.isInput&&t.options.showCursor,t.cursorChar=t.options.cursorChar,t.cursorBlinking=!0,t.elContent=t.attr?t.el.getAttribute(t.attr):t.el.textContent,t.contentType=t.options.contentType,t.typeSpeed=t.options.typeSpeed,t.startDelay=t.options.startDelay,t.backSpeed=t.options.backSpeed,t.smartBackspace=t.options.smartBackspace,t.backDelay=t.options.backDelay,t.fadeOut=t.options.fadeOut,t.fadeOutClass=t.options.fadeOutClass,t.fadeOutDelay=t.options.fadeOutDelay,t.isPaused=!1,t.strings=t.options.strings.map(function(t){return t.trim()}),"string"==typeof t.options.stringsElement?t.stringsElement=document.querySelector(t.options.stringsElement):t.stringsElement=t.options.stringsElement,t.stringsElement){t.strings=[],t.stringsElement.style.display="none";var n=Array.prototype.slice.apply(t.stringsElement.children),i=n.length;if(i)for(var o=0;o<i;o+=1){var a=n[o];t.strings.push(a.innerHTML.trim())}}t.strPos=0,t.arrayPos=0,t.stopNum=0,t.loop=t.options.loop,t.loopCount=t.options.loopCount,t.curLoop=0,t.shuffle=t.options.shuffle,t.sequence=[],t.pause={status:!1,typewrite:!0,curString:"",curStrPos:0},t.typingComplete=!1;for(var o in t.strings)t.sequence[o]=o;t.currentElContent=this.getCurrentElContent(t),t.autoInsertCss=t.options.autoInsertCss,this.appendAnimationCss(t)}},{key:"getCurrentElContent",value:function(t){var e="";return e=t.attr?t.el.getAttribute(t.attr):t.isInput?t.el.value:"html"===t.contentType?t.el.innerHTML:t.el.textContent}},{key:"appendAnimationCss",value:function(t){if(t.autoInsertCss&&t.showCursor&&t.fadeOut){var e=document.createElement("style");e.type="text/css";var s="";t.showCursor&&(s+="\n        .typed-cursor{\n          opacity: 1;\n          animation: typedjsBlink 0.7s infinite;\n          -webkit-animation: typedjsBlink 0.7s infinite;\n                  animation: typedjsBlink 0.7s infinite;\n        }\n        @keyframes typedjsBlink{\n          50% { opacity: 0.0; }\n        }\n        @-webkit-keyframes typedjsBlink{\n          0% { opacity: 1; }\n          50% { opacity: 0.0; }\n          100% { opacity: 1; }\n        }\n      "),t.fadeOut&&(s+="\n        .typed-fade-out{\n          opacity: 0;\n          transition: opacity .25s;\n          -webkit-animation: 0;\n                  animation: 0;\n        }\n      "),0!==e.length&&(e.innerHTML=s,document.body.appendChild(e))}}}]),t}();e["default"]=l;var c=new l;e.initializer=c},function(t,e){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var s={strings:["These are the default values...","You know what you should do?","Use your own!","Have a great day!"],stringsElement:null,typeSpeed:0,startDelay:0,backSpeed:0,smartBackspace:!0,shuffle:!1,backDelay:700,fadeOut:!1,fadeOutClass:"typed-fade-out",fadeOutDelay:500,loop:!1,loopCount:1/0,showCursor:!0,cursorChar:"|",autoInsertCss:!0,attr:null,bindInputFocusEvents:!1,contentType:"html",onComplete:function(t){},preStringTyped:function(t,e){},onStringTyped:function(t,e){},onLastStringBackspaced:function(t){},onTypingPaused:function(t,e){},onTypingResumed:function(t,e){},onReset:function(t){},onStop:function(t,e){},onStart:function(t,e){},onDestroy:function(t){}};e["default"]=s,t.exports=e["default"]},function(t,e){"use strict";function s(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(e,"__esModule",{value:!0});var n=function(){function t(t,e){for(var s=0;s<e.length;s++){var n=e[s];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(t,n.key,n)}}return function(e,s,n){return s&&t(e.prototype,s),n&&t(e,n),e}}(),i=function(){function t(){s(this,t)}return n(t,[{key:"typeHtmlChars",value:function(t,e,s){if("html"!==s.contentType)return e;var n=t.substr(e).charAt(0);if("<"===n||"&"===n){var i="";for(i="<"===n?">":";";t.substr(e+1).charAt(0)!==i&&(e++,!(e+1>t.length)););e++}return e}},{key:"backSpaceHtmlChars",value:function(t,e,s){if("html"!==s.contentType)return e;var n=t.substr(e).charAt(0);if(">"===n||";"===n){var i="";for(i=">"===n?"<":"&";t.substr(e-1).charAt(0)!==i&&(e--,!(e<0)););e--}return e}}]),t}();e["default"]=i;var r=new i;e.htmlParser=r}])});
+//# sourceMappingURL=typed.min.js.map
+
+	</script>
+	
+	  <script>
+	  	new WOW().init();
+	  </script>
+
+	<div id="">
+		<div class="breadcrumb-image" style="background-image: url(https://s3-ap-southeast-1.amazonaws.com/rpitv/AircastLocation/Davids-Valero.jpg);">
+		    <div class="container text-center">
+		        <h1><img class="width-300" src="https://s3-ap-southeast-1.amazonaws.com/rpitv/Email+Templates/aircast_final_green.png" /> <br/> <small id="aircast-details">Your ondemand Digital TV Network</small></h1>
+		            <div class="breadcrumbs_path">
+		            	<a data-toggle="modal" data-target="#try-it-out">See what package suits your need</a>
+		            </div>      
+		    </div>
+		</div>
+		<div>
+
+			<div id="sign-up-container" class="container">
+				<div class="col-md-6" id="details-container">
+					<div class="wow fadeInUp" data-wow-duration="1.5s">
+						<h2 class="margin-bottom-20">What is Aircast?</h2>
+						<p class="margin-bottom-20 font-16">Aircast is an on-demand digital broadcast advertising service. <br/> It has 3 core features.</p>
+						<div class="row font-16 margin-bottom-50" align="center" id="features-container">
+						  <div class="col-sm-4">
+						  	<div><img  class="features-icon" src="https://s3-ap-southeast-1.amazonaws.com/rpitv/Email+Templates/targetted-audience.png" /></div>
+						  	<label>Targetted Audience</label>
+						  	<p>Brand stories that specifically reach the target audience</p>
+						  </div>
+						  <div class="col-sm-4">
+							<div><img class="features-icon" src="https://s3-ap-southeast-1.amazonaws.com/rpitv/Email+Templates/relevant-content.png" /></div>
+						  	<label>Relevant Content</label>
+						  	<p>Brand stories that are always updated and eventful</p>
+						  </div>
+						  <div class="col-sm-4">
+						  	<div><img  class="features-icon" src="https://s3-ap-southeast-1.amazonaws.com/rpitv/Email+Templates/easy-campaign-deployment.png" /></div>
+						  	<label>Accessible</label>
+						  	<p>Control your content straight from the phone and on the go</p>
+						  </div>
+						</div>
+					</div>
+
+					<div class="margin-bottom-30 wow rollIn" data-wow-offset="50">
+						<h2 class="margin-bottom-20">200 + networks across Metro Manila</h2>
+						<p class="margin-bottom-30">Aircast currently has more than 100's of TVs deployed in universities, salons, bar and restaurants, gyms, BPO companies, food park and convenience stores that are carefully inspected by our Business Development Team to make sure that your ads will get the best number of audience.</p>
+						<div id="category-container" class="margin-bottom-30">
+
+							<img src="https://s3-ap-southeast-1.amazonaws.com/rpitv/Email+Templates/category-bpo.png" class="img-100" />
+							<img src="https://s3-ap-southeast-1.amazonaws.com/rpitv/Email+Templates/category-fitness.png" class="img-100" />
+							<img src="https://s3-ap-southeast-1.amazonaws.com/rpitv/Email+Templates/category-foodpark.png" class="img-100" />
+							<img src="https://s3-ap-southeast-1.amazonaws.com/rpitv/Email+Templates/category-modern-trade.png" class="img-100" />
+							<img src="https://s3-ap-southeast-1.amazonaws.com/rpitv/Email+Templates/category-restaurant.png" class="img-100" />
+							<img src="https://s3-ap-southeast-1.amazonaws.com/rpitv/Email+Templates/category-salon.png" class="img-100" />
+							<img src="https://s3-ap-southeast-1.amazonaws.com/rpitv/Email+Templates/category-university.png" class="img-100" />
+
+						</div>
+						<p>Our partners include Davids Salons, HGS Company (BPO), Anytime Fitness Gym, Cafe Bonjour, Empire Bar, Ikomai, Cafe Del Mar, Trinity University Asia, and Foodpark sites such as The Keatchen Food Park, Village Eats, The Yard, Hangout, Open Kitchen and more...</p>
+					</div>
+					<div class="margin-bottom-50 wow bounceInRight" data-wow-offset="50">
+						<h3 class="margin-bottom-30">Why Choose Aircast?</h3>
+						<ol type="1">
+							<li><strong>Upload your content in a snap</strong></li>
+							<ul>
+								<li>Aircast gives you the ability to upload your campaign anytime anywhere with our online campaign management platform.</li>
+							</ul>
+							<li><strong>Wide Range of Use Cases</strong></li>
+							<ul>
+								<li>With Aircast, you are not limited to uploading ad video and images, you can also deploy location-based drive to store ads, seasonal templated campaigns, and even directly stream your social media feed to our screens.</li>
+							</ul>
+							<li><strong>Cost Effective</strong></li>
+							<ul>
+								<li>Aircast is very efficient when it comes to budget since you can control your ads and budget it on your desired amount while others let you pay thousands posting limited information ads.</li>
+							</ul>
+						</ol>
+					</div>
+					
+				</div>
+				<div class="col-md-6" style="padding: 0 20px;">
+					<div class="margin-bottom-50 wow fadeInUp">
+						<h2>Use cases of Aircast</h2>
+						<p class="margin-bottom-30"></p>
+						<span></span>
+						<div id="video-container">
+							<video src="https://s3-ap-southeast-1.amazonaws.com/rpitv/Aircast/3056_temp2_video.mp4" loop="loop" autoplay="	autoplay" id="aircast-video"></video>
+						</div>	
+					</div>
+					<div class="">
+						<h2 class="margin-bottom-20">Bundles and Deals</h2>
+						<p class="margin-bottom-20">Check out the deals we have in store for you.</p>
+						<table class="table table-striped table-hover table-bordered">
+							<thead style="background: #91c036; color: white">
+								<tr>
+									<th>Aircast Packages</th>
+									<th>Plan 50K*</th>
+									<th>Plan 100K</th>
+									<th>Plan 300K</th>
+									<th>Plan 500K</th>
+								</tr>	
+							</thead>
+							
+							<tr>
+								<td><strong>Number of Spots</strong></td>
+								<td>2,000</td>
+								<td>8,000</td>
+								<td>30,000</td>
+								<td>100,000</td>
+							</tr>
+							<tr>
+								<td>Free Spots*</td>
+								<td>1,000</td>
+								<td>4,000</td>
+								<td>20,000</td>
+								<td>50,000</td>
+							</tr>
+							<tr>
+								<td><strong>Effective Cost Per Spot</strong></td>
+								<td>Php. 16.70</td>
+								<td>Php. 8.30</td>
+								<td>Php. 6.00</td>
+								<td>Php. 3.37</td>
+							</tr>
+							<tr>
+								<td>Creatives Support (Hours)</td>
+								<td>2</td>
+								<td>10</td>
+								<td>30</td>
+								<td>Dedicated</td>
+							</tr>
+							<tr>
+								<td>Social Media Integration</td>
+								<td>N/A</td>
+								<td>Yes</td>
+								<td>Yes</td>
+								<td>Yes (per post)</td>
+							</tr>
+							<tr>
+								<td>Weekly Email Report</td>
+								<td>Yes</td>
+								<td>Yes</td>
+								<td>Yes</td>
+								<td>Yes</td>
+							</tr>
+						</table>
+					</div>
+										<div>
+						<h2 class="margin-bottom-20">Sample Configuration</h2>
+						<table class="table table-striped table-hover table-bordered margin-bottom-20">
+							<thead style="background: #91c036; color: white">
+								<tr>
+									<th>Aircast Packages</th>
+									<th>Plan 50K*</th>
+									<th>Plan 100K</th>
+									<th>Plan 300K</th>
+									<th>Plan 500K</th>
+								</tr>	
+							</thead>
+							<tbody>
+								<tr>
+									<td colspan="5"><strong>20 Aircast TVs</strong></td>
+								</tr>
+								<tr>
+									<td>Exposure per Hour</td>
+									<td>1</td>
+									<td>3</td>
+									<td>12</td>
+									<td>36</td>
+								</tr>
+								<tr>
+									<td colspan="5"><strong>30 Aircast TVs</strong></td>
+								</tr>
+								<tr>
+									<td>Exposure per Hour</td>
+									<td>0</td>
+									<td>2</td>
+									<td>8</td>
+									<td>24</td>
+								</tr>
+								<tr>
+									<td colspan="5"><strong>40 Aircast TVs</strong></td>
+								</tr>
+								<tr>
+									<td>Exposure per Hour</td>
+									<td>0</td>
+									<td>1</td>
+									<td>6</td>
+									<td>18</td>
+								</tr>
+								<tr>
+									<td colspan="5"><strong>50 Aircast TVs</strong></td>
+								</tr>
+								<tr>
+									<td>Exposure per Hour</td>
+									<td>0</td>
+									<td>1</td>
+									<td>5</td>
+									<td>14</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div>
+						<button class="btn btn-success btn-block" id="open-modal" data-toggle="modal" data-target="#try-it-out">See what package suits your need</button>
+					</div>
+
+
+					<!-- Modal -->
+					<div id="try-it-out" class="modal fade" role="dialog">
+					  <div class="modal-dialog modal-md">
+
+					    <!-- Modal content-->
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal">&times;</button>
+					        <h4 class="modal-title">Check out which package is for you</h4>
+					      </div>
+					      <div class="modal-body">
+										<div id="message">
+											<h2>Try it out</h2>
+											<p class="margin-bottom-20">Play with the variables and see what package suits for you.</p>
+											<div class="margin-bottom-50">
+												<h4 class="margin-bottom-30"><span class="badge">1</span> Select the number of Screens</h4>
+												<div align="center">
+													<p id="number-of-sites-desc">Number of Screens: <span id="number-of-sites">20</span></p>
+												</div>
+												<input type="range" min="20" max="50" value="20" step="10" class="slider" id="site-number-picker">
+											</div>
+											<div class="margin-bottom-50" id="spot-hour-picker">
+												<h4 class="margin-bottom-30"><span class="badge">2</span> Select frequency per hour</h4>
+												<select class="form-control" id="spot-per-hour">
+													<option value="1">1 spot per hour</option>
+													<option value="2">2 spot per hour</option>
+													<option value="3">3 spot per hour</option>
+													<option value="5">5 spot per hour</option>
+													<option value="6">6 spot per hour</option>
+													<option value="8">8 spot per hour</option>
+													<option value="12">12 spot per hour</option>
+													<option value="14">14 spot per hour</option>
+													<option value="18">18 spot per hour</option>
+													<option value="24">24 spot per hour</option>
+													<option value="36">36 spot per hour</option>
+												</select>
+											</div>
+											<div class="margin-bottom-50">
+												<div id="campaign-summary">
+													<h3 align="center" id="summary-text">Great! Based on the configuration you've set, this will be the best package for you.</h3>
+													<div id="summary-details">
+														<div class="row">
+															<div class="col-sm-8" id="summary">
+																<div class="col-sm-12 recommended-package" id="package-1">
+																	<h3 id="plan-name">Plan 50k</h3>
+																	<p id="plan-spots" class="total-spots">3,000 Spots</p>
+																	<p id="plan-details" class="spot-summary">2,000 spots + 1,000 free spots</p>
+																</div>
+																<div class="col-sm-12 recommended-package" id="package-2">
+																	<h3 id="plan-name">Plan 100k</h3>
+																	<p id="plan-spots" class="total-spots">12,000 Spots</p>
+																	<p id="plan-details" class="spot-summary">8,000 spots + 4,000 free spots</p>
+																</div>
+																<div class="col-sm-12 recommended-package" id="package-3">
+																	<h3 id="plan-name">Plan 300k</h3>
+																	<p id="plan-spots" class="total-spots">50,000 Spots</p>
+																	<p id="plan-details" class="spot-summary">30,000 spots + 20,000 free spots</p>
+																</div>
+																<div class="col-sm-12 recommended-package" id="package-4">
+																	<h3 id="plan-name">Plan 500k</h3>
+																	<p id="plan-spots" class="total-spots">150,000 Spots</p>
+																	<p id="plan-details" class="spot-summary">100,000 spots + 50,000 free spots</p>
+																</div>
+															</div>
+															<div class="col-sm-4" id="aircast-container">
+																<img src="https://s3-ap-southeast-1.amazonaws.com/rpitv/Email+Templates/aircast_final_green.png" width="100%" style="margin-bottom: 5px;" />
+																<p class="aircast-description">Your ondemand digital tv broadcasting service</p>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="col-sm-12" align="center">
+													<div id="news-letter">
+														<h4 class="margin-bottom-20">Subscribe now and well send you an official quotation plus free 1,000 spots</h4>
+														<p style="font-size: 20px;">Enter your email below</p>
+														<p>------</p>
+														<p class="alert alert-warning" id="email-alert">Please enter a valid email</p>
+														<input type="email" id="email-add" class="form-control margin-bottom-20">
+														<button class="btn btn-block btn-success" id="submit-email">SUBSCRIBE</button>
+													</div>	
+												</div>	
+											</div>
+										</div>
+										<div id="thank-you" align="center">
+											<img src="http://iconutopia.com/wp-content/uploads/2015/12/thank-you-hero.png" style="width: 100%" />
+											<h1>Thank you!</h1>
+											<p>We'll get back to you as soon as possible so you can get the 1,000 FREE Spots we've promised.
+											And also the official quotation specially for you.</p>
+											<p>Have a nice day!</p>
+										</div>
+
+
+
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					      </div>
+					    </div>
+
+					  </div>
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+
+
+	<script>
+
+		 $(window).on('load',function(){
+	        $('#try-it-out').modal('show');
+	    });
+
+		var typed = new Typed('#aircast-details', {
+		  strings: ["a Digital TV Broadcasting Service","Targetted Audience","Relevant Content","Accessible Anytime Anywhere", "a Digital TV Broadcasting Service"],
+		    typeSpeed: 50,
+		    backSpeed: 0,
+		    backDelay: 500,
+		    startDelay: 1000,
+		    loop: true,
+		});
+
+		$("#spot-per-hour").on('change',function(){
+			$("#campaign-summary").slideDown(300);
+			$("#news-letter").slideDown(300);
+			changePackage();
+		})
+
+		function validateEmail(email) {
+		    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		    return re.test(String(email).toLowerCase());
+		}
+
+
+		$("#site-number-picker").on('input',function(){
+			$("#number-of-sites").html($("#site-number-picker").val());
+			$("#spot-hour-picker").slideDown(300);
+			changePackage();
+		})
+
+		$("#submit-email").on('click',function(){
+			var em = $('#email-add').val();
+			if (validateEmail(em)) {
+				$("#email-alert").slideUp(300,function(){
+					$(this).html('Saving email. One moment please...');
+					$(this).removeClass('alert-warning');
+					$(this).addClass('alert-success');
+					$("#email-alert").slideDown(300);	
+				})
+				$.ajax({
+					method: "GET",
+					url: 'http://aircast-tool.herokuapp.com/registration/'+em,
+					success: function(data){
+						if (data.inserted) {
+							$("#message").fadeOut(300,function(){
+								$('#thank-you').fadeIn(300);
+								$(".modal-title").html('Thank you!')
+							});
+
+						}else {
+							$("#email-alert").slideUp(300,function(){
+								$(this).removeClass('alert-success');
+								$(this).addClass('alert-warning');
+								$(this).html("We got an error saving the email. Please refresh the browser and try again.");	
+								$(this).slideDown(300);	
+							})
+						}
+					}
+
+				})
+			}else {
+				$("#email-alert").slideUp(300,function(){
+					$("#email-alert").slideDown(300);	
+				})
+				
+			}
+
+
+		})
+
+
+		function changePackage() {
+			var number_of_sites = $("#site-number-picker").val();
+			var number_of_spots = $("#spot-per-hour").val();
+
+			if (number_of_sites == 20 && number_of_spots == 1) {
+				$(".recommended-package").each(function(index,item){
+					$(item).slideUp(300);
+				})
+				$("#package-1").slideDown(300)
+			}else if (number_of_sites == 20 && number_of_spots <= 3) {
+				$(".recommended-package").each(function(index,item){
+					$(item).slideUp(300);
+				})
+				$("#package-2").slideDown(300)
+			}else if (number_of_sites == 20 && number_of_spots <= 12) {
+				$(".recommended-package").each(function(index,item){
+					$(item).slideUp(300);
+				})
+				$("#package-3").slideDown(300)
+			}else if (number_of_sites == 20 && number_of_spots >= 13) {
+				$(".recommended-package").each(function(index,item){
+					$(item).slideUp(300);
+				})
+				$("#package-4").slideDown(300)
+			}else if (number_of_sites == 30 && number_of_spots <= 2) {
+				$(".recommended-package").each(function(index,item){
+					$(item).slideUp(300);
+				})
+				$("#package-2").slideDown(300)
+			}else if (number_of_sites == 30 && number_of_spots <= 8) {
+				$(".recommended-package").each(function(index,item){
+					$(item).slideUp(300);
+				})
+				$("#package-3").slideDown(300)
+			}else if (number_of_sites == 30 && number_of_spots >= 9) {
+				$(".recommended-package").each(function(index,item){
+					$(item).slideUp(300);
+				})
+				$("#package-4").slideDown(300)
+			}else if (number_of_sites == 40 && number_of_spots == 1) {
+				$(".recommended-package").each(function(index,item){
+					$(item).slideUp(300);
+				})
+				$("#package-2").slideDown(300)
+			}else if (number_of_sites == 40 && number_of_spots <= 6) {
+				$(".recommended-package").each(function(index,item){
+					$(item).slideUp(300);
+				})
+				$("#package-3").slideDown(300)
+			}else if (number_of_sites == 40 && number_of_spots >= 7) {
+				$(".recommended-package").each(function(index,item){
+					$(item).slideUp(300);
+				})
+				$("#package-4").slideDown(300)
+			}else if (number_of_sites == 50 && number_of_spots == 1) {
+				$(".recommended-package").each(function(index,item){
+					$(item).slideUp(300);
+				})
+				$("#package-2").slideDown(300)
+			}else if (number_of_sites == 50 && number_of_spots <= 5) {
+				$(".recommended-package").each(function(index,item){
+					$(item).slideUp(300);
+				})
+				$("#package-3").slideDown(300)
+			}else if (number_of_sites == 50 && number_of_spots >= 6) {
+				$(".recommended-package").each(function(index,item){
+					$(item).slideUp(300);
+				})
+				$("#package-4").slideDown(300)
+			}
+
+			}
+
+	</script>
