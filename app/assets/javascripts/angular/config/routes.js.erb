@@ -6,20 +6,19 @@ Aircast.config(["$stateProvider", "$httpProvider", "$urlRouterProvider", "$locat
         controller: 'NavController'
     })
 
-    .state('nav.home', {
+    .state('inquire', {
       url: '/',
+      templateUrl: 'main/inquire.html',
+      controller: 'InquireController'
+    })
+    .state('nav.home', {
+      url: '/dashboard',
       views: {
         'content@nav': {
           templateUrl: 'main/home.html',
           controller: 'HomeController'
         }
       }
-    })
-
-    .state('inquire', {
-      url: '/inquire',
-      templateUrl: 'main/inquire.html',
-      controller: 'InquireController'
     })
     .state('login', {
       url: '/login',
