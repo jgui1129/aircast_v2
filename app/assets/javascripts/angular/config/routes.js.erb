@@ -5,7 +5,11 @@ Aircast.config(["$stateProvider", "$httpProvider", "$urlRouterProvider", "$locat
         templateUrl: 'shared/nav.html',
         controller: 'NavController'
     })
-
+    .state('customer', {
+      url: '/customer',
+      templateUrl: 'main/customer.html',
+      controller: 'CustomerController'
+    })
     .state('inquire', {
       url: '/',
       templateUrl: 'main/inquire.html',
