@@ -48,6 +48,12 @@ angular.module('Aircast.controllers')
                 else if (d.UserID == 18) {
                   $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'fwd'; });
                 }
+
+                else if (d.UserID == 29) {
+                  $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'pwu'; });
+                }
+
+
                 $scope.campaign.user = d
               }
           });
