@@ -52,7 +52,9 @@ angular.module('Aircast.controllers')
                 else if (d.UserID == 29) {
                   $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'pwu'; });
                 }
-
+                else if (d.UserID == 30) {
+                  $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'elorde'; });
+                }
 
                 $scope.campaign.user = d
               }
