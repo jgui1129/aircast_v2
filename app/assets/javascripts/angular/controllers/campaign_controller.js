@@ -58,6 +58,20 @@ angular.module('Aircast.controllers')
                 else if (d.UserID == 31) {
                   $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'teresitas'; });
                 }
+
+                else if (d.UserID == 32) {
+                  $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'elorde2'; });
+                }
+                else if (d.UserID == 33) {
+                  $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'elorde3'; });
+                }
+                else if (d.UserID == 34) {
+                  $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'elorde4'; });
+                }
+                else if (d.UserID == 35) {
+                  $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'elorde5'; });
+                }
+
                 $scope.campaign.user = d
               }
           });
