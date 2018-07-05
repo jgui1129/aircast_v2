@@ -25,59 +25,75 @@ angular.module('Aircast.controllers')
 
       //add here
 
-      console.log('hello')
-      RpiService.sites()
-        .then(function(d){
-          console.log('hello')
-          console.log(d)
-          $scope.locations =d.data
+      // console.log('hello')
+      // RpiService.sites()
+      //   .then(function(d){
+      //     $scope.locations = d.data
 
 
-          AuthService.currentUser()
+      //     AuthService.currentUser()
+      //       .then(function(d){
+
+      //         console.log('JERIC USER: ', d)
+
+      //         if(!d) {
+      //           $state.go('login')
+      //         }
+      //         else {
+      //           if(d.UserID == 14) {
+
+      //             $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'tua'; });
+      //           }
+
+      //           else if (d.UserID == 18) {
+      //             $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'fwd'; });
+      //           }
+
+      //           else if (d.UserID == 29) {
+      //             $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'pwu'; });
+      //           }
+      //           else if (d.UserID == 30) {
+      //             $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'elorde'; });
+      //           }
+      //           else if (d.UserID == 31) {
+      //             $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'teresitas'; });
+      //           }
+
+      //           else if (d.UserID == 32) {
+      //             $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'elorde2'; });
+      //           }
+      //           else if (d.UserID == 33) {
+      //             $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'elorde3'; });
+      //           }
+      //           else if (d.UserID == 34) {
+      //             $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'elorde4'; });
+      //           }
+      //           else if (d.UserID == 35) {
+      //             $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'elorde5'; });
+      //           }
+
+      //           $scope.campaign.user = d
+      //         }
+      //     });
+      // });
+
+        AuthService.currentUser()
             .then(function(d){
+              $scope.campaign.user = d
 
               if(!d) {
                 $state.go('login')
               }
               else {
-                if(d.UserID == 14) {
 
-                  $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'tua'; });
-                }
+                  RpiService.sites(d.UserID)
+                    .then(function(loc){
+                      $scope.locations = loc.data
+                    });
 
-                else if (d.UserID == 18) {
-                  $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'fwd'; });
-                }
 
-                else if (d.UserID == 29) {
-                  $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'pwu'; });
-                }
-                else if (d.UserID == 30) {
-                  $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'elorde'; });
-                }
-                else if (d.UserID == 31) {
-                  $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'teresitas'; });
-                }
-
-                else if (d.UserID == 32) {
-                  $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'elorde2'; });
-                }
-                else if (d.UserID == 33) {
-                  $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'elorde3'; });
-                }
-                else if (d.UserID == 34) {
-                  $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'elorde4'; });
-                }
-                else if (d.UserID == 35) {
-                  $scope.locations = _.filter($scope.locations, function(num){ return num.id == 'elorde5'; });
-                }
-
-                $scope.campaign.user = d
               }
-          });
-      });
-
-
+          })
 
 
 

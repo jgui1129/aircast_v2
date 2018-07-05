@@ -28,11 +28,14 @@ angular.module('Aircast.services')
         return d.promise;
       }
 
-  this.sites = function() {
+  this.sites = function(id) {
       var d = $q.defer();
       $http({
-        method: 'GET',
-        url: 'http://ec2-54-169-234-246.ap-southeast-1.compute.amazonaws.com/api/v0/aircast_location.php',
+        method: 'POST',
+        url: 'http://palmsolutions-tools.herokuapp.com/api/api-uploader-sites-location',
+        data: {
+          id: id
+        },
       }).then(function(data){
         d.resolve(data);
       });
