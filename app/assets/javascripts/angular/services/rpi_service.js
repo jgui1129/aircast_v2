@@ -14,7 +14,6 @@ angular.module('Aircast.services')
     }
 
     this.fileUrl = function(data) {
-
         var d = $q.defer();
         $http({
           method: 'POST',
@@ -22,6 +21,8 @@ angular.module('Aircast.services')
           data: data,
 
         }).then(function(data){
+
+
           d.resolve(data);
         });
 
@@ -80,8 +81,39 @@ angular.module('Aircast.services')
     return d.promise;
   }
 
+    this.paraKayGiro = function(data) {
+
+      var u = data.url.split('?');
+      var temp = 'video';
+      if (data.Template == 'temp4') {
+        temp = 'image';
+      }
+
+      $http({
+        url: 'https://aircast-content-bot.herokuapp.com/send-approval',
+        method: "POST",
+        data: {
+          info: {
+            "campaign_id": data.CampaignID,
+            "campaign_name": data.CampaignName,
+            "type": temp,
+            "preview": u[0],
+            "start_date": data.StartDate,
+            "end_date": data.EndDate,
+            "days": data.Days,
+            "timeslots": data.Timeslot,
+            "locations": data.Location
+          }
+        }
+      }).then(function(data){
+        console.log("PARA KAY GIRO", data);
+      })
+    }
+
+
     this.rpi_upload = function(data) {
       var d = $q.defer();
+      this.paraKayGiro(data);
       $http({
         method: 'POST',
         url: 'http://54.254.248.115/CampaignPost',
