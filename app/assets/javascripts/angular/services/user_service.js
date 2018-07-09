@@ -81,7 +81,7 @@ angular.module('Aircast.services')
         method: 'POST',
         data: params
       }).then(function(response) {
-        console.log(response)
+
         var user = response.data;
         AuthService.setCurrentUser(user);
         d.resolve(user);
@@ -91,7 +91,7 @@ angular.module('Aircast.services')
     };
 
     this.login = function(params) {
-      console.log(params)
+      $cookies.put('email',params.Email);
       var d = $q.defer();
       $http({
         url: 'http://54.254.248.115/AircastLogin',
@@ -112,6 +112,7 @@ angular.module('Aircast.services')
 
     this.logout = function() {
       $cookies.remove('user')
+      $cookies.remove('email')
       return 'success'
     };
 

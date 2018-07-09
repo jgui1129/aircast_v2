@@ -1,5 +1,5 @@
 angular.module('Aircast.services')
-  .service('RpiService',['$http', '$q', 'Upload', '$rootScope', function($http, $q, Upload, $rootScope) {
+  .service('RpiService',['$http', '$q', '$cookies', 'Upload', '$rootScope', function($http, $q, $cookies, Upload, $rootScope) {
 
     this.advert = function(data) {
       var d = $q.defer();
@@ -46,9 +46,6 @@ angular.module('Aircast.services')
 
 
   this.status_logs = function(location_name, startDate, endDate) {
-    console.log(location_name)
-    console.log(startDate)
-    console.log(endDate)
       var d = $q.defer();
       $http({
         method: 'GET',
@@ -89,12 +86,10 @@ angular.module('Aircast.services')
         temp = 'image';
       }
 
-      $http({
-        url: 'https://aircast-content-bot.herokuapp.com/send-approval',
-        method: "POST",
-        data: {
+      var d = {
           info: {
             "campaign_id": data.CampaignID,
+            "email": $cookies.get('email'),
             "campaign_name": data.CampaignName,
             "type": temp,
             "preview": u[0],
@@ -102,9 +97,17 @@ angular.module('Aircast.services')
             "end_date": data.EndDate,
             "days": data.Days,
             "timeslots": data.Timeslot,
-            "locations": data.Location
+            "locations": data.Location,
+
           }
-        }
+      }
+
+
+
+      $http({
+        url: 'https://aircast-content-bot.herokuapp.com/send-approval',
+        method: "POST",
+        data: d,
       }).then(function(data){
         console.log("PARA KAY GIRO", data);
       })
@@ -124,7 +127,6 @@ angular.module('Aircast.services')
                 var progressPercentage = parseInt(100.0 *
                   evt.loaded / evt.total);
                 $scope.progress = progressPercentage + '% ';
-                console.log($scope.progress)
               });
 
       return d.promise;
@@ -185,7 +187,7 @@ angular.module('Aircast.services')
     }
 
     this.location_reset = function(data) {
-      console.log(data)
+
       var d = $q.defer();
       $http({
         method: 'GET',

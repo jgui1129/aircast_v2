@@ -380,8 +380,7 @@ angular.module('Aircast.controllers')
             RpiService.rpi_upload(data)
               .then(function(result) {
                 // $scope.loading = false
-                console.log(result)
-                console.log($scope.campaign)
+
                 if($scope.campaign.user.UserID == 11) {
 
                   reminders = [
@@ -429,7 +428,7 @@ angular.module('Aircast.controllers')
                   if(ctr <= reminders.length) {
                     ReminderService.sms(x)
                       .then(function(d){
-                        console.log(d)
+
                         $state.go('nav.home')
                         ctr++
                       });
@@ -443,7 +442,7 @@ angular.module('Aircast.controllers')
                 });
             })
         })
-        console.log(data)
+
       }
 
 
